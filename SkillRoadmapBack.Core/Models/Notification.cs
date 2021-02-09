@@ -13,5 +13,9 @@ namespace SkillRoadmapBack.Core.Models
         public bool IsRead { get; set; }
         public int IdEmployee { get; set; }
         public int IdEmployer { get; set; }
+        public int IdUserSkill { get; set; }
+        public Employee IdEmployeeNavigation { get; set; }
+        public Employee IdEmployerNavigation { get; set; }
+        public UserSkill IdUserSkillNavigation { get; set; }
     }
 }

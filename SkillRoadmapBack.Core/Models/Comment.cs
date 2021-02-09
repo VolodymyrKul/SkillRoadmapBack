@@ -11,5 +11,8 @@ namespace SkillRoadmapBack.Core.Models
         public string CommentText { get; set; }
         public int IdEmployer { get; set; }
         public int IdUserSkill { get; set; }
+
+        public Employer IdEmployerNavigation { get; set; }
+        public UserSkill IdUserSkillNavigation { get; set; }
     }
 }

@@ -7,11 +7,23 @@ namespace SkillRoadmapBack.Core.Models
 {
     public class UserSkill : IBaseEntity
     {
+        public UserSkill()
+        {
+            Comments = new HashSet<Comment>();
+            ParentSkillDistributions = new HashSet<SkillDistribution>();
+            ChildSkillDistributions = new HashSet<SkillDistribution>();
+            Notifications = new HashSet<Notification>();
+        }
         public int Id { get; set; }
         public string Skillname { get; set; }
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
         public string Category { get; set; }
         public int IdEmployee { get; set; }
+        public Employee IdEmployeeNavigation { get; set; }
+        public virtual ICollection<Comment> Comments { get; set; }
+        public virtual ICollection<SkillDistribution> ParentSkillDistributions { get; set; }
+        public virtual ICollection<SkillDistribution> ChildSkillDistributions { get; set; }
+        public virtual ICollection<Notification> Notifications { get; set; }
     }
 }

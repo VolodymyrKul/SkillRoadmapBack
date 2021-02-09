@@ -4,4 +4,8 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\SkillRoadmapBack.Core\SkillRoadmapBack.Core.csproj" />
+  </ItemGroup>
+
 </Project>

@@ -10,5 +10,8 @@ namespace SkillRoadmapBack.Core.Models
         public int Id { get; set; }
         public int IdParentSkill { get; set; }
         public int IdChildSkill { get; set; }
+        
+        public UserSkill IdParentSkillNavigation { get; set; }
+        public UserSkill IdChildSkillNavigation { get; set; }
     }
 }
