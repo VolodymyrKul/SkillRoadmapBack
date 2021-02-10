@@ -13,4 +13,10 @@
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.0.2" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\SkillRoadmapBack.Core\SkillRoadmapBack.Core.csproj" />
+    <ProjectReference Include="..\SkillRoadMapBack.DAL\SkillRoadMapBack.DAL.csproj" />
+    <ProjectReference Include="..\SkillRoadMapBack.Services\SkillRoadMapBack.Services.csproj" />
+  </ItemGroup>
+
 </Project>
