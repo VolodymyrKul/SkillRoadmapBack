@@ -11,11 +11,11 @@ namespace SkillRoadmapBack.Core.Models
         public string NotificationText { get; set; }
         public DateTime SendingDate { get; set; }
         public bool IsRead { get; set; }
-        public int IdEmployee { get; set; }
-        public int IdEmployer { get; set; }
-        public int IdUserSkill { get; set; }
+        public int? IdEmployee { get; set; }
+        public int? IdEmployer { get; set; }
+        public int? IdUserSkill { get; set; }
         public Employee IdEmployeeNavigation { get; set; }
-        public Employee IdEmployerNavigation { get; set; }
+        public Employer IdEmployerNavigation { get; set; }
         public UserSkill IdUserSkillNavigation { get; set; }
     }
 }

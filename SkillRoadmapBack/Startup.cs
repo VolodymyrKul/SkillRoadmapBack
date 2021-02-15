@@ -26,7 +26,7 @@ namespace SkillRoadmapBack
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<SkillRoadMapDbContext>(e => e.UseSqlServer("Data Source=how2css.db"));
+            services.AddDbContext<SkillRoadMapDbContext>(e => e.UseSqlServer("Data Source=DESKTOP-THTGA2V;Initial Catalog=SkillRoadMapDb;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False"));
             services.ConfigureInfrastructureServices();
             services.ConfigureMapping();
             services.AddHttpContextAccessor();

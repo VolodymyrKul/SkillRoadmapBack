@@ -19,7 +19,7 @@ namespace SkillRoadmapBack.Core.Models
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
         public string Category { get; set; }
-        public int IdEmployee { get; set; }
+        public int? IdEmployee { get; set; }
         public Employee IdEmployeeNavigation { get; set; }
         public virtual ICollection<Comment> Comments { get; set; }
         public virtual ICollection<SkillDistribution> ParentSkillDistributions { get; set; }
