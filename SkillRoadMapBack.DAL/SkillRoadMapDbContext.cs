@@ -26,7 +26,7 @@ namespace SkillRoadMapBack.DAL
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)
-                optionsBuilder.UseSqlServer("Data Source=DESKTOP-THTGA2V;Initial Catalog=SkillRoadMapDb;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
+                optionsBuilder.UseSqlServer("Data Source=DESKTOP-THTGA2V;Initial Catalog=SkillsRoadMapDb;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -515,7 +515,7 @@ namespace SkillRoadMapBack.DAL
                         NotificationText = "Tmp",
                         SendingDate = new DateTime(2021, 1, 1),
                         IsRead = false,
-                        IdEmployee = 12,
+                        IdEmployee = 1,
                         IdEmployer = 1,
                         IdUserSkill = 12
                     });

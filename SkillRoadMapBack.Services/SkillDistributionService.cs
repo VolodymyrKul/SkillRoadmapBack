@@ -36,7 +36,7 @@ namespace SkillRoadMapBack.Services
 
         public virtual async Task<List<SkillDistributionDTO>> GetAll()
         {
-            var skillDistributions = await _unitOfWork.NotificationRepo.GetAllAsync();
+            var skillDistributions = await _unitOfWork.SkillDistributionRepo.GetAllAsync();
             List<SkillDistributionDTO> skillDistributionDTOs = skillDistributions.Select(skillDistribution => _mapper.Map(skillDistribution, new SkillDistributionDTO())).ToList();
             return skillDistributionDTOs;
         }
