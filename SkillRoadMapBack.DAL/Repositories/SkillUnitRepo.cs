@@ -7,10 +7,10 @@ using System.Text;
 
 namespace SkillRoadMapBack.DAL.Repositories
 {
-    public class SkillDistributionRepo : BaseRepo<SkillDistribution>, ISkillDistributionRepo
+    public class SkillUnitRepo : BaseRepo<SkillUnit>, ISkillUnitRepo
     {
         private readonly SkillRoadMapDbContext _context;
-        public SkillDistributionRepo(SkillRoadMapDbContext context) : base(context)
+        public SkillUnitRepo(SkillRoadMapDbContext context) : base(context)
         {
             _context = context;
         }

@@ -97,35 +97,35 @@ namespace SkillRoadMapBack.DAL.Migrations
                             Id = 1,
                             CommentText = "Need to learn C#",
                             IdEmployer = 1,
-                            IdUserSkill = 8
+                            IdUserSkill = 1
                         },
                         new
                         {
                             Id = 2,
                             CommentText = "Need to learn C#",
                             IdEmployer = 1,
-                            IdUserSkill = 9
+                            IdUserSkill = 2
                         },
                         new
                         {
                             Id = 3,
                             CommentText = "Need to learn C#",
                             IdEmployer = 1,
-                            IdUserSkill = 10
+                            IdUserSkill = 3
                         },
                         new
                         {
                             Id = 4,
                             CommentText = "Need to learn C#",
                             IdEmployer = 1,
-                            IdUserSkill = 11
+                            IdUserSkill = 4
                         },
                         new
                         {
                             Id = 5,
                             CommentText = "Need to learn C#",
                             IdEmployer = 1,
-                            IdUserSkill = 12
+                            IdUserSkill = 5
                         });
                 });
 
@@ -421,257 +421,380 @@ namespace SkillRoadMapBack.DAL.Migrations
                         });
                 });
 
-            modelBuilder.Entity("SkillRoadmapBack.Core.Models.SkillDistribution", b =>
+            modelBuilder.Entity("SkillRoadmapBack.Core.Models.SkillUnit", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
-                        .HasColumnName("Id_SkillDistribution")
+                        .HasColumnName("Id_SkillUnit")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int?>("IdChildSkill")
+                    b.Property<DateTime>("EndDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int?>("IdUserSkill")
                         .HasColumnType("int");
 
-                    b.Property<int?>("IdParentSkill")
+                    b.Property<DateTime>("StartDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("UnitLevel")
                         .HasColumnType("int");
+
+                    b.Property<string>("Unitname")
+                        .HasMaxLength(50)
+                        .IsUnicode(false)
+                        .HasColumnType("varchar(50)");
 
                     b.HasKey("Id")
-                        .HasName("XPKSkillDistribution");
+                        .HasName("XPKSkillUnit");
 
-                    b.HasIndex("IdChildSkill");
+                    b.HasIndex("IdUserSkill");
 
-                    b.HasIndex("IdParentSkill");
-
-                    b.ToTable("SkillDistributions");
+                    b.ToTable("SkillUnits");
 
                     b.HasData(
                         new
                         {
                             Id = 1,
-                            IdChildSkill = 8,
-                            IdParentSkill = 1
+                            EndDate = new DateTime(2021, 1, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IdUserSkill = 1,
+                            StartDate = new DateTime(2021, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UnitLevel = 2,
+                            Unitname = "C# Variables"
                         },
                         new
                         {
                             Id = 2,
-                            IdChildSkill = 9,
-                            IdParentSkill = 1
+                            EndDate = new DateTime(2021, 1, 25, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IdUserSkill = 1,
+                            StartDate = new DateTime(2021, 1, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UnitLevel = 3,
+                            Unitname = "C# Data types"
                         },
                         new
                         {
                             Id = 3,
-                            IdChildSkill = 10,
-                            IdParentSkill = 1
+                            EndDate = new DateTime(2021, 2, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IdUserSkill = 1,
+                            StartDate = new DateTime(2021, 1, 25, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UnitLevel = 4,
+                            Unitname = "C# Cycles"
                         },
                         new
                         {
                             Id = 4,
-                            IdChildSkill = 11,
-                            IdParentSkill = 2
+                            EndDate = new DateTime(2021, 3, 5, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IdUserSkill = 2,
+                            StartDate = new DateTime(2021, 2, 20, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UnitLevel = 3,
+                            Unitname = "C# Classes and objects"
                         },
                         new
                         {
                             Id = 5,
-                            IdChildSkill = 12,
-                            IdParentSkill = 2
+                            EndDate = new DateTime(2021, 3, 20, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IdUserSkill = 2,
+                            StartDate = new DateTime(2021, 3, 5, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UnitLevel = 4,
+                            Unitname = "C# Structures"
                         },
                         new
                         {
                             Id = 6,
-                            IdChildSkill = 13,
-                            IdParentSkill = 2
+                            EndDate = new DateTime(2021, 4, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IdUserSkill = 2,
+                            StartDate = new DateTime(2021, 3, 20, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UnitLevel = 5,
+                            Unitname = "C# Access modifiers"
                         },
                         new
                         {
                             Id = 7,
-                            IdChildSkill = 14,
-                            IdParentSkill = 3
+                            EndDate = new DateTime(2021, 4, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IdUserSkill = 3,
+                            StartDate = new DateTime(2021, 4, 5, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UnitLevel = 5,
+                            Unitname = "C# Try..catch..finally"
                         },
                         new
                         {
                             Id = 8,
-                            IdChildSkill = 15,
-                            IdParentSkill = 3
+                            EndDate = new DateTime(2021, 4, 20, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IdUserSkill = 3,
+                            StartDate = new DateTime(2021, 4, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UnitLevel = 4,
+                            Unitname = "C# Exception types. Exception class"
                         },
                         new
                         {
                             Id = 9,
-                            IdChildSkill = 16,
-                            IdParentSkill = 3
+                            EndDate = new DateTime(2021, 5, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IdUserSkill = 3,
+                            StartDate = new DateTime(2021, 4, 20, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UnitLevel = 5,
+                            Unitname = "C# Creating Exception Classes"
                         },
                         new
                         {
                             Id = 10,
-                            IdChildSkill = 17,
-                            IdParentSkill = 4
+                            EndDate = new DateTime(2021, 6, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IdUserSkill = 4,
+                            StartDate = new DateTime(2021, 5, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UnitLevel = 3,
+                            Unitname = "C# Delegates"
                         },
                         new
                         {
                             Id = 11,
-                            IdChildSkill = 18,
-                            IdParentSkill = 4
+                            EndDate = new DateTime(2021, 6, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IdUserSkill = 4,
+                            StartDate = new DateTime(2021, 6, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UnitLevel = 4,
+                            Unitname = "C# Lambdas"
                         },
                         new
                         {
                             Id = 12,
-                            IdChildSkill = 19,
-                            IdParentSkill = 4
+                            EndDate = new DateTime(2021, 6, 20, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IdUserSkill = 4,
+                            StartDate = new DateTime(2021, 6, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UnitLevel = 5,
+                            Unitname = "C# Anonymous methods"
                         },
                         new
                         {
                             Id = 13,
-                            IdChildSkill = 20,
-                            IdParentSkill = 5
+                            EndDate = new DateTime(2021, 7, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IdUserSkill = 5,
+                            StartDate = new DateTime(2021, 6, 25, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UnitLevel = 2,
+                            Unitname = "C# Defining interfaces"
                         },
                         new
                         {
                             Id = 14,
-                            IdChildSkill = 21,
-                            IdParentSkill = 5
+                            EndDate = new DateTime(2021, 8, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IdUserSkill = 5,
+                            StartDate = new DateTime(2021, 7, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UnitLevel = 4,
+                            Unitname = "C# Template interfaces"
                         },
                         new
                         {
                             Id = 15,
-                            IdChildSkill = 27,
-                            IdParentSkill = 22
+                            EndDate = new DateTime(2021, 1, 25, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IdUserSkill = 8,
+                            StartDate = new DateTime(2021, 1, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UnitLevel = 2,
+                            Unitname = "Security testing"
                         },
                         new
                         {
                             Id = 16,
-                            IdChildSkill = 28,
-                            IdParentSkill = 22
+                            EndDate = new DateTime(2021, 2, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IdUserSkill = 8,
+                            StartDate = new DateTime(2021, 1, 25, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UnitLevel = 3,
+                            Unitname = "Performance testing"
                         },
                         new
                         {
                             Id = 17,
-                            IdChildSkill = 29,
-                            IdParentSkill = 22
+                            EndDate = new DateTime(2021, 2, 25, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IdUserSkill = 8,
+                            StartDate = new DateTime(2021, 2, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UnitLevel = 4,
+                            Unitname = "Smoke testing"
                         },
                         new
                         {
                             Id = 18,
-                            IdChildSkill = 30,
-                            IdParentSkill = 23
+                            EndDate = new DateTime(2021, 3, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IdUserSkill = 9,
+                            StartDate = new DateTime(2021, 3, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UnitLevel = 3,
+                            Unitname = "Functional testing"
                         },
                         new
                         {
                             Id = 19,
-                            IdChildSkill = 31,
-                            IdParentSkill = 23
+                            EndDate = new DateTime(2021, 3, 25, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IdUserSkill = 9,
+                            StartDate = new DateTime(2021, 3, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UnitLevel = 4,
+                            Unitname = "Non-functional testing"
                         },
                         new
                         {
                             Id = 20,
-                            IdChildSkill = 32,
-                            IdParentSkill = 23
+                            EndDate = new DateTime(2021, 4, 5, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IdUserSkill = 9,
+                            StartDate = new DateTime(2021, 3, 25, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UnitLevel = 5,
+                            Unitname = "Сhange testing"
                         },
                         new
                         {
                             Id = 21,
-                            IdChildSkill = 33,
-                            IdParentSkill = 24
+                            EndDate = new DateTime(2021, 4, 20, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IdUserSkill = 10,
+                            StartDate = new DateTime(2021, 4, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UnitLevel = 5,
+                            Unitname = "Black box"
                         },
                         new
                         {
                             Id = 22,
-                            IdChildSkill = 34,
-                            IdParentSkill = 24
+                            EndDate = new DateTime(2021, 5, 5, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IdUserSkill = 10,
+                            StartDate = new DateTime(2021, 4, 20, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UnitLevel = 5,
+                            Unitname = "White box"
                         },
                         new
                         {
                             Id = 23,
-                            IdChildSkill = 35,
-                            IdParentSkill = 24
+                            EndDate = new DateTime(2021, 5, 20, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IdUserSkill = 10,
+                            StartDate = new DateTime(2021, 5, 5, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UnitLevel = 5,
+                            Unitname = "Gray box"
                         },
                         new
                         {
                             Id = 24,
-                            IdChildSkill = 36,
-                            IdParentSkill = 25
+                            EndDate = new DateTime(2021, 6, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IdUserSkill = 11,
+                            StartDate = new DateTime(2021, 5, 25, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UnitLevel = 2,
+                            Unitname = "Manual testing"
                         },
                         new
                         {
                             Id = 25,
-                            IdChildSkill = 37,
-                            IdParentSkill = 25
+                            EndDate = new DateTime(2021, 6, 20, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IdUserSkill = 11,
+                            StartDate = new DateTime(2021, 6, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UnitLevel = 3,
+                            Unitname = "Automated testing"
                         },
                         new
                         {
                             Id = 26,
-                            IdChildSkill = 38,
-                            IdParentSkill = 25
+                            EndDate = new DateTime(2021, 7, 5, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IdUserSkill = 11,
+                            StartDate = new DateTime(2021, 6, 20, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UnitLevel = 4,
+                            Unitname = "Semiautomated testing"
                         },
                         new
                         {
                             Id = 27,
-                            IdChildSkill = 39,
-                            IdParentSkill = 26
+                            EndDate = new DateTime(2021, 7, 25, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IdUserSkill = 12,
+                            StartDate = new DateTime(2021, 7, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UnitLevel = 3,
+                            Unitname = "Component testing"
                         },
                         new
                         {
                             Id = 28,
-                            IdChildSkill = 40,
-                            IdParentSkill = 26
+                            EndDate = new DateTime(2021, 8, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IdUserSkill = 12,
+                            StartDate = new DateTime(2021, 7, 25, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UnitLevel = 4,
+                            Unitname = "Integration testing"
                         },
                         new
                         {
                             Id = 29,
-                            IdChildSkill = 41,
-                            IdParentSkill = 26
+                            EndDate = new DateTime(2021, 8, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IdUserSkill = 12,
+                            StartDate = new DateTime(2021, 8, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UnitLevel = 5,
+                            Unitname = "System testing"
                         },
                         new
                         {
                             Id = 30,
-                            IdChildSkill = 45,
-                            IdParentSkill = 42
+                            EndDate = new DateTime(2021, 9, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IdUserSkill = 13,
+                            StartDate = new DateTime(2021, 8, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UnitLevel = 1,
+                            Unitname = "IDEF0 design"
                         },
                         new
                         {
                             Id = 31,
-                            IdChildSkill = 46,
-                            IdParentSkill = 42
+                            EndDate = new DateTime(2021, 9, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IdUserSkill = 13,
+                            StartDate = new DateTime(2021, 9, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UnitLevel = 2,
+                            Unitname = "DFD design"
                         },
                         new
                         {
                             Id = 32,
-                            IdChildSkill = 47,
-                            IdParentSkill = 42
+                            EndDate = new DateTime(2021, 9, 20, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IdUserSkill = 13,
+                            StartDate = new DateTime(2021, 9, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UnitLevel = 3,
+                            Unitname = "IDEF3 design"
                         },
                         new
                         {
                             Id = 33,
-                            IdChildSkill = 48,
-                            IdParentSkill = 43
+                            EndDate = new DateTime(2021, 10, 5, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IdUserSkill = 14,
+                            StartDate = new DateTime(2021, 9, 25, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UnitLevel = 3,
+                            Unitname = "Class diagram"
                         },
                         new
                         {
                             Id = 34,
-                            IdChildSkill = 49,
-                            IdParentSkill = 43
+                            EndDate = new DateTime(2021, 10, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IdUserSkill = 14,
+                            StartDate = new DateTime(2021, 10, 5, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UnitLevel = 4,
+                            Unitname = "Use case diagram"
                         },
                         new
                         {
                             Id = 35,
-                            IdChildSkill = 50,
-                            IdParentSkill = 43
+                            EndDate = new DateTime(2021, 11, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IdUserSkill = 14,
+                            StartDate = new DateTime(2021, 10, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UnitLevel = 5,
+                            Unitname = "Component diagram"
                         },
                         new
                         {
                             Id = 36,
-                            IdChildSkill = 51,
-                            IdParentSkill = 44
+                            EndDate = new DateTime(2021, 11, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IdUserSkill = 15,
+                            StartDate = new DateTime(2021, 11, 5, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UnitLevel = 5,
+                            Unitname = "Factory pattern"
                         },
                         new
                         {
                             Id = 37,
-                            IdChildSkill = 52,
-                            IdParentSkill = 44
+                            EndDate = new DateTime(2021, 12, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IdUserSkill = 15,
+                            StartDate = new DateTime(2021, 11, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UnitLevel = 3,
+                            Unitname = "Moment pattern"
                         },
                         new
                         {
                             Id = 38,
-                            IdChildSkill = 53,
-                            IdParentSkill = 44
+                            EndDate = new DateTime(2021, 12, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IdUserSkill = 15,
+                            StartDate = new DateTime(2021, 12, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UnitLevel = 4,
+                            Unitname = "Bridge pattern"
                         });
                 });
 
@@ -786,146 +909,6 @@ namespace SkillRoadMapBack.DAL.Migrations
                         new
                         {
                             Id = 8,
-                            EndDate = new DateTime(2021, 1, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            IdCategory = 1,
-                            IdEmployee = 1,
-                            SkillLevel = 2,
-                            Skillname = "C# Variables",
-                            StartDate = new DateTime(2021, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
-                        },
-                        new
-                        {
-                            Id = 9,
-                            EndDate = new DateTime(2021, 1, 25, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            IdCategory = 1,
-                            IdEmployee = 1,
-                            SkillLevel = 3,
-                            Skillname = "C# Data types",
-                            StartDate = new DateTime(2021, 1, 10, 0, 0, 0, 0, DateTimeKind.Unspecified)
-                        },
-                        new
-                        {
-                            Id = 10,
-                            EndDate = new DateTime(2021, 2, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            IdCategory = 1,
-                            IdEmployee = 1,
-                            SkillLevel = 4,
-                            Skillname = "C# Cycles",
-                            StartDate = new DateTime(2021, 1, 25, 0, 0, 0, 0, DateTimeKind.Unspecified)
-                        },
-                        new
-                        {
-                            Id = 11,
-                            EndDate = new DateTime(2021, 3, 5, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            IdCategory = 1,
-                            IdEmployee = 1,
-                            SkillLevel = 3,
-                            Skillname = "C# Classes and objects",
-                            StartDate = new DateTime(2021, 2, 20, 0, 0, 0, 0, DateTimeKind.Unspecified)
-                        },
-                        new
-                        {
-                            Id = 12,
-                            EndDate = new DateTime(2021, 3, 20, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            IdCategory = 1,
-                            IdEmployee = 1,
-                            SkillLevel = 4,
-                            Skillname = "C# Structures",
-                            StartDate = new DateTime(2021, 3, 5, 0, 0, 0, 0, DateTimeKind.Unspecified)
-                        },
-                        new
-                        {
-                            Id = 13,
-                            EndDate = new DateTime(2021, 4, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            IdCategory = 1,
-                            IdEmployee = 1,
-                            SkillLevel = 5,
-                            Skillname = "C# Access modifiers",
-                            StartDate = new DateTime(2021, 3, 20, 0, 0, 0, 0, DateTimeKind.Unspecified)
-                        },
-                        new
-                        {
-                            Id = 14,
-                            EndDate = new DateTime(2021, 4, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            IdCategory = 1,
-                            IdEmployee = 1,
-                            SkillLevel = 5,
-                            Skillname = "C# Try..catch..finally",
-                            StartDate = new DateTime(2021, 4, 5, 0, 0, 0, 0, DateTimeKind.Unspecified)
-                        },
-                        new
-                        {
-                            Id = 15,
-                            EndDate = new DateTime(2021, 4, 20, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            IdCategory = 1,
-                            IdEmployee = 1,
-                            SkillLevel = 4,
-                            Skillname = "C# Exception types. Exception class",
-                            StartDate = new DateTime(2021, 4, 10, 0, 0, 0, 0, DateTimeKind.Unspecified)
-                        },
-                        new
-                        {
-                            Id = 16,
-                            EndDate = new DateTime(2021, 5, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            IdCategory = 1,
-                            IdEmployee = 1,
-                            SkillLevel = 5,
-                            Skillname = "C# Creating Exception Classes",
-                            StartDate = new DateTime(2021, 4, 20, 0, 0, 0, 0, DateTimeKind.Unspecified)
-                        },
-                        new
-                        {
-                            Id = 17,
-                            EndDate = new DateTime(2021, 6, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            IdCategory = 1,
-                            IdEmployee = 1,
-                            SkillLevel = 3,
-                            Skillname = "C# Delegates",
-                            StartDate = new DateTime(2021, 5, 15, 0, 0, 0, 0, DateTimeKind.Unspecified)
-                        },
-                        new
-                        {
-                            Id = 18,
-                            EndDate = new DateTime(2021, 6, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            IdCategory = 1,
-                            IdEmployee = 1,
-                            SkillLevel = 4,
-                            Skillname = "C# Lambdas",
-                            StartDate = new DateTime(2021, 6, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
-                        },
-                        new
-                        {
-                            Id = 19,
-                            EndDate = new DateTime(2021, 6, 20, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            IdCategory = 1,
-                            IdEmployee = 1,
-                            SkillLevel = 5,
-                            Skillname = "C# Anonymous methods",
-                            StartDate = new DateTime(2021, 6, 10, 0, 0, 0, 0, DateTimeKind.Unspecified)
-                        },
-                        new
-                        {
-                            Id = 20,
-                            EndDate = new DateTime(2021, 7, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            IdCategory = 1,
-                            IdEmployee = 1,
-                            SkillLevel = 2,
-                            Skillname = "C# Defining interfaces",
-                            StartDate = new DateTime(2021, 6, 25, 0, 0, 0, 0, DateTimeKind.Unspecified)
-                        },
-                        new
-                        {
-                            Id = 21,
-                            EndDate = new DateTime(2021, 8, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            IdCategory = 1,
-                            IdEmployee = 1,
-                            SkillLevel = 4,
-                            Skillname = "C# Template interfaces",
-                            StartDate = new DateTime(2021, 7, 15, 0, 0, 0, 0, DateTimeKind.Unspecified)
-                        },
-                        new
-                        {
-                            Id = 22,
                             EndDate = new DateTime(2021, 2, 25, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IdCategory = 2,
                             IdEmployee = 1,
@@ -935,7 +918,7 @@ namespace SkillRoadMapBack.DAL.Migrations
                         },
                         new
                         {
-                            Id = 23,
+                            Id = 9,
                             EndDate = new DateTime(2021, 4, 5, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IdCategory = 2,
                             IdEmployee = 1,
@@ -945,7 +928,7 @@ namespace SkillRoadMapBack.DAL.Migrations
                         },
                         new
                         {
-                            Id = 24,
+                            Id = 10,
                             EndDate = new DateTime(2021, 5, 20, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IdCategory = 2,
                             IdEmployee = 1,
@@ -955,7 +938,7 @@ namespace SkillRoadMapBack.DAL.Migrations
                         },
                         new
                         {
-                            Id = 25,
+                            Id = 11,
                             EndDate = new DateTime(2021, 7, 5, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IdCategory = 2,
                             IdEmployee = 1,
@@ -965,7 +948,7 @@ namespace SkillRoadMapBack.DAL.Migrations
                         },
                         new
                         {
-                            Id = 26,
+                            Id = 12,
                             EndDate = new DateTime(2021, 8, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IdCategory = 2,
                             IdEmployee = 1,
@@ -975,157 +958,7 @@ namespace SkillRoadMapBack.DAL.Migrations
                         },
                         new
                         {
-                            Id = 27,
-                            EndDate = new DateTime(2021, 1, 25, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            IdCategory = 2,
-                            IdEmployee = 1,
-                            SkillLevel = 2,
-                            Skillname = "Security testing",
-                            StartDate = new DateTime(2021, 1, 15, 0, 0, 0, 0, DateTimeKind.Unspecified)
-                        },
-                        new
-                        {
-                            Id = 28,
-                            EndDate = new DateTime(2021, 2, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            IdCategory = 2,
-                            IdEmployee = 1,
-                            SkillLevel = 3,
-                            Skillname = "Performance testing",
-                            StartDate = new DateTime(2021, 1, 25, 0, 0, 0, 0, DateTimeKind.Unspecified)
-                        },
-                        new
-                        {
-                            Id = 29,
-                            EndDate = new DateTime(2021, 2, 25, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            IdCategory = 2,
-                            IdEmployee = 1,
-                            SkillLevel = 4,
-                            Skillname = "Smoke testing",
-                            StartDate = new DateTime(2021, 2, 15, 0, 0, 0, 0, DateTimeKind.Unspecified)
-                        },
-                        new
-                        {
-                            Id = 30,
-                            EndDate = new DateTime(2021, 3, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            IdCategory = 2,
-                            IdEmployee = 1,
-                            SkillLevel = 3,
-                            Skillname = "Functional testing",
-                            StartDate = new DateTime(2021, 3, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
-                        },
-                        new
-                        {
-                            Id = 31,
-                            EndDate = new DateTime(2021, 3, 25, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            IdCategory = 2,
-                            IdEmployee = 1,
-                            SkillLevel = 4,
-                            Skillname = "Non-functional testing",
-                            StartDate = new DateTime(2021, 3, 10, 0, 0, 0, 0, DateTimeKind.Unspecified)
-                        },
-                        new
-                        {
-                            Id = 32,
-                            EndDate = new DateTime(2021, 4, 5, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            IdCategory = 2,
-                            IdEmployee = 1,
-                            SkillLevel = 5,
-                            Skillname = "Сhange testing",
-                            StartDate = new DateTime(2021, 3, 25, 0, 0, 0, 0, DateTimeKind.Unspecified)
-                        },
-                        new
-                        {
-                            Id = 33,
-                            EndDate = new DateTime(2021, 4, 20, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            IdCategory = 2,
-                            IdEmployee = 1,
-                            SkillLevel = 5,
-                            Skillname = "Black box",
-                            StartDate = new DateTime(2021, 4, 10, 0, 0, 0, 0, DateTimeKind.Unspecified)
-                        },
-                        new
-                        {
-                            Id = 34,
-                            EndDate = new DateTime(2021, 5, 5, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            IdCategory = 2,
-                            IdEmployee = 1,
-                            SkillLevel = 5,
-                            Skillname = "White box",
-                            StartDate = new DateTime(2021, 4, 20, 0, 0, 0, 0, DateTimeKind.Unspecified)
-                        },
-                        new
-                        {
-                            Id = 35,
-                            EndDate = new DateTime(2021, 5, 20, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            IdCategory = 2,
-                            IdEmployee = 1,
-                            SkillLevel = 5,
-                            Skillname = "Gray box",
-                            StartDate = new DateTime(2021, 5, 5, 0, 0, 0, 0, DateTimeKind.Unspecified)
-                        },
-                        new
-                        {
-                            Id = 36,
-                            EndDate = new DateTime(2021, 6, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            IdCategory = 2,
-                            IdEmployee = 1,
-                            SkillLevel = 2,
-                            Skillname = "Manual testing",
-                            StartDate = new DateTime(2021, 5, 25, 0, 0, 0, 0, DateTimeKind.Unspecified)
-                        },
-                        new
-                        {
-                            Id = 37,
-                            EndDate = new DateTime(2021, 6, 20, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            IdCategory = 2,
-                            IdEmployee = 1,
-                            SkillLevel = 3,
-                            Skillname = "Automated testing",
-                            StartDate = new DateTime(2021, 6, 10, 0, 0, 0, 0, DateTimeKind.Unspecified)
-                        },
-                        new
-                        {
-                            Id = 38,
-                            EndDate = new DateTime(2021, 7, 5, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            IdCategory = 2,
-                            IdEmployee = 1,
-                            SkillLevel = 4,
-                            Skillname = "Semiautomated testing",
-                            StartDate = new DateTime(2021, 6, 20, 0, 0, 0, 0, DateTimeKind.Unspecified)
-                        },
-                        new
-                        {
-                            Id = 39,
-                            EndDate = new DateTime(2021, 7, 25, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            IdCategory = 2,
-                            IdEmployee = 1,
-                            SkillLevel = 3,
-                            Skillname = "Component testing",
-                            StartDate = new DateTime(2021, 7, 10, 0, 0, 0, 0, DateTimeKind.Unspecified)
-                        },
-                        new
-                        {
-                            Id = 40,
-                            EndDate = new DateTime(2021, 8, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            IdCategory = 2,
-                            IdEmployee = 1,
-                            SkillLevel = 4,
-                            Skillname = "Integration testing",
-                            StartDate = new DateTime(2021, 7, 25, 0, 0, 0, 0, DateTimeKind.Unspecified)
-                        },
-                        new
-                        {
-                            Id = 41,
-                            EndDate = new DateTime(2021, 8, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            IdCategory = 2,
-                            IdEmployee = 1,
-                            SkillLevel = 5,
-                            Skillname = "System testing",
-                            StartDate = new DateTime(2021, 8, 10, 0, 0, 0, 0, DateTimeKind.Unspecified)
-                        },
-                        new
-                        {
-                            Id = 42,
+                            Id = 13,
                             EndDate = new DateTime(2021, 9, 20, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IdCategory = 3,
                             IdEmployee = 1,
@@ -1135,7 +968,7 @@ namespace SkillRoadMapBack.DAL.Migrations
                         },
                         new
                         {
-                            Id = 43,
+                            Id = 14,
                             EndDate = new DateTime(2021, 11, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IdCategory = 3,
                             IdEmployee = 1,
@@ -1145,103 +978,13 @@ namespace SkillRoadMapBack.DAL.Migrations
                         },
                         new
                         {
-                            Id = 44,
+                            Id = 15,
                             EndDate = new DateTime(2021, 12, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IdCategory = 3,
                             IdEmployee = 1,
                             SkillLevel = 4,
                             Skillname = "Design patterns",
                             StartDate = new DateTime(2021, 11, 5, 0, 0, 0, 0, DateTimeKind.Unspecified)
-                        },
-                        new
-                        {
-                            Id = 45,
-                            EndDate = new DateTime(2021, 9, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            IdCategory = 3,
-                            IdEmployee = 1,
-                            SkillLevel = 1,
-                            Skillname = "IDEF0 design",
-                            StartDate = new DateTime(2021, 8, 15, 0, 0, 0, 0, DateTimeKind.Unspecified)
-                        },
-                        new
-                        {
-                            Id = 46,
-                            EndDate = new DateTime(2021, 9, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            IdCategory = 3,
-                            IdEmployee = 1,
-                            SkillLevel = 2,
-                            Skillname = "DFD design",
-                            StartDate = new DateTime(2021, 9, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
-                        },
-                        new
-                        {
-                            Id = 47,
-                            EndDate = new DateTime(2021, 9, 20, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            IdCategory = 3,
-                            IdEmployee = 1,
-                            SkillLevel = 3,
-                            Skillname = "IDEF3 design",
-                            StartDate = new DateTime(2021, 9, 10, 0, 0, 0, 0, DateTimeKind.Unspecified)
-                        },
-                        new
-                        {
-                            Id = 48,
-                            EndDate = new DateTime(2021, 10, 5, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            IdCategory = 3,
-                            IdEmployee = 1,
-                            SkillLevel = 3,
-                            Skillname = "Class diagram",
-                            StartDate = new DateTime(2021, 9, 25, 0, 0, 0, 0, DateTimeKind.Unspecified)
-                        },
-                        new
-                        {
-                            Id = 49,
-                            EndDate = new DateTime(2021, 10, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            IdCategory = 3,
-                            IdEmployee = 1,
-                            SkillLevel = 4,
-                            Skillname = "Use case diagram",
-                            StartDate = new DateTime(2021, 10, 5, 0, 0, 0, 0, DateTimeKind.Unspecified)
-                        },
-                        new
-                        {
-                            Id = 50,
-                            EndDate = new DateTime(2021, 11, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            IdCategory = 3,
-                            IdEmployee = 1,
-                            SkillLevel = 5,
-                            Skillname = "Component diagram",
-                            StartDate = new DateTime(2021, 10, 15, 0, 0, 0, 0, DateTimeKind.Unspecified)
-                        },
-                        new
-                        {
-                            Id = 51,
-                            EndDate = new DateTime(2021, 11, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            IdCategory = 3,
-                            IdEmployee = 1,
-                            SkillLevel = 5,
-                            Skillname = "Factory pattern",
-                            StartDate = new DateTime(2021, 11, 5, 0, 0, 0, 0, DateTimeKind.Unspecified)
-                        },
-                        new
-                        {
-                            Id = 52,
-                            EndDate = new DateTime(2021, 12, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            IdCategory = 3,
-                            IdEmployee = 1,
-                            SkillLevel = 3,
-                            Skillname = "Moment pattern",
-                            StartDate = new DateTime(2021, 11, 15, 0, 0, 0, 0, DateTimeKind.Unspecified)
-                        },
-                        new
-                        {
-                            Id = 53,
-                            EndDate = new DateTime(2021, 12, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            IdCategory = 3,
-                            IdEmployee = 1,
-                            SkillLevel = 4,
-                            Skillname = "Bridge pattern",
-                            StartDate = new DateTime(2021, 12, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         });
                 });
 
@@ -1296,21 +1039,14 @@ namespace SkillRoadMapBack.DAL.Migrations
                     b.Navigation("IdUserSkillNavigation");
                 });
 
-            modelBuilder.Entity("SkillRoadmapBack.Core.Models.SkillDistribution", b =>
+            modelBuilder.Entity("SkillRoadmapBack.Core.Models.SkillUnit", b =>
                 {
-                    b.HasOne("SkillRoadmapBack.Core.Models.UserSkill", "IdChildSkillNavigation")
-                        .WithMany("ChildSkillDistributions")
-                        .HasForeignKey("IdChildSkill")
-                        .HasConstraintName("R_8");
+                    b.HasOne("SkillRoadmapBack.Core.Models.UserSkill", "IdUserSkillNavigation")
+                        .WithMany("SkillUnits")
+                        .HasForeignKey("IdUserSkill")
+                        .HasConstraintName("R_11");
 
-                    b.HasOne("SkillRoadmapBack.Core.Models.UserSkill", "IdParentSkillNavigation")
-                        .WithMany("ParentSkillDistributions")
-                        .HasForeignKey("IdParentSkill")
-                        .HasConstraintName("R_7");
-
-                    b.Navigation("IdChildSkillNavigation");
-
-                    b.Navigation("IdParentSkillNavigation");
+                    b.Navigation("IdUserSkillNavigation");
                 });
 
             modelBuilder.Entity("SkillRoadmapBack.Core.Models.UserSkill", b =>
@@ -1353,13 +1089,11 @@ namespace SkillRoadMapBack.DAL.Migrations
 
             modelBuilder.Entity("SkillRoadmapBack.Core.Models.UserSkill", b =>
                 {
-                    b.Navigation("ChildSkillDistributions");
-
                     b.Navigation("Comments");
 
                     b.Navigation("Notifications");
 
-                    b.Navigation("ParentSkillDistributions");
+                    b.Navigation("SkillUnits");
                 });
 #pragma warning restore 612, 618
         }

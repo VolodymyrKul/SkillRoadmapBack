@@ -55,5 +55,12 @@ namespace SkillRoadmapBack.Web.Controllers
             await _userSkillService.DeleteAsync(id);
             return NoContent();
         }
+
+        [HttpGet("byyear/{inuser}/{inyear}")]
+        public async Task<ActionResult<List<UserSkillDTO>>> GetByUserYear(int inuser, int inyear)
+        {
+            var result = await _userSkillService.GetByYear(inuser, inyear);
+            return Ok(result);
+        }
     }
 }

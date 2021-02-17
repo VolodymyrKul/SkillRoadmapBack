@@ -13,8 +13,8 @@ namespace SkillRoadmapBack.Core.Abstractions
         IEmployerRepo EmployerRepo { get; }
         INotificationRepo NotificationRepo { get; }
         IUserSkillRepo UserSkillRepo { get; }
-        ISkillDistributionRepo SkillDistributionRepo { get; }
         ICategoryRepo CategoryRepo { get; }
+        ISkillUnitRepo SkillUnitRepo { get; }
         Task SaveChangesAsync();
     }
 }

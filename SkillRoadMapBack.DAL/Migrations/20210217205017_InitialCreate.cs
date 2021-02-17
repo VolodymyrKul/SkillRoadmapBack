@@ -158,26 +158,23 @@ namespace SkillRoadMapBack.DAL.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "SkillDistributions",
+                name: "SkillUnits",
                 columns: table => new
                 {
-                    Id_SkillDistribution = table.Column<int>(type: "int", nullable: false)
+                    Id_SkillUnit = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    IdParentSkill = table.Column<int>(type: "int", nullable: true),
-                    IdChildSkill = table.Column<int>(type: "int", nullable: true)
+                    Unitname = table.Column<string>(type: "varchar(50)", unicode: false, maxLength: 50, nullable: true),
+                    StartDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    EndDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    UnitLevel = table.Column<int>(type: "int", nullable: false),
+                    IdUserSkill = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("XPKSkillDistribution", x => x.Id_SkillDistribution);
+                    table.PrimaryKey("XPKSkillUnit", x => x.Id_SkillUnit);
                     table.ForeignKey(
-                        name: "R_7",
-                        column: x => x.IdParentSkill,
-                        principalTable: "UserSkills",
-                        principalColumn: "Id_UserSkill",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "R_8",
-                        column: x => x.IdChildSkill,
+                        name: "R_11",
+                        column: x => x.IdUserSkill,
                         principalTable: "UserSkills",
                         principalColumn: "Id_UserSkill",
                         onDelete: ReferentialAction.Restrict);
@@ -223,65 +220,20 @@ namespace SkillRoadMapBack.DAL.Migrations
                 values: new object[,]
                 {
                     { 1, new DateTime(2021, 2, 15, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, 1, 3, "С# Basics", new DateTime(2021, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
-                    { 29, new DateTime(2021, 2, 25, 0, 0, 0, 0, DateTimeKind.Unspecified), 2, 1, 4, "Smoke testing", new DateTime(2021, 2, 15, 0, 0, 0, 0, DateTimeKind.Unspecified) },
-                    { 30, new DateTime(2021, 3, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), 2, 1, 3, "Functional testing", new DateTime(2021, 3, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
-                    { 31, new DateTime(2021, 3, 25, 0, 0, 0, 0, DateTimeKind.Unspecified), 2, 1, 4, "Non-functional testing", new DateTime(2021, 3, 10, 0, 0, 0, 0, DateTimeKind.Unspecified) },
-                    { 32, new DateTime(2021, 4, 5, 0, 0, 0, 0, DateTimeKind.Unspecified), 2, 1, 5, "Сhange testing", new DateTime(2021, 3, 25, 0, 0, 0, 0, DateTimeKind.Unspecified) },
-                    { 33, new DateTime(2021, 4, 20, 0, 0, 0, 0, DateTimeKind.Unspecified), 2, 1, 5, "Black box", new DateTime(2021, 4, 10, 0, 0, 0, 0, DateTimeKind.Unspecified) },
-                    { 34, new DateTime(2021, 5, 5, 0, 0, 0, 0, DateTimeKind.Unspecified), 2, 1, 5, "White box", new DateTime(2021, 4, 20, 0, 0, 0, 0, DateTimeKind.Unspecified) },
-                    { 35, new DateTime(2021, 5, 20, 0, 0, 0, 0, DateTimeKind.Unspecified), 2, 1, 5, "Gray box", new DateTime(2021, 5, 5, 0, 0, 0, 0, DateTimeKind.Unspecified) },
-                    { 36, new DateTime(2021, 6, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), 2, 1, 2, "Manual testing", new DateTime(2021, 5, 25, 0, 0, 0, 0, DateTimeKind.Unspecified) },
-                    { 37, new DateTime(2021, 6, 20, 0, 0, 0, 0, DateTimeKind.Unspecified), 2, 1, 3, "Automated testing", new DateTime(2021, 6, 10, 0, 0, 0, 0, DateTimeKind.Unspecified) },
-                    { 38, new DateTime(2021, 7, 5, 0, 0, 0, 0, DateTimeKind.Unspecified), 2, 1, 4, "Semiautomated testing", new DateTime(2021, 6, 20, 0, 0, 0, 0, DateTimeKind.Unspecified) },
-                    { 39, new DateTime(2021, 7, 25, 0, 0, 0, 0, DateTimeKind.Unspecified), 2, 1, 3, "Component testing", new DateTime(2021, 7, 10, 0, 0, 0, 0, DateTimeKind.Unspecified) },
-                    { 40, new DateTime(2021, 8, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), 2, 1, 4, "Integration testing", new DateTime(2021, 7, 25, 0, 0, 0, 0, DateTimeKind.Unspecified) },
-                    { 41, new DateTime(2021, 8, 15, 0, 0, 0, 0, DateTimeKind.Unspecified), 2, 1, 5, "System testing", new DateTime(2021, 8, 10, 0, 0, 0, 0, DateTimeKind.Unspecified) },
-                    { 42, new DateTime(2021, 9, 20, 0, 0, 0, 0, DateTimeKind.Unspecified), 3, 1, 2, "IDEF designing", new DateTime(2021, 8, 15, 0, 0, 0, 0, DateTimeKind.Unspecified) },
-                    { 43, new DateTime(2021, 11, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 3, 1, 4, "UML designing", new DateTime(2021, 9, 25, 0, 0, 0, 0, DateTimeKind.Unspecified) },
-                    { 44, new DateTime(2021, 12, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), 3, 1, 4, "Design patterns", new DateTime(2021, 11, 5, 0, 0, 0, 0, DateTimeKind.Unspecified) },
-                    { 45, new DateTime(2021, 9, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 3, 1, 1, "IDEF0 design", new DateTime(2021, 8, 15, 0, 0, 0, 0, DateTimeKind.Unspecified) },
-                    { 46, new DateTime(2021, 9, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), 3, 1, 2, "DFD design", new DateTime(2021, 9, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
-                    { 47, new DateTime(2021, 9, 20, 0, 0, 0, 0, DateTimeKind.Unspecified), 3, 1, 3, "IDEF3 design", new DateTime(2021, 9, 10, 0, 0, 0, 0, DateTimeKind.Unspecified) },
-                    { 48, new DateTime(2021, 10, 5, 0, 0, 0, 0, DateTimeKind.Unspecified), 3, 1, 3, "Class diagram", new DateTime(2021, 9, 25, 0, 0, 0, 0, DateTimeKind.Unspecified) },
-                    { 49, new DateTime(2021, 10, 15, 0, 0, 0, 0, DateTimeKind.Unspecified), 3, 1, 4, "Use case diagram", new DateTime(2021, 10, 5, 0, 0, 0, 0, DateTimeKind.Unspecified) },
-                    { 50, new DateTime(2021, 11, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 3, 1, 5, "Component diagram", new DateTime(2021, 10, 15, 0, 0, 0, 0, DateTimeKind.Unspecified) },
-                    { 51, new DateTime(2021, 11, 15, 0, 0, 0, 0, DateTimeKind.Unspecified), 3, 1, 5, "Factory pattern", new DateTime(2021, 11, 5, 0, 0, 0, 0, DateTimeKind.Unspecified) },
-                    { 28, new DateTime(2021, 2, 15, 0, 0, 0, 0, DateTimeKind.Unspecified), 2, 1, 3, "Performance testing", new DateTime(2021, 1, 25, 0, 0, 0, 0, DateTimeKind.Unspecified) },
-                    { 52, new DateTime(2021, 12, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 3, 1, 3, "Moment pattern", new DateTime(2021, 11, 15, 0, 0, 0, 0, DateTimeKind.Unspecified) },
-                    { 27, new DateTime(2021, 1, 25, 0, 0, 0, 0, DateTimeKind.Unspecified), 2, 1, 2, "Security testing", new DateTime(2021, 1, 15, 0, 0, 0, 0, DateTimeKind.Unspecified) },
-                    { 25, new DateTime(2021, 7, 5, 0, 0, 0, 0, DateTimeKind.Unspecified), 2, 1, 3, "By the degree of automation", new DateTime(2021, 5, 25, 0, 0, 0, 0, DateTimeKind.Unspecified) },
                     { 2, new DateTime(2021, 4, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, 1, 4, "C# Classes OOP", new DateTime(2021, 2, 20, 0, 0, 0, 0, DateTimeKind.Unspecified) },
                     { 3, new DateTime(2021, 5, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, 1, 5, "C# Exception", new DateTime(2021, 4, 5, 0, 0, 0, 0, DateTimeKind.Unspecified) },
                     { 4, new DateTime(2021, 6, 20, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, 1, 4, "C# Delegate", new DateTime(2021, 5, 15, 0, 0, 0, 0, DateTimeKind.Unspecified) },
                     { 5, new DateTime(2021, 8, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, 1, 3, "C# Interface", new DateTime(2021, 6, 25, 0, 0, 0, 0, DateTimeKind.Unspecified) },
                     { 6, new DateTime(2021, 9, 25, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, 1, 2, "C# Collections", new DateTime(2021, 8, 20, 0, 0, 0, 0, DateTimeKind.Unspecified) },
                     { 7, new DateTime(2021, 11, 5, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, 1, 2, "C# String", new DateTime(2021, 10, 10, 0, 0, 0, 0, DateTimeKind.Unspecified) },
-                    { 8, new DateTime(2021, 1, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, 1, 2, "C# Variables", new DateTime(2021, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
-                    { 9, new DateTime(2021, 1, 25, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, 1, 3, "C# Data types", new DateTime(2021, 1, 10, 0, 0, 0, 0, DateTimeKind.Unspecified) },
-                    { 10, new DateTime(2021, 2, 15, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, 1, 4, "C# Cycles", new DateTime(2021, 1, 25, 0, 0, 0, 0, DateTimeKind.Unspecified) },
-                    { 11, new DateTime(2021, 3, 5, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, 1, 3, "C# Classes and objects", new DateTime(2021, 2, 20, 0, 0, 0, 0, DateTimeKind.Unspecified) },
-                    { 12, new DateTime(2021, 3, 20, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, 1, 4, "C# Structures", new DateTime(2021, 3, 5, 0, 0, 0, 0, DateTimeKind.Unspecified) },
-                    { 13, new DateTime(2021, 4, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, 1, 5, "C# Access modifiers", new DateTime(2021, 3, 20, 0, 0, 0, 0, DateTimeKind.Unspecified) },
-                    { 14, new DateTime(2021, 4, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, 1, 5, "C# Try..catch..finally", new DateTime(2021, 4, 5, 0, 0, 0, 0, DateTimeKind.Unspecified) },
-                    { 15, new DateTime(2021, 4, 20, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, 1, 4, "C# Exception types. Exception class", new DateTime(2021, 4, 10, 0, 0, 0, 0, DateTimeKind.Unspecified) }
-                });
-
-            migrationBuilder.InsertData(
-                table: "UserSkills",
-                columns: new[] { "Id_UserSkill", "EndDate", "IdCategory", "IdEmployee", "SkillLevel", "Skillname", "StartDate" },
-                values: new object[,]
-                {
-                    { 16, new DateTime(2021, 5, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, 1, 5, "C# Creating Exception Classes", new DateTime(2021, 4, 20, 0, 0, 0, 0, DateTimeKind.Unspecified) },
-                    { 17, new DateTime(2021, 6, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, 1, 3, "C# Delegates", new DateTime(2021, 5, 15, 0, 0, 0, 0, DateTimeKind.Unspecified) },
-                    { 18, new DateTime(2021, 6, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, 1, 4, "C# Lambdas", new DateTime(2021, 6, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
-                    { 19, new DateTime(2021, 6, 20, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, 1, 5, "C# Anonymous methods", new DateTime(2021, 6, 10, 0, 0, 0, 0, DateTimeKind.Unspecified) },
-                    { 20, new DateTime(2021, 7, 15, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, 1, 2, "C# Defining interfaces", new DateTime(2021, 6, 25, 0, 0, 0, 0, DateTimeKind.Unspecified) },
-                    { 21, new DateTime(2021, 8, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, 1, 4, "C# Template interfaces", new DateTime(2021, 7, 15, 0, 0, 0, 0, DateTimeKind.Unspecified) },
-                    { 22, new DateTime(2021, 2, 25, 0, 0, 0, 0, DateTimeKind.Unspecified), 2, 1, 3, "By object of testing", new DateTime(2021, 1, 15, 0, 0, 0, 0, DateTimeKind.Unspecified) },
-                    { 23, new DateTime(2021, 4, 5, 0, 0, 0, 0, DateTimeKind.Unspecified), 2, 1, 4, "By testing purposes", new DateTime(2021, 3, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
-                    { 24, new DateTime(2021, 5, 20, 0, 0, 0, 0, DateTimeKind.Unspecified), 2, 1, 5, "According to the knowledge of the system", new DateTime(2021, 4, 10, 0, 0, 0, 0, DateTimeKind.Unspecified) },
-                    { 26, new DateTime(2021, 8, 15, 0, 0, 0, 0, DateTimeKind.Unspecified), 2, 1, 4, "By the degree of isolation of the components", new DateTime(2021, 7, 10, 0, 0, 0, 0, DateTimeKind.Unspecified) },
-                    { 53, new DateTime(2021, 12, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), 3, 1, 4, "Bridge pattern", new DateTime(2021, 12, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) }
+                    { 8, new DateTime(2021, 2, 25, 0, 0, 0, 0, DateTimeKind.Unspecified), 2, 1, 3, "By object of testing", new DateTime(2021, 1, 15, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 9, new DateTime(2021, 4, 5, 0, 0, 0, 0, DateTimeKind.Unspecified), 2, 1, 4, "By testing purposes", new DateTime(2021, 3, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 10, new DateTime(2021, 5, 20, 0, 0, 0, 0, DateTimeKind.Unspecified), 2, 1, 5, "According to the knowledge of the system", new DateTime(2021, 4, 10, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 11, new DateTime(2021, 7, 5, 0, 0, 0, 0, DateTimeKind.Unspecified), 2, 1, 3, "By the degree of automation", new DateTime(2021, 5, 25, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 12, new DateTime(2021, 8, 15, 0, 0, 0, 0, DateTimeKind.Unspecified), 2, 1, 4, "By the degree of isolation of the components", new DateTime(2021, 7, 10, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 13, new DateTime(2021, 9, 20, 0, 0, 0, 0, DateTimeKind.Unspecified), 3, 1, 2, "IDEF designing", new DateTime(2021, 8, 15, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 14, new DateTime(2021, 11, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 3, 1, 4, "UML designing", new DateTime(2021, 9, 25, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 15, new DateTime(2021, 12, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), 3, 1, 4, "Design patterns", new DateTime(2021, 11, 5, 0, 0, 0, 0, DateTimeKind.Unspecified) }
                 });
 
             migrationBuilder.InsertData(
@@ -289,11 +241,11 @@ namespace SkillRoadMapBack.DAL.Migrations
                 columns: new[] { "Id_Comment", "CommentText", "IdEmployer", "IdUserSkill" },
                 values: new object[,]
                 {
-                    { 1, "Need to learn C#", 1, 8 },
-                    { 5, "Need to learn C#", 1, 12 },
-                    { 2, "Need to learn C#", 1, 9 },
-                    { 4, "Need to learn C#", 1, 11 },
-                    { 3, "Need to learn C#", 1, 10 }
+                    { 1, "Need to learn C#", 1, 1 },
+                    { 2, "Need to learn C#", 1, 2 },
+                    { 5, "Need to learn C#", 1, 5 },
+                    { 4, "Need to learn C#", 1, 4 },
+                    { 3, "Need to learn C#", 1, 3 }
                 });
 
             migrationBuilder.InsertData(
@@ -301,63 +253,63 @@ namespace SkillRoadMapBack.DAL.Migrations
                 columns: new[] { "Id_Notification", "IdEmployee", "IdEmployer", "IdUserSkill", "IsRead", "NotificationText", "SendingDate" },
                 values: new object[,]
                 {
+                    { 5, 1, 1, 12, false, "Need to learn C#", new DateTime(2021, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
                     { 4, 1, 1, 11, false, "Need to learn C#", new DateTime(2021, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
                     { 3, 1, 1, 10, false, "Need to learn C#", new DateTime(2021, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
-                    { 5, 1, 1, 12, false, "Need to learn C#", new DateTime(2021, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
-                    { 2, 1, 1, 9, false, "Need to learn C#", new DateTime(2021, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
-                    { 1, 1, 1, 8, false, "Need to learn C#", new DateTime(2021, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) }
+                    { 1, 1, 1, 8, false, "Need to learn C#", new DateTime(2021, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 2, 1, 1, 9, false, "Need to learn C#", new DateTime(2021, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) }
                 });
 
             migrationBuilder.InsertData(
-                table: "SkillDistributions",
-                columns: new[] { "Id_SkillDistribution", "IdChildSkill", "IdParentSkill" },
+                table: "SkillUnits",
+                columns: new[] { "Id_SkillUnit", "EndDate", "IdUserSkill", "StartDate", "UnitLevel", "Unitname" },
                 values: new object[,]
                 {
-                    { 34, 49, 43 },
-                    { 21, 33, 24 },
-                    { 22, 34, 24 },
-                    { 23, 35, 24 },
-                    { 24, 36, 25 },
-                    { 25, 37, 25 },
-                    { 26, 38, 25 },
-                    { 27, 39, 26 },
-                    { 29, 41, 26 },
-                    { 35, 50, 43 },
-                    { 30, 45, 42 },
-                    { 31, 46, 42 },
-                    { 32, 47, 42 },
-                    { 20, 32, 23 },
-                    { 33, 48, 43 },
-                    { 36, 51, 44 },
-                    { 28, 40, 26 },
-                    { 19, 31, 23 },
-                    { 14, 21, 5 },
-                    { 17, 29, 22 },
-                    { 1, 8, 1 },
-                    { 2, 9, 1 },
-                    { 3, 10, 1 },
-                    { 4, 11, 2 },
-                    { 5, 12, 2 },
-                    { 6, 13, 2 },
-                    { 7, 14, 3 },
-                    { 18, 30, 23 },
-                    { 8, 15, 3 },
-                    { 10, 17, 4 },
-                    { 11, 18, 4 },
-                    { 12, 19, 4 }
+                    { 8, new DateTime(2021, 4, 20, 0, 0, 0, 0, DateTimeKind.Unspecified), 3, new DateTime(2021, 4, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), 4, "C# Exception types. Exception class" },
+                    { 2, new DateTime(2021, 1, 25, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, new DateTime(2021, 1, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), 3, "C# Data types" },
+                    { 24, new DateTime(2021, 6, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), 11, new DateTime(2021, 5, 25, 0, 0, 0, 0, DateTimeKind.Unspecified), 2, "Manual testing" },
+                    { 25, new DateTime(2021, 6, 20, 0, 0, 0, 0, DateTimeKind.Unspecified), 11, new DateTime(2021, 6, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), 3, "Automated testing" },
+                    { 26, new DateTime(2021, 7, 5, 0, 0, 0, 0, DateTimeKind.Unspecified), 11, new DateTime(2021, 6, 20, 0, 0, 0, 0, DateTimeKind.Unspecified), 4, "Semiautomated testing" },
+                    { 1, new DateTime(2021, 1, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, new DateTime(2021, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 2, "C# Variables" },
+                    { 27, new DateTime(2021, 7, 25, 0, 0, 0, 0, DateTimeKind.Unspecified), 12, new DateTime(2021, 7, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), 3, "Component testing" },
+                    { 28, new DateTime(2021, 8, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), 12, new DateTime(2021, 7, 25, 0, 0, 0, 0, DateTimeKind.Unspecified), 4, "Integration testing" },
+                    { 29, new DateTime(2021, 8, 15, 0, 0, 0, 0, DateTimeKind.Unspecified), 12, new DateTime(2021, 8, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), 5, "System testing" },
+                    { 30, new DateTime(2021, 9, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 13, new DateTime(2021, 8, 15, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, "IDEF0 design" },
+                    { 31, new DateTime(2021, 9, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), 13, new DateTime(2021, 9, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 2, "DFD design" },
+                    { 32, new DateTime(2021, 9, 20, 0, 0, 0, 0, DateTimeKind.Unspecified), 13, new DateTime(2021, 9, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), 3, "IDEF3 design" },
+                    { 33, new DateTime(2021, 10, 5, 0, 0, 0, 0, DateTimeKind.Unspecified), 14, new DateTime(2021, 9, 25, 0, 0, 0, 0, DateTimeKind.Unspecified), 3, "Class diagram" },
+                    { 34, new DateTime(2021, 10, 15, 0, 0, 0, 0, DateTimeKind.Unspecified), 14, new DateTime(2021, 10, 5, 0, 0, 0, 0, DateTimeKind.Unspecified), 4, "Use case diagram" },
+                    { 35, new DateTime(2021, 11, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 14, new DateTime(2021, 10, 15, 0, 0, 0, 0, DateTimeKind.Unspecified), 5, "Component diagram" },
+                    { 36, new DateTime(2021, 11, 15, 0, 0, 0, 0, DateTimeKind.Unspecified), 15, new DateTime(2021, 11, 5, 0, 0, 0, 0, DateTimeKind.Unspecified), 5, "Factory pattern" },
+                    { 23, new DateTime(2021, 5, 20, 0, 0, 0, 0, DateTimeKind.Unspecified), 10, new DateTime(2021, 5, 5, 0, 0, 0, 0, DateTimeKind.Unspecified), 5, "Gray box" },
+                    { 22, new DateTime(2021, 5, 5, 0, 0, 0, 0, DateTimeKind.Unspecified), 10, new DateTime(2021, 4, 20, 0, 0, 0, 0, DateTimeKind.Unspecified), 5, "White box" },
+                    { 21, new DateTime(2021, 4, 20, 0, 0, 0, 0, DateTimeKind.Unspecified), 10, new DateTime(2021, 4, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), 5, "Black box" },
+                    { 3, new DateTime(2021, 2, 15, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, new DateTime(2021, 1, 25, 0, 0, 0, 0, DateTimeKind.Unspecified), 4, "C# Cycles" },
+                    { 9, new DateTime(2021, 5, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), 3, new DateTime(2021, 4, 20, 0, 0, 0, 0, DateTimeKind.Unspecified), 5, "C# Creating Exception Classes" },
+                    { 6, new DateTime(2021, 4, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 2, new DateTime(2021, 3, 20, 0, 0, 0, 0, DateTimeKind.Unspecified), 5, "C# Access modifiers" },
+                    { 10, new DateTime(2021, 6, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 4, new DateTime(2021, 5, 15, 0, 0, 0, 0, DateTimeKind.Unspecified), 3, "C# Delegates" },
+                    { 11, new DateTime(2021, 6, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), 4, new DateTime(2021, 6, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 4, "C# Lambdas" },
+                    { 12, new DateTime(2021, 6, 20, 0, 0, 0, 0, DateTimeKind.Unspecified), 4, new DateTime(2021, 6, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), 5, "C# Anonymous methods" },
+                    { 5, new DateTime(2021, 3, 20, 0, 0, 0, 0, DateTimeKind.Unspecified), 2, new DateTime(2021, 3, 5, 0, 0, 0, 0, DateTimeKind.Unspecified), 4, "C# Structures" },
+                    { 13, new DateTime(2021, 7, 15, 0, 0, 0, 0, DateTimeKind.Unspecified), 5, new DateTime(2021, 6, 25, 0, 0, 0, 0, DateTimeKind.Unspecified), 2, "C# Defining interfaces" },
+                    { 7, new DateTime(2021, 4, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), 3, new DateTime(2021, 4, 5, 0, 0, 0, 0, DateTimeKind.Unspecified), 5, "C# Try..catch..finally" },
+                    { 14, new DateTime(2021, 8, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), 5, new DateTime(2021, 7, 15, 0, 0, 0, 0, DateTimeKind.Unspecified), 4, "C# Template interfaces" },
+                    { 15, new DateTime(2021, 1, 25, 0, 0, 0, 0, DateTimeKind.Unspecified), 8, new DateTime(2021, 1, 15, 0, 0, 0, 0, DateTimeKind.Unspecified), 2, "Security testing" },
+                    { 16, new DateTime(2021, 2, 15, 0, 0, 0, 0, DateTimeKind.Unspecified), 8, new DateTime(2021, 1, 25, 0, 0, 0, 0, DateTimeKind.Unspecified), 3, "Performance testing" },
+                    { 17, new DateTime(2021, 2, 25, 0, 0, 0, 0, DateTimeKind.Unspecified), 8, new DateTime(2021, 2, 15, 0, 0, 0, 0, DateTimeKind.Unspecified), 4, "Smoke testing" }
                 });
 
             migrationBuilder.InsertData(
-                table: "SkillDistributions",
-                columns: new[] { "Id_SkillDistribution", "IdChildSkill", "IdParentSkill" },
+                table: "SkillUnits",
+                columns: new[] { "Id_SkillUnit", "EndDate", "IdUserSkill", "StartDate", "UnitLevel", "Unitname" },
                 values: new object[,]
                 {
-                    { 13, 20, 5 },
-                    { 37, 52, 44 },
-                    { 15, 27, 22 },
-                    { 16, 28, 22 },
-                    { 9, 16, 3 },
-                    { 38, 53, 44 }
+                    { 37, new DateTime(2021, 12, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 15, new DateTime(2021, 11, 15, 0, 0, 0, 0, DateTimeKind.Unspecified), 3, "Moment pattern" },
+                    { 18, new DateTime(2021, 3, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), 9, new DateTime(2021, 3, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 3, "Functional testing" },
+                    { 19, new DateTime(2021, 3, 25, 0, 0, 0, 0, DateTimeKind.Unspecified), 9, new DateTime(2021, 3, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), 4, "Non-functional testing" },
+                    { 20, new DateTime(2021, 4, 5, 0, 0, 0, 0, DateTimeKind.Unspecified), 9, new DateTime(2021, 3, 25, 0, 0, 0, 0, DateTimeKind.Unspecified), 5, "Сhange testing" },
+                    { 4, new DateTime(2021, 3, 5, 0, 0, 0, 0, DateTimeKind.Unspecified), 2, new DateTime(2021, 2, 20, 0, 0, 0, 0, DateTimeKind.Unspecified), 3, "C# Classes and objects" },
+                    { 38, new DateTime(2021, 12, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), 15, new DateTime(2021, 12, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 4, "Bridge pattern" }
                 });
 
             migrationBuilder.CreateIndex(
@@ -391,14 +343,9 @@ namespace SkillRoadMapBack.DAL.Migrations
                 column: "IdUserSkill");
 
             migrationBuilder.CreateIndex(
-                name: "IX_SkillDistributions_IdChildSkill",
-                table: "SkillDistributions",
-                column: "IdChildSkill");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_SkillDistributions_IdParentSkill",
-                table: "SkillDistributions",
-                column: "IdParentSkill");
+                name: "IX_SkillUnits_IdUserSkill",
+                table: "SkillUnits",
+                column: "IdUserSkill");
 
             migrationBuilder.CreateIndex(
                 name: "IX_UserSkills_IdCategory",
@@ -420,7 +367,7 @@ namespace SkillRoadMapBack.DAL.Migrations
                 name: "Notifications");
 
             migrationBuilder.DropTable(
-                name: "SkillDistributions");
+                name: "SkillUnits");
 
             migrationBuilder.DropTable(
                 name: "UserSkills");

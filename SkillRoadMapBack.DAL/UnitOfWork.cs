@@ -16,8 +16,8 @@ namespace SkillRoadMapBack.DAL
         private IEmployeeRepo _employeeRepo;
         private IEmployerRepo _employerRepo;
         private IUserSkillRepo _userSkillRepo;
-        private ISkillDistributionRepo _skillDistributionRepo;
         private ICategoryRepo _categoryRepo;
+        private ISkillUnitRepo _skillUnitRepo;
 
         public ICommentRepo CommentRepo
         {
@@ -59,19 +59,19 @@ namespace SkillRoadMapBack.DAL
             }
         }
 
-        public ISkillDistributionRepo SkillDistributionRepo
-        {
-            get
-            {
-                return _skillDistributionRepo ??= new SkillDistributionRepo(_context);
-            }
-        }
-
         public ICategoryRepo CategoryRepo
         {
             get
             {
                 return _categoryRepo ??= new CategoryRepo(_context);
+            }
+        }
+
+        public ISkillUnitRepo SkillUnitRepo
+        {
+            get
+            {
+                return _skillUnitRepo ??= new SkillUnitRepo(_context);
             }
         }
 

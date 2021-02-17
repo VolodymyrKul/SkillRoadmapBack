@@ -16,8 +16,8 @@ namespace SkillRoadmapBack.Core.Mapping
             CreateMap<Employee, EmployeeDTO>().ReverseMap();
             CreateMap<Employer, EmployerDTO>().ReverseMap();
             CreateMap<UserSkill, UserSkillDTO>().ReverseMap();
-            CreateMap<SkillDistribution, SkillDistributionDTO>().ReverseMap();
             CreateMap<Category, CategoryDTO>().ReverseMap();
+            CreateMap<SkillUnit, SkillUnitDTO>().ReverseMap();
         }
     }
 }

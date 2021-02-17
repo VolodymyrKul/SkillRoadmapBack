@@ -6,7 +6,7 @@ using System.Text;
 
 namespace SkillRoadmapBack.Core.Abstractions.IServices
 {
-    public interface ISkillDistributionService : IBaseService<SkillDistributionDTO, SkillDistributionDTO>
+    public interface ISkillUnitService : IBaseService<SkillUnitDTO, SkillUnitDTO>
     {
     }
 }

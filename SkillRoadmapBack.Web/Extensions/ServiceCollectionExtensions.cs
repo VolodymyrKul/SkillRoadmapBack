@@ -23,8 +23,8 @@ namespace SkillRoadmapBack.Web.Extensions
             services.AddScoped<IEmployeeService, EmployeeService>();
             services.AddScoped<IEmployerService, EmployerService>();
             services.AddScoped<IUserSkillService, UserSkillService>();
-            services.AddScoped<ISkillDistributionService, SkillDistributionService>();
             services.AddScoped<ICategoryService, CategoryService>();
+            services.AddScoped<ISkillUnitService, SkillUnitService>();
         }
 
         public static void ConfigureSwagger(this IServiceCollection services)

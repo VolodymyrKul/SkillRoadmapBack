@@ -6,7 +6,7 @@ using System.Text;
 
 namespace SkillRoadmapBack.Core.Abstractions.IRepositories
 {
-    public interface ISkillDistributionRepo : IBaseRepo<SkillDistribution>
+    public interface ISkillUnitRepo : IBaseRepo<SkillUnit>
     {
     }
 }
