@@ -10,7 +10,8 @@ namespace SkillRoadmapBack.Core.DTO.StandardDTO
         public string Skillname { get; set; }
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
-        public string Category { get; set; }
+        public int IdCategory { get; set; }
+        public int SkillLevel { get; set; }
         public int IdEmployee { get; set; }
     }
 }

@@ -14,6 +14,7 @@ namespace SkillRoadmapBack.Core.Abstractions
         INotificationRepo NotificationRepo { get; }
         IUserSkillRepo UserSkillRepo { get; }
         ISkillDistributionRepo SkillDistributionRepo { get; }
+        ICategoryRepo CategoryRepo { get; }
         Task SaveChangesAsync();
     }
 }

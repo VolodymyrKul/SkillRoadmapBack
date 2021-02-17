@@ -14,5 +14,6 @@ namespace SkillRoadmapBack.Core.DTO.StandardDTO
         public string Role { get; set; }
         public string DevLevel { get; set; }
         public double Experience { get; set; }
+        public int IdMentor { get; set; }
     }
 }

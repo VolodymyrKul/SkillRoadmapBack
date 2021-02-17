@@ -18,9 +18,11 @@ namespace SkillRoadmapBack.Core.Models
         public string Skillname { get; set; }
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
-        public string Category { get; set; }
+        public int? IdCategory { get; set; }
+        public int SkillLevel { get; set; }
         public int? IdEmployee { get; set; }
         public Employee IdEmployeeNavigation { get; set; }
+        public Category IdCategoryNavigation { get; set; }
         public virtual ICollection<Comment> Comments { get; set; }
         public virtual ICollection<SkillDistribution> ParentSkillDistributions { get; set; }
         public virtual ICollection<SkillDistribution> ChildSkillDistributions { get; set; }

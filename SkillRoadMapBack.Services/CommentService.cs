@@ -45,7 +45,7 @@ namespace SkillRoadMapBack.Services
         {
             var comment = await _unitOfWork.CommentRepo.GetByIdAsync(id);
             if (comment == null)
-                throw new Exception("Such order not found");
+                throw new Exception("Such comment not found");
             var dto = new CommentDTO();
             _mapper.Map(comment, dto);
             return dto;

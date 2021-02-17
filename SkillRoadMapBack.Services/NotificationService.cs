@@ -45,7 +45,7 @@ namespace SkillRoadMapBack.Services
         {
             var notification = await _unitOfWork.NotificationRepo.GetByIdAsync(id);
             if (notification == null)
-                throw new Exception("Such order not found");
+                throw new Exception("Such notification not found");
             var dto = new NotificationDTO();
             _mapper.Map(notification, dto);
             return dto;

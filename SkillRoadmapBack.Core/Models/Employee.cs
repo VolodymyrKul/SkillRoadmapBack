@@ -21,6 +21,8 @@ namespace SkillRoadmapBack.Core.Models
         public string Role { get; set; }
         public string DevLevel { get; set; }
         public double Experience { get; set; }
+        public int? IdMentor { get; set; }
+        public Employer IdEmployerNavigation { get; set; }
         public virtual ICollection<UserSkill> UserSkills { get; set; }
         public virtual ICollection<Notification> Notifications { get; set; }
     }

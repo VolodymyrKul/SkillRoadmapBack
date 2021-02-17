@@ -45,7 +45,7 @@ namespace SkillRoadMapBack.Services
         {
             var employee = await _unitOfWork.EmployeeRepo.GetByIdAsync(id);
             if (employee == null)
-                throw new Exception("Such order not found");
+                throw new Exception("Such employee not found");
             var dto = new EmployeeDTO();
             _mapper.Map(employee, dto);
             return dto;

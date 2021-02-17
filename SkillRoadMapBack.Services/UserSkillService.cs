@@ -45,7 +45,7 @@ namespace SkillRoadMapBack.Services
         {
             var userSkill = await _unitOfWork.UserSkillRepo.GetByIdAsync(id);
             if (userSkill == null)
-                throw new Exception("Such order not found");
+                throw new Exception("Such userSkill not found");
             var dto = new UserSkillDTO();
             _mapper.Map(userSkill, dto);
             return dto;
