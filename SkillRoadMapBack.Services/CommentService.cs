@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using SkillRoadmapBack.Core.Abstractions;
 using SkillRoadmapBack.Core.Abstractions.IServices;
+using SkillRoadmapBack.Core.DTO.SpecializedDTO;
 using SkillRoadmapBack.Core.DTO.StandardDTO;
 using SkillRoadmapBack.Core.Models;
 using SkillRoadMapBack.Services.Base;
@@ -58,6 +59,24 @@ namespace SkillRoadMapBack.Services
             await _unitOfWork.CommentRepo.UpdateAsync(value);
             await _unitOfWork.SaveChangesAsync();
             return entity;
+        }
+
+        public virtual async Task<List<GetCommentDTO>> GetBySkill(string user)
+        {
+            Employee employee = (await _unitOfWork.EmployeeRepo.GetAllAsync()).FirstOrDefault(emp => emp.Email == user);
+            var skills = (await _unitOfWork.UserSkillRepo.GetAllAsync()).Where(skill => skill.IdEmployee == employee.Id);
+            var allComments = await _unitOfWork.CommentRepo.GetAllAsync();
+            List<Comment> comments = new List<Comment>();
+            foreach(var skill in skills)
+            {
+                var comment = allComments.FirstOrDefault(com => com.IdUserSkill == skill.Id);
+                if (comment != null)
+                {
+                    comments.Add(comment);
+                }
+            }
+            List<GetCommentDTO> commentDTOs = comments.Select(comment => _mapper.Map(comment, new GetCommentDTO())).ToList();
+            return commentDTOs;
         }
     }
 }

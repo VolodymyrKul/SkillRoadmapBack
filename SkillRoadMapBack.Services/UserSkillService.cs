@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using SkillRoadmapBack.Core.Abstractions;
 using SkillRoadmapBack.Core.Abstractions.IServices;
+using SkillRoadmapBack.Core.DTO.SpecializedDTO;
 using SkillRoadmapBack.Core.DTO.StandardDTO;
 using SkillRoadmapBack.Core.Models;
 using SkillRoadMapBack.Services.Base;
@@ -60,14 +61,14 @@ namespace SkillRoadMapBack.Services
             return entity;
         }
 
-        public virtual async Task<List<UserSkillDTO>> GetByYear(int user, int year)
+        public virtual async Task<List<GetUserSkillDTO>> GetByYear(string user, int year)
         {
-            List<UserSkillDTO> userSkillDTOs = null;
+            List<GetUserSkillDTO> userSkillDTOs = null;
             var userSkills = await _unitOfWork.UserSkillRepo.GetAllAsync();
-            var yearSkills = userSkills.ToList().Where(us => us.IdEmployee == user && (us.StartDate.Year == year || us.EndDate.Year == year));
+            var yearSkills = userSkills.ToList().Where(us => us.IdEmployeeNavigation.Email == user && (us.StartDate.Year == year || us.EndDate.Year == year));
             if(yearSkills.Count() == 0)
             {
-                return new List<UserSkillDTO>();
+                return new List<GetUserSkillDTO>();
             }
             else
             {
@@ -87,12 +88,14 @@ namespace SkillRoadMapBack.Services
                             StartDate = skillUnit.StartDate,
                             EndDate = skillUnit.EndDate,
                             IdCategory = userSkill.IdCategory,
+                            IdCategoryNavigation = userSkill.IdCategoryNavigation,
                             SkillLevel = skillUnit.UnitLevel,
-                            IdEmployee = userSkill.IdEmployee
+                            IdEmployee = userSkill.IdEmployee,
+                            IdEmployeeNavigation = userSkill.IdEmployeeNavigation
                         });
                     }
                 }
-                userSkillDTOs = skillWithUnits.Select(userSkill => _mapper.Map(userSkill, new UserSkillDTO())).ToList();
+                userSkillDTOs = skillWithUnits.Select(userSkill => _mapper.Map(userSkill, new GetUserSkillDTO())).ToList();
                 return userSkillDTOs;
             }
 

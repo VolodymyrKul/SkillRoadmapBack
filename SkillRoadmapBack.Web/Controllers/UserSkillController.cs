@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using SkillRoadmapBack.Core.Abstractions.IServices;
+using SkillRoadmapBack.Core.DTO.SpecializedDTO;
 using SkillRoadmapBack.Core.DTO.StandardDTO;
 using System;
 using System.Collections.Generic;
@@ -57,7 +58,7 @@ namespace SkillRoadmapBack.Web.Controllers
         }
 
         [HttpGet("byyear/{inuser}/{inyear}")]
-        public async Task<ActionResult<List<UserSkillDTO>>> GetByUserYear(int inuser, int inyear)
+        public async Task<ActionResult<List<GetUserSkillDTO>>> GetByUserYear(string inuser, int inyear)
         {
             var result = await _userSkillService.GetByYear(inuser, inyear);
             return Ok(result);

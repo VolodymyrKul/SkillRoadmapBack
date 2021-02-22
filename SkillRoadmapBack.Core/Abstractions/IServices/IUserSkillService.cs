@@ -1,4 +1,5 @@
 ﻿using SkillRoadmapBack.Core.Abstractions.IServices.Base;
+using SkillRoadmapBack.Core.DTO.SpecializedDTO;
 using SkillRoadmapBack.Core.DTO.StandardDTO;
 using System;
 using System.Collections.Generic;
@@ -9,6 +10,6 @@ namespace SkillRoadmapBack.Core.Abstractions.IServices
 {
     public interface IUserSkillService : IBaseService<UserSkillDTO, UserSkillDTO>
     {
-        Task<List<UserSkillDTO>> GetByYear(int user, int year);
+        Task<List<GetUserSkillDTO>> GetByYear(string user, int year);
     }
 }

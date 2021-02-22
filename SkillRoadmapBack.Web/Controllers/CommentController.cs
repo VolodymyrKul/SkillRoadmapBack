@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using SkillRoadmapBack.Core.Abstractions.IServices;
+using SkillRoadmapBack.Core.DTO.SpecializedDTO;
 using SkillRoadmapBack.Core.DTO.StandardDTO;
 using System;
 using System.Collections.Generic;
@@ -54,6 +55,13 @@ namespace SkillRoadmapBack.Web.Controllers
         {
             await _commentService.DeleteAsync(id);
             return NoContent();
+        }
+
+        [HttpGet("byskill/{inemail}")]
+        public async Task<ActionResult<List<GetCommentDTO>>> GetByUserSkill(string inemail)
+        {
+            var result = await _commentService.GetBySkill(inemail);
+            return Ok(result);
         }
     }
 }

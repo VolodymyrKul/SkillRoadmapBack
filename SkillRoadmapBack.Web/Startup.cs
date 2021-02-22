@@ -15,6 +15,7 @@ namespace SkillRoadmapBack.Web
 {
     public class Startup
     {
+        readonly string MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
         // This method gets called by the runtime. Use this method to add services to the container.
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
@@ -25,6 +26,17 @@ namespace SkillRoadmapBack.Web
             services.AddHttpContextAccessor();
             services.AddControllers();
             services.ConfigureSwagger();
+            services.AddCors(options =>
+            {
+                options.AddPolicy(name: MyAllowSpecificOrigins,
+                                  builder =>
+                                  {
+                                      //builder.WithOrigins("http://localhost:4200").AllowAnyHeader().AllowAnyMethod();
+                                      builder.AllowAnyOrigin()
+                                             .AllowAnyMethod()
+                                             .AllowAnyHeader();
+                                  });
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -41,6 +53,7 @@ namespace SkillRoadmapBack.Web
             });
             app.UseHttpsRedirection();
             app.UseRouting();
+            app.UseCors(MyAllowSpecificOrigins);
             app.UseResponseCaching();
             app.UseEndpoints(endpoints =>
             {
