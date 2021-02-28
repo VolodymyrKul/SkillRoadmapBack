@@ -27,6 +27,10 @@ namespace SkillRoadmapBack.Core.Mapping
             CreateMap<Comment, GetCommentDTO>()
                 .ForMember(dest => dest.EmployerEmail, opts => opts.MapFrom(item => item.IdEmployerNavigation.Email))
                 .ForMember(dest => dest.UserSkillName, opts => opts.MapFrom(item => item.IdUserSkillNavigation.Skillname));
+
+            CreateMap<Employee, EmployeeInfoDTO>()
+                .ForMember(dest => dest.MentorEmail, opts => opts.MapFrom(item => item.IdEmployerNavigation.Email));
+            CreateMap<Employer, EmployerInfoDTO>();
         }
     }
 }

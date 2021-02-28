@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using SkillRoadmapBack.Core.Abstractions;
 using SkillRoadmapBack.Core.Abstractions.IServices;
+using SkillRoadmapBack.Core.DTO.SpecializedDTO;
 using SkillRoadmapBack.Core.DTO.StandardDTO;
 using SkillRoadmapBack.Core.Models;
 using SkillRoadMapBack.Services.Base;
@@ -58,6 +59,14 @@ namespace SkillRoadMapBack.Services
             await _unitOfWork.EmployeeRepo.UpdateAsync(value);
             await _unitOfWork.SaveChangesAsync();
             return entity;
+        }
+
+        public virtual async Task<EmployeeInfoDTO> GetInfoAsync(string email)
+        {
+            var user = (await _unitOfWork.EmployeeRepo.GetAllAsync()).FirstOrDefault(e => e.Email == email);
+            var dto = new EmployeeInfoDTO();
+            _mapper.Map(user, dto);
+            return dto;
         }
     }
 }

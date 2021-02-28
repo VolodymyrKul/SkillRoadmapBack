@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using SkillRoadmapBack.Core.Abstractions.IServices;
+using SkillRoadmapBack.Core.DTO.SpecializedDTO;
 using SkillRoadmapBack.Core.DTO.StandardDTO;
 using System;
 using System.Collections.Generic;
@@ -54,6 +55,27 @@ namespace SkillRoadmapBack.Web.Controllers
         {
             await _employerService.DeleteAsync(id);
             return NoContent();
+        }
+
+        [HttpPost("login")]
+        public async Task<ActionResult<LoginInfo>> Login(SignInDTO order)
+        {
+            var result = await _employerService.LoginAsync(order);
+            return Ok(result);
+        }
+
+        [HttpPost("register")]
+        public async Task<ActionResult<bool>> Register(SignInDTO order)
+        {
+            var result = await _employerService.RegisterAsync(order);
+            return Ok(result);
+        }
+
+        [HttpGet("getinfo/{email}")]
+        public async Task<ActionResult<EmployerInfoDTO>> GetInfo(string email)
+        {
+            var result = await _employerService.GetInfoAsync(email);
+            return Ok(result);
         }
     }
 }
