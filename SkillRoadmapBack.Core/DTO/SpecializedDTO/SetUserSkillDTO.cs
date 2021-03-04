@@ -4,7 +4,7 @@ using System.Text;
 
 namespace SkillRoadmapBack.Core.DTO.SpecializedDTO
 {
-    public class GetUserSkillDTO
+    public class SetUserSkillDTO
     {
         public string Skillname { get; set; }
         public DateTime StartDate { get; set; }
@@ -12,6 +12,5 @@ namespace SkillRoadmapBack.Core.DTO.SpecializedDTO
         public string CategoryName { get; set; }
         public int SkillLevel { get; set; }
         public string EmployeeEmail { get; set; }
-        public bool IsUserSkill { get; set; }
     }
 }

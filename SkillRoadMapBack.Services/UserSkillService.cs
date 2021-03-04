@@ -20,10 +20,12 @@ namespace SkillRoadMapBack.Services
 
         }
 
-        public virtual async Task CreateAsync(UserSkillDTO entity)
+        public virtual async Task CreateAsync(SetUserSkillDTO entity)
         {
             var value = new UserSkill();
             _mapper.Map(entity, value);
+            value.IdCategory = (await _unitOfWork.CategoryRepo.GetAllAsync()).FirstOrDefault(cat => cat.Title == entity.CategoryName)?.Id;
+            value.IdEmployee = (await _unitOfWork.EmployeeRepo.GetAllAsync()).FirstOrDefault(emp => emp.Email == entity.EmployeeEmail)?.Id;
             await _unitOfWork.UserSkillRepo.AddAsync(value);
             await _unitOfWork.SaveChangesAsync();
         }
@@ -75,9 +77,11 @@ namespace SkillRoadMapBack.Services
                 List<SkillUnit> skillUnits = (await _unitOfWork.SkillUnitRepo.GetAllAsync()).ToList();
                 List<UserSkill> skillWithUnits = new List<UserSkill>();
                 List<SkillUnit> childUnits = null;
+                List<int> unitsIndex = new List<int>();
                 foreach (UserSkill userSkill in yearSkills)
                 {
                     skillWithUnits.Add(userSkill);
+                    unitsIndex.Add(skillWithUnits.Count - 1);
                     childUnits = skillUnits.Where(su => su.IdUserSkill == userSkill.Id).ToList();
                     foreach(SkillUnit skillUnit in childUnits)
                     {
@@ -96,11 +100,15 @@ namespace SkillRoadMapBack.Services
                     }
                 }
                 userSkillDTOs = skillWithUnits.Select(userSkill => _mapper.Map(userSkill, new GetUserSkillDTO())).ToList();
+                foreach(var unitIndex in unitsIndex)
+                {
+                    userSkillDTOs[unitIndex].IsUserSkill = true;
+                }
                 return userSkillDTOs;
             }
 
             //List<UserSkillDTO> userSkillDTOs = userSkills.Select(userSkill => _mapper.Map(userSkill, new UserSkillDTO())).ToList();
             //return userSkillDTOs;
-        } 
+        }
     }
 }

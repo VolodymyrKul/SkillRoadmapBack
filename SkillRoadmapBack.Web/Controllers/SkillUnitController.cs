@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using SkillRoadmapBack.Core.Abstractions.IServices;
+using SkillRoadmapBack.Core.DTO.SpecializedDTO;
 using SkillRoadmapBack.Core.DTO.StandardDTO;
 using System;
 using System.Collections.Generic;
@@ -36,7 +37,7 @@ namespace SkillRoadmapBack.Web.Controllers
         }
 
         [HttpPost("pull")]
-        public async Task<ActionResult<SkillUnitDTO>> Pull(SkillUnitDTO order)
+        public async Task<ActionResult<SetSkillUnitDTO>> Pull(SetSkillUnitDTO order)
         {
             await _skillUnitService.CreateAsync(order);
             return Ok(order);

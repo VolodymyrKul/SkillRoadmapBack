@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace SkillRoadmapBack.Core.Abstractions.IServices
 {
-    public interface IUserSkillService : IBaseService<UserSkillDTO, UserSkillDTO>
+    public interface IUserSkillService : IBaseService<UserSkillDTO, SetUserSkillDTO>
     {
         Task<List<GetUserSkillDTO>> GetByYear(string user, int year);
     }

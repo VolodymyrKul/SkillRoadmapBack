@@ -10,7 +10,7 @@ using SkillRoadMapBack.DAL;
 namespace SkillRoadMapBack.DAL.Migrations
 {
     [DbContext(typeof(SkillRoadMapDbContext))]
-    [Migration("20210217205017_InitialCreate")]
+    [Migration("20210303204604_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -62,6 +62,24 @@ namespace SkillRoadMapBack.DAL.Migrations
                             Id = 3,
                             Description = "Includes db design, processes design, software architecture",
                             Title = "Designing"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Description = "Includes db design, processes design, software architecture",
+                            Title = "Frontend"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            Description = "Includes db design, processes design, software architecture",
+                            Title = "Database"
+                        },
+                        new
+                        {
+                            Id = 6,
+                            Description = "Includes db design, processes design, software architecture",
+                            Title = "Mobile"
                         });
                 });
 
@@ -797,6 +815,492 @@ namespace SkillRoadMapBack.DAL.Migrations
                             StartDate = new DateTime(2021, 12, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             UnitLevel = 4,
                             Unitname = "Bridge pattern"
+                        },
+                        new
+                        {
+                            Id = 39,
+                            EndDate = new DateTime(2020, 2, 20, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IdUserSkill = 16,
+                            StartDate = new DateTime(2020, 2, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UnitLevel = 4,
+                            Unitname = "Variables"
+                        },
+                        new
+                        {
+                            Id = 40,
+                            EndDate = new DateTime(2020, 2, 28, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IdUserSkill = 16,
+                            StartDate = new DateTime(2020, 2, 20, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UnitLevel = 4,
+                            Unitname = "Conditional expressions"
+                        },
+                        new
+                        {
+                            Id = 41,
+                            EndDate = new DateTime(2020, 3, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IdUserSkill = 16,
+                            StartDate = new DateTime(2020, 2, 28, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UnitLevel = 4,
+                            Unitname = "Cycles"
+                        },
+                        new
+                        {
+                            Id = 42,
+                            EndDate = new DateTime(2020, 3, 20, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IdUserSkill = 17,
+                            StartDate = new DateTime(2020, 3, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UnitLevel = 4,
+                            Unitname = "Functions and their parameters"
+                        },
+                        new
+                        {
+                            Id = 43,
+                            EndDate = new DateTime(2020, 3, 30, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IdUserSkill = 17,
+                            StartDate = new DateTime(2020, 3, 20, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UnitLevel = 4,
+                            Unitname = "Returning the result"
+                        },
+                        new
+                        {
+                            Id = 44,
+                            EndDate = new DateTime(2020, 4, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IdUserSkill = 17,
+                            StartDate = new DateTime(2020, 3, 30, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UnitLevel = 4,
+                            Unitname = "Lambda expressions"
+                        },
+                        new
+                        {
+                            Id = 45,
+                            EndDate = new DateTime(2020, 4, 20, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IdUserSkill = 18,
+                            StartDate = new DateTime(2020, 4, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UnitLevel = 4,
+                            Unitname = "Classes and objects"
+                        },
+                        new
+                        {
+                            Id = 46,
+                            EndDate = new DateTime(2020, 4, 30, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IdUserSkill = 18,
+                            StartDate = new DateTime(2020, 4, 20, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UnitLevel = 4,
+                            Unitname = "Visibility modifiers"
+                        },
+                        new
+                        {
+                            Id = 47,
+                            EndDate = new DateTime(2020, 5, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IdUserSkill = 18,
+                            StartDate = new DateTime(2020, 4, 30, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UnitLevel = 4,
+                            Unitname = "Inheritance"
+                        },
+                        new
+                        {
+                            Id = 48,
+                            EndDate = new DateTime(2020, 5, 20, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IdUserSkill = 19,
+                            StartDate = new DateTime(2020, 5, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UnitLevel = 4,
+                            Unitname = "Data types"
+                        },
+                        new
+                        {
+                            Id = 49,
+                            EndDate = new DateTime(2020, 5, 30, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IdUserSkill = 19,
+                            StartDate = new DateTime(2020, 5, 20, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UnitLevel = 4,
+                            Unitname = "Column and table attributes and constraints"
+                        },
+                        new
+                        {
+                            Id = 50,
+                            EndDate = new DateTime(2020, 6, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IdUserSkill = 19,
+                            StartDate = new DateTime(2020, 5, 30, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UnitLevel = 4,
+                            Unitname = "Foreign Keys"
+                        },
+                        new
+                        {
+                            Id = 51,
+                            EndDate = new DateTime(2020, 6, 20, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IdUserSkill = 20,
+                            StartDate = new DateTime(2020, 6, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UnitLevel = 4,
+                            Unitname = "Adding data. INSERT command"
+                        },
+                        new
+                        {
+                            Id = 52,
+                            EndDate = new DateTime(2020, 6, 30, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IdUserSkill = 20,
+                            StartDate = new DateTime(2020, 6, 20, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UnitLevel = 4,
+                            Unitname = "Data sampling. SELECT command"
+                        },
+                        new
+                        {
+                            Id = 53,
+                            EndDate = new DateTime(2020, 7, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IdUserSkill = 20,
+                            StartDate = new DateTime(2020, 6, 30, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UnitLevel = 4,
+                            Unitname = "Filtration. WHERE"
+                        },
+                        new
+                        {
+                            Id = 54,
+                            EndDate = new DateTime(2020, 7, 20, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IdUserSkill = 21,
+                            StartDate = new DateTime(2020, 7, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UnitLevel = 4,
+                            Unitname = "INNER JOIN"
+                        },
+                        new
+                        {
+                            Id = 55,
+                            EndDate = new DateTime(2020, 7, 30, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IdUserSkill = 21,
+                            StartDate = new DateTime(2020, 7, 20, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UnitLevel = 4,
+                            Unitname = "OUTER JOIN"
+                        },
+                        new
+                        {
+                            Id = 56,
+                            EndDate = new DateTime(2020, 8, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IdUserSkill = 21,
+                            StartDate = new DateTime(2020, 7, 30, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UnitLevel = 4,
+                            Unitname = "UNION"
+                        },
+                        new
+                        {
+                            Id = 57,
+                            EndDate = new DateTime(2020, 8, 20, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IdUserSkill = 22,
+                            StartDate = new DateTime(2020, 8, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UnitLevel = 4,
+                            Unitname = "Variables and data types"
+                        },
+                        new
+                        {
+                            Id = 58,
+                            EndDate = new DateTime(2020, 8, 30, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IdUserSkill = 22,
+                            StartDate = new DateTime(2020, 8, 20, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UnitLevel = 4,
+                            Unitname = "Conditional expressions"
+                        },
+                        new
+                        {
+                            Id = 59,
+                            EndDate = new DateTime(2020, 9, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IdUserSkill = 22,
+                            StartDate = new DateTime(2020, 8, 30, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UnitLevel = 4,
+                            Unitname = "String operations"
+                        },
+                        new
+                        {
+                            Id = 60,
+                            EndDate = new DateTime(2020, 9, 20, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IdUserSkill = 23,
+                            StartDate = new DateTime(2020, 9, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UnitLevel = 4,
+                            Unitname = "Random module"
+                        },
+                        new
+                        {
+                            Id = 61,
+                            EndDate = new DateTime(2020, 9, 30, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IdUserSkill = 23,
+                            StartDate = new DateTime(2020, 9, 20, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UnitLevel = 4,
+                            Unitname = "Math module"
+                        },
+                        new
+                        {
+                            Id = 62,
+                            EndDate = new DateTime(2020, 10, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IdUserSkill = 23,
+                            StartDate = new DateTime(2020, 9, 30, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UnitLevel = 4,
+                            Unitname = "Locale module"
+                        },
+                        new
+                        {
+                            Id = 63,
+                            EndDate = new DateTime(2020, 10, 20, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IdUserSkill = 24,
+                            StartDate = new DateTime(2020, 10, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UnitLevel = 4,
+                            Unitname = "Encapsulation"
+                        },
+                        new
+                        {
+                            Id = 64,
+                            EndDate = new DateTime(2020, 10, 30, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IdUserSkill = 24,
+                            StartDate = new DateTime(2020, 10, 20, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UnitLevel = 4,
+                            Unitname = "Inheritance"
+                        },
+                        new
+                        {
+                            Id = 65,
+                            EndDate = new DateTime(2020, 11, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IdUserSkill = 24,
+                            StartDate = new DateTime(2020, 10, 30, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UnitLevel = 4,
+                            Unitname = "Polymorphism"
+                        },
+                        new
+                        {
+                            Id = 66,
+                            EndDate = new DateTime(2019, 3, 20, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IdUserSkill = 25,
+                            StartDate = new DateTime(2019, 3, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UnitLevel = 4,
+                            Unitname = "The input and textarea elements"
+                        },
+                        new
+                        {
+                            Id = 67,
+                            EndDate = new DateTime(2019, 3, 30, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IdUserSkill = 25,
+                            StartDate = new DateTime(2019, 3, 20, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UnitLevel = 4,
+                            Unitname = "Select list"
+                        },
+                        new
+                        {
+                            Id = 68,
+                            EndDate = new DateTime(2019, 4, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IdUserSkill = 25,
+                            StartDate = new DateTime(2019, 3, 30, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UnitLevel = 4,
+                            Unitname = "Modifiers"
+                        },
+                        new
+                        {
+                            Id = 69,
+                            EndDate = new DateTime(2019, 4, 20, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IdUserSkill = 26,
+                            StartDate = new DateTime(2019, 4, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UnitLevel = 4,
+                            Unitname = "Component state and behavior"
+                        },
+                        new
+                        {
+                            Id = 70,
+                            EndDate = new DateTime(2019, 4, 30, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IdUserSkill = 26,
+                            StartDate = new DateTime(2019, 4, 20, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UnitLevel = 4,
+                            Unitname = "Props"
+                        },
+                        new
+                        {
+                            Id = 71,
+                            EndDate = new DateTime(2019, 5, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IdUserSkill = 26,
+                            StartDate = new DateTime(2019, 4, 30, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UnitLevel = 4,
+                            Unitname = "Parent and child components"
+                        },
+                        new
+                        {
+                            Id = 72,
+                            EndDate = new DateTime(2019, 5, 20, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IdUserSkill = 27,
+                            StartDate = new DateTime(2019, 5, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UnitLevel = 4,
+                            Unitname = "Defining routes"
+                        },
+                        new
+                        {
+                            Id = 73,
+                            EndDate = new DateTime(2019, 5, 30, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IdUserSkill = 27,
+                            StartDate = new DateTime(2019, 5, 20, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UnitLevel = 4,
+                            Unitname = "Route parameters"
+                        },
+                        new
+                        {
+                            Id = 74,
+                            EndDate = new DateTime(2019, 6, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IdUserSkill = 27,
+                            StartDate = new DateTime(2019, 5, 30, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UnitLevel = 4,
+                            Unitname = "Nested routes"
+                        },
+                        new
+                        {
+                            Id = 75,
+                            EndDate = new DateTime(2019, 6, 20, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IdUserSkill = 28,
+                            StartDate = new DateTime(2019, 6, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UnitLevel = 4,
+                            Unitname = "Components"
+                        },
+                        new
+                        {
+                            Id = 76,
+                            EndDate = new DateTime(2019, 6, 30, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IdUserSkill = 28,
+                            StartDate = new DateTime(2019, 6, 20, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UnitLevel = 4,
+                            Unitname = "Binding"
+                        },
+                        new
+                        {
+                            Id = 77,
+                            EndDate = new DateTime(2019, 7, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IdUserSkill = 28,
+                            StartDate = new DateTime(2019, 6, 30, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UnitLevel = 4,
+                            Unitname = "Component life cycle"
+                        },
+                        new
+                        {
+                            Id = 78,
+                            EndDate = new DateTime(2019, 7, 20, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IdUserSkill = 29,
+                            StartDate = new DateTime(2019, 7, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UnitLevel = 4,
+                            Unitname = "ngClass and ngStyle"
+                        },
+                        new
+                        {
+                            Id = 79,
+                            EndDate = new DateTime(2019, 7, 30, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IdUserSkill = 29,
+                            StartDate = new DateTime(2019, 7, 20, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UnitLevel = 4,
+                            Unitname = "Getting parameters in directives"
+                        },
+                        new
+                        {
+                            Id = 80,
+                            EndDate = new DateTime(2019, 8, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IdUserSkill = 29,
+                            StartDate = new DateTime(2019, 7, 30, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UnitLevel = 4,
+                            Unitname = "ngIf, ngFor, ngSwitch"
+                        },
+                        new
+                        {
+                            Id = 81,
+                            EndDate = new DateTime(2019, 8, 20, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IdUserSkill = 30,
+                            StartDate = new DateTime(2019, 8, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UnitLevel = 4,
+                            Unitname = "HttpClient and Sending Requests"
+                        },
+                        new
+                        {
+                            Id = 82,
+                            EndDate = new DateTime(2019, 8, 30, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IdUserSkill = 30,
+                            StartDate = new DateTime(2019, 8, 20, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UnitLevel = 4,
+                            Unitname = "Observable and RxJS library"
+                        },
+                        new
+                        {
+                            Id = 83,
+                            EndDate = new DateTime(2019, 9, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IdUserSkill = 30,
+                            StartDate = new DateTime(2019, 8, 30, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UnitLevel = 4,
+                            Unitname = "Sending data in a request"
+                        },
+                        new
+                        {
+                            Id = 84,
+                            EndDate = new DateTime(2019, 9, 20, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IdUserSkill = 31,
+                            StartDate = new DateTime(2019, 9, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UnitLevel = 4,
+                            Unitname = "Components"
+                        },
+                        new
+                        {
+                            Id = 85,
+                            EndDate = new DateTime(2019, 9, 30, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IdUserSkill = 31,
+                            StartDate = new DateTime(2019, 9, 20, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UnitLevel = 4,
+                            Unitname = "Props"
+                        },
+                        new
+                        {
+                            Id = 86,
+                            EndDate = new DateTime(2019, 10, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IdUserSkill = 31,
+                            StartDate = new DateTime(2019, 9, 30, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UnitLevel = 4,
+                            Unitname = "State"
+                        },
+                        new
+                        {
+                            Id = 87,
+                            EndDate = new DateTime(2019, 10, 20, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IdUserSkill = 32,
+                            StartDate = new DateTime(2019, 10, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UnitLevel = 4,
+                            Unitname = "Working with forms"
+                        },
+                        new
+                        {
+                            Id = 88,
+                            EndDate = new DateTime(2019, 10, 30, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IdUserSkill = 32,
+                            StartDate = new DateTime(2019, 10, 20, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UnitLevel = 4,
+                            Unitname = "Form validation"
+                        },
+                        new
+                        {
+                            Id = 89,
+                            EndDate = new DateTime(2019, 11, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IdUserSkill = 32,
+                            StartDate = new DateTime(2019, 10, 30, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UnitLevel = 4,
+                            Unitname = "Refs"
+                        },
+                        new
+                        {
+                            Id = 90,
+                            EndDate = new DateTime(2019, 11, 20, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IdUserSkill = 33,
+                            StartDate = new DateTime(2019, 11, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UnitLevel = 4,
+                            Unitname = "useState"
+                        },
+                        new
+                        {
+                            Id = 91,
+                            EndDate = new DateTime(2019, 11, 30, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IdUserSkill = 33,
+                            StartDate = new DateTime(2019, 11, 20, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UnitLevel = 4,
+                            Unitname = "useEffect"
+                        },
+                        new
+                        {
+                            Id = 92,
+                            EndDate = new DateTime(2019, 12, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IdUserSkill = 33,
+                            StartDate = new DateTime(2019, 11, 30, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UnitLevel = 4,
+                            Unitname = "useRef"
                         });
                 });
 
@@ -987,6 +1491,186 @@ namespace SkillRoadMapBack.DAL.Migrations
                             SkillLevel = 4,
                             Skillname = "Design patterns",
                             StartDate = new DateTime(2021, 11, 5, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 16,
+                            EndDate = new DateTime(2020, 3, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IdCategory = 6,
+                            IdEmployee = 1,
+                            SkillLevel = 4,
+                            Skillname = "Kotlin language basics",
+                            StartDate = new DateTime(2020, 2, 10, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 17,
+                            EndDate = new DateTime(2020, 4, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IdCategory = 6,
+                            IdEmployee = 1,
+                            SkillLevel = 4,
+                            Skillname = "Kotlin functional programming",
+                            StartDate = new DateTime(2020, 3, 10, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 18,
+                            EndDate = new DateTime(2020, 5, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IdCategory = 6,
+                            IdEmployee = 1,
+                            SkillLevel = 4,
+                            Skillname = "Kotlin OOP",
+                            StartDate = new DateTime(2020, 4, 10, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 19,
+                            EndDate = new DateTime(2020, 6, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IdCategory = 5,
+                            IdEmployee = 1,
+                            SkillLevel = 4,
+                            Skillname = "T-SQL basics",
+                            StartDate = new DateTime(2020, 5, 10, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 20,
+                            EndDate = new DateTime(2020, 7, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IdCategory = 5,
+                            IdEmployee = 1,
+                            SkillLevel = 4,
+                            Skillname = "T-SQL basics. DML",
+                            StartDate = new DateTime(2020, 6, 10, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 21,
+                            EndDate = new DateTime(2020, 8, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IdCategory = 5,
+                            IdEmployee = 1,
+                            SkillLevel = 4,
+                            Skillname = "Joining tables",
+                            StartDate = new DateTime(2020, 7, 10, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 22,
+                            EndDate = new DateTime(2020, 9, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IdCategory = 1,
+                            IdEmployee = 1,
+                            SkillLevel = 4,
+                            Skillname = "Python basics",
+                            StartDate = new DateTime(2020, 8, 10, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 23,
+                            EndDate = new DateTime(2020, 10, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IdCategory = 1,
+                            IdEmployee = 1,
+                            SkillLevel = 4,
+                            Skillname = "Python built-in modules",
+                            StartDate = new DateTime(2020, 9, 10, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 24,
+                            EndDate = new DateTime(2020, 11, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IdCategory = 1,
+                            IdEmployee = 1,
+                            SkillLevel = 4,
+                            Skillname = "Python OOP",
+                            StartDate = new DateTime(2020, 10, 10, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 25,
+                            EndDate = new DateTime(2019, 4, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IdCategory = 4,
+                            IdEmployee = 1,
+                            SkillLevel = 4,
+                            Skillname = "Vue Forms",
+                            StartDate = new DateTime(2019, 3, 10, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 26,
+                            EndDate = new DateTime(2019, 5, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IdCategory = 4,
+                            IdEmployee = 1,
+                            SkillLevel = 4,
+                            Skillname = "Vue Components",
+                            StartDate = new DateTime(2019, 4, 10, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 27,
+                            EndDate = new DateTime(2019, 6, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IdCategory = 4,
+                            IdEmployee = 1,
+                            SkillLevel = 4,
+                            Skillname = "Vue Routing",
+                            StartDate = new DateTime(2019, 5, 10, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 28,
+                            EndDate = new DateTime(2019, 7, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IdCategory = 4,
+                            IdEmployee = 1,
+                            SkillLevel = 4,
+                            Skillname = "Angular basics",
+                            StartDate = new DateTime(2019, 6, 10, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 29,
+                            EndDate = new DateTime(2021, 8, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IdCategory = 4,
+                            IdEmployee = 1,
+                            SkillLevel = 4,
+                            Skillname = "Angular Directives",
+                            StartDate = new DateTime(2021, 7, 10, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 30,
+                            EndDate = new DateTime(2019, 9, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IdCategory = 4,
+                            IdEmployee = 1,
+                            SkillLevel = 4,
+                            Skillname = "Angular HTTP",
+                            StartDate = new DateTime(2019, 8, 10, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 31,
+                            EndDate = new DateTime(2019, 10, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IdCategory = 4,
+                            IdEmployee = 1,
+                            SkillLevel = 4,
+                            Skillname = "React basics",
+                            StartDate = new DateTime(2019, 9, 10, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 32,
+                            EndDate = new DateTime(2019, 11, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IdCategory = 4,
+                            IdEmployee = 1,
+                            SkillLevel = 4,
+                            Skillname = "React Forms",
+                            StartDate = new DateTime(2019, 10, 10, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 33,
+                            EndDate = new DateTime(2019, 12, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IdCategory = 4,
+                            IdEmployee = 1,
+                            SkillLevel = 4,
+                            Skillname = "React Hooks",
+                            StartDate = new DateTime(2019, 11, 10, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         });
                 });
 
