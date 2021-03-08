@@ -18,6 +18,14 @@ namespace SkillRoadMapBack.DAL
         private IUserSkillRepo _userSkillRepo;
         private ICategoryRepo _categoryRepo;
         private ISkillUnitRepo _skillUnitRepo;
+        private ICertificateRepo _certificateRepo;
+        private ICompanyRepo _companyRepo;
+        private IRecMemberRepo _recMemberRepo;
+        private IRecommendationRepo _recommendationRepo;
+        private ISkillMetricRepo _skillMetricRepo;
+        private IStatisticsRepo _statisticsRepo;
+        private ITrainingMemberRepo _trainingMemberRepo;
+        private ITrainingRepo _trainingRepo; 
 
         public ICommentRepo CommentRepo
         {
@@ -72,6 +80,70 @@ namespace SkillRoadMapBack.DAL
             get
             {
                 return _skillUnitRepo ??= new SkillUnitRepo(_context);
+            }
+        }
+
+        public ICertificateRepo CertificateRepo
+        {
+            get
+            {
+                return _certificateRepo ??= new CertificateRepo(_context);
+            }
+        }
+
+        public ICompanyRepo CompanyRepo
+        {
+            get
+            {
+                return _companyRepo ??= new CompanyRepo(_context);
+            }
+        }
+
+        public IRecMemberRepo RecMemberRepo
+        {
+            get
+            {
+                return _recMemberRepo ??= new RecMemberRepo(_context);
+            }
+        }
+
+        public IRecommendationRepo RecommendationRepo
+        {
+            get
+            {
+                return _recommendationRepo ??= new RecommendationRepo(_context);
+            }
+        }
+
+        public ISkillMetricRepo SkillMetricRepo
+        {
+            get
+            {
+                return _skillMetricRepo ??= new SkillMetricRepo(_context);
+            }
+        }
+
+        public IStatisticsRepo StatisticsRepo
+        {
+            get
+            {
+                return _statisticsRepo ??= new StatisticsRepo(_context);
+            }
+        }
+
+        public ITrainingMemberRepo TrainingMemberRepo
+        {
+            get
+            {
+                return _trainingMemberRepo ??= new TrainingMemberRepo(_context);
+            }
+        }
+
+        public ITrainingRepo TrainingRepo
+        {
+            get
+            {
+                return _trainingRepo ??= new TrainingRepo(_context);
             }
         }
 

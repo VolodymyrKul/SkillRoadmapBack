@@ -15,6 +15,14 @@ namespace SkillRoadmapBack.Core.Abstractions
         IUserSkillRepo UserSkillRepo { get; }
         ICategoryRepo CategoryRepo { get; }
         ISkillUnitRepo SkillUnitRepo { get; }
+        ICertificateRepo CertificateRepo { get; }
+        ICompanyRepo CompanyRepo { get; }
+        IRecMemberRepo RecMemberRepo { get; }
+        IRecommendationRepo RecommendationRepo { get; }
+        ISkillMetricRepo SkillMetricRepo { get; }
+        IStatisticsRepo StatisticsRepo { get; }
+        ITrainingRepo TrainingRepo { get; }
+        ITrainingMemberRepo TrainingMemberRepo { get; }
         Task SaveChangesAsync();
     }
 }

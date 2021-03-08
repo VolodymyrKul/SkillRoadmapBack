@@ -225,7 +225,7 @@ namespace SkillRoadMapBack.DAL.Migrations
                     { 1, new DateTime(2021, 2, 15, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, 1, 3, "С# Basics", new DateTime(2021, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
                     { 31, new DateTime(2019, 10, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), 4, 1, 4, "React basics", new DateTime(2019, 9, 10, 0, 0, 0, 0, DateTimeKind.Unspecified) },
                     { 30, new DateTime(2019, 9, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), 4, 1, 4, "Angular HTTP", new DateTime(2019, 8, 10, 0, 0, 0, 0, DateTimeKind.Unspecified) },
-                    { 29, new DateTime(2021, 8, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), 4, 1, 4, "Angular Directives", new DateTime(2021, 7, 10, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 29, new DateTime(2019, 8, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), 4, 1, 4, "Angular Directives", new DateTime(2019, 7, 10, 0, 0, 0, 0, DateTimeKind.Unspecified) },
                     { 28, new DateTime(2019, 7, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), 4, 1, 4, "Angular basics", new DateTime(2019, 6, 10, 0, 0, 0, 0, DateTimeKind.Unspecified) },
                     { 27, new DateTime(2019, 6, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), 4, 1, 4, "Vue Routing", new DateTime(2019, 5, 10, 0, 0, 0, 0, DateTimeKind.Unspecified) },
                     { 26, new DateTime(2019, 5, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), 4, 1, 4, "Vue Components", new DateTime(2019, 4, 10, 0, 0, 0, 0, DateTimeKind.Unspecified) },

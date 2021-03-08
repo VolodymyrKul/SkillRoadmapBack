@@ -22,6 +22,7 @@ namespace SkillRoadMapBack.DAL.Repositories
         {
             return await _context.Set<Employee>()
                 .Include(employee => employee.IdEmployerNavigation)
+                .Include(employee => employee.IdCompanyNavigation)
                 .ToListAsync();
         }
 
@@ -30,6 +31,7 @@ namespace SkillRoadMapBack.DAL.Repositories
             return await _context.Set<Employee>()
                 .Where(e => e.Id == id)
                 .Include(employee => employee.IdEmployerNavigation)
+                .Include(employee => employee.IdCompanyNavigation)
                 .FirstOrDefaultAsync().ConfigureAwait(false);
         }
     }

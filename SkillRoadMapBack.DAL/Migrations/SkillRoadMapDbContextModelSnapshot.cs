@@ -1623,12 +1623,12 @@ namespace SkillRoadMapBack.DAL.Migrations
                         new
                         {
                             Id = 29,
-                            EndDate = new DateTime(2021, 8, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            EndDate = new DateTime(2019, 8, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IdCategory = 4,
                             IdEmployee = 1,
                             SkillLevel = 4,
                             Skillname = "Angular Directives",
-                            StartDate = new DateTime(2021, 7, 10, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                            StartDate = new DateTime(2019, 7, 10, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {

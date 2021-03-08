@@ -7,6 +7,10 @@ namespace SkillRoadmapBack.Core.Models
 {
     public class SkillUnit : IBaseEntity
     {
+        public SkillUnit()
+        {
+            SkillMetrics = new HashSet<SkillMetric>();
+        }
         public int Id { get; set; }
         public string Unitname { get; set; }
         public DateTime StartDate { get; set; }
@@ -14,5 +18,6 @@ namespace SkillRoadmapBack.Core.Models
         public int UnitLevel { get; set; }
         public int? IdUserSkill { get; set; }
         public UserSkill IdUserSkillNavigation { get; set; }
+        public virtual ICollection<SkillMetric> SkillMetrics { get; set; }
     }
 }

@@ -110,5 +110,11 @@ namespace SkillRoadMapBack.Services
             //List<UserSkillDTO> userSkillDTOs = userSkills.Select(userSkill => _mapper.Map(userSkill, new UserSkillDTO())).ToList();
             //return userSkillDTOs;
         }
+
+        public virtual async Task<List<int>> GetYears(string user) 
+        {
+            var skillYears = (await _unitOfWork.UserSkillRepo.GetAllAsync()).Select(us => us.StartDate.Year).Distinct();
+            return skillYears.ToList();
+        }
     }
 }

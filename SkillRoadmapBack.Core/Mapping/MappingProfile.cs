@@ -19,6 +19,14 @@ namespace SkillRoadmapBack.Core.Mapping
             CreateMap<UserSkill, UserSkillDTO>().ReverseMap();
             CreateMap<Category, CategoryDTO>().ReverseMap();
             CreateMap<SkillUnit, SkillUnitDTO>().ReverseMap();
+            CreateMap<Certificate, CertificateDTO>().ReverseMap();
+            CreateMap<Company, CompanyDTO>().ReverseMap();
+            CreateMap<RecMember, RecMemberDTO>().ReverseMap();
+            CreateMap<Recommendation, RecommendationDTO>().ReverseMap();
+            CreateMap<SkillMetric, SkillMetricDTO>().ReverseMap();
+            CreateMap<Statistics, StatisticsDTO>().ReverseMap();
+            CreateMap<Training, TrainingDTO>().ReverseMap();
+            CreateMap<TrainingMember, TrainingMemberDTO>().ReverseMap();
 
             CreateMap<UserSkill, GetUserSkillDTO>()
                 .ForMember(dest => dest.CategoryName, opts => opts.MapFrom(item => item.IdCategoryNavigation.Title))

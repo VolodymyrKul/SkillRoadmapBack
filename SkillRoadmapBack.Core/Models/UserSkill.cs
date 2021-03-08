@@ -12,6 +12,7 @@ namespace SkillRoadmapBack.Core.Models
             Comments = new HashSet<Comment>();
             Notifications = new HashSet<Notification>();
             SkillUnits = new HashSet<SkillUnit>();
+            Certificates = new HashSet<Certificate>();
         }
         public int Id { get; set; }
         public string Skillname { get; set; }
@@ -25,5 +26,6 @@ namespace SkillRoadmapBack.Core.Models
         public virtual ICollection<Comment> Comments { get; set; }
         public virtual ICollection<Notification> Notifications { get; set; }
         public virtual ICollection<SkillUnit> SkillUnits { get; set; }
+        public virtual ICollection<Certificate> Certificates { get; set; }
     }
 }

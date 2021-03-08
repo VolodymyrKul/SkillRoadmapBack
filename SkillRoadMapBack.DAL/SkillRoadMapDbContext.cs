@@ -23,6 +23,14 @@ namespace SkillRoadMapBack.DAL
         public virtual DbSet<Comment> Comments { get; set; }
         public virtual DbSet<Category> Categories { get; set; }
         public virtual DbSet<SkillUnit> SkillUnits { get; set; }
+        public virtual DbSet<Certificate> Certificates { get; set; }
+        public virtual DbSet<Company> Companies { get; set; }
+        public virtual DbSet<RecMember> RecMembers { get; set; }
+        public virtual DbSet<Recommendation> Recommendations { get; set; }
+        public virtual DbSet<SkillMetric> SkillMetrics { get; set; }
+        public virtual DbSet<Statistics> Statisticses { get; set; }
+        public virtual DbSet<Training> Trainings { get; set; }
+        public virtual DbSet<TrainingMember> TrainingMembers { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -70,6 +78,11 @@ namespace SkillRoadMapBack.DAL
                 .HasForeignKey(e => e.IdMentor)
                 .HasConstraintName("R_9");
 
+                entity.HasOne(e => e.IdCompanyNavigation)
+                .WithMany(c => c.Employees)
+                .HasForeignKey(e => e.IdCompany)
+                .HasConstraintName("R_15");
+
                 entity.HasData(
                     new Employee {
                         Id = 1,
@@ -80,7 +93,8 @@ namespace SkillRoadMapBack.DAL
                         Role = "User",
                         DevLevel = "Trainee C#",
                         Experience = 5,
-                        IdMentor = 3
+                        IdMentor = 3,
+                        IdCompany = 1
                     },
                     new Employee
                     {
@@ -92,7 +106,8 @@ namespace SkillRoadMapBack.DAL
                         Role = "User",
                         DevLevel = "Junior C#",
                         Experience = 5,
-                        IdMentor = 3
+                        IdMentor = 3,
+                        IdCompany = 1
                     },
                     new Employee
                     {
@@ -104,7 +119,8 @@ namespace SkillRoadMapBack.DAL
                         Role = "User",
                         DevLevel = "Middle C#",
                         Experience = 5,
-                        IdMentor = 3
+                        IdMentor = 3,
+                        IdCompany = 1
                     },
                     new Employee
                     {
@@ -116,7 +132,8 @@ namespace SkillRoadMapBack.DAL
                         Role = "User",
                         DevLevel = "Senior C#",
                         Experience = 5,
-                        IdMentor = 4
+                        IdMentor = 4,
+                        IdCompany = 1
                     },
                     new Employee
                     {
@@ -128,7 +145,8 @@ namespace SkillRoadMapBack.DAL
                         Role = "User",
                         DevLevel = "Middle C#",
                         Experience = 5,
-                        IdMentor = 4
+                        IdMentor = 4,
+                        IdCompany = 1
                     });
             });
 
@@ -160,6 +178,11 @@ namespace SkillRoadMapBack.DAL
                 .HasMaxLength(50)
                 .IsUnicode(false);
 
+                entity.HasOne(e => e.IdCompanyNavigation)
+                .WithMany(c => c.Employers)
+                .HasForeignKey(e => e.IdCompany)
+                .HasConstraintName("R_16");
+
                 entity.HasData(
                     new Employer {
                         Id = 1,
@@ -167,7 +190,8 @@ namespace SkillRoadMapBack.DAL
                         Lastname = "Melnyk",
                         Email = "melnykmyk@gmail.com",
                         Password = "_Aa123456",
-                        Role = "HR"
+                        Role = "HR",
+                        IdCompany = 1
                     },
                     new Employer
                     {
@@ -176,7 +200,8 @@ namespace SkillRoadMapBack.DAL
                         Lastname = "Shevchenko",
                         Email = "shevchenkovol@gmail.com",
                         Password = "_Aa123456",
-                        Role = "HR"
+                        Role = "HR",
+                        IdCompany = 1
                     },
                     new Employer
                     {
@@ -185,7 +210,8 @@ namespace SkillRoadMapBack.DAL
                         Lastname = "Boiko",
                         Email = "boikoolek@gmail.com",
                         Password = "_Aa123456",
-                        Role = "Mentor"
+                        Role = "Mentor",
+                        IdCompany = 1
                     },
                     new Employer
                     {
@@ -194,7 +220,8 @@ namespace SkillRoadMapBack.DAL
                         Lastname = "Kovalenko",
                         Email = "kovalenkoiv@gmail.com",
                         Password = "_Aa123456",
-                        Role = "Mentor"
+                        Role = "Mentor",
+                        IdCompany = 1
                     },
                     new Employer
                     {
@@ -203,7 +230,8 @@ namespace SkillRoadMapBack.DAL
                         Lastname = "Bondarenko",
                         Email = "bondarenkovas@gmail.com",
                         Password = "_Aa123456",
-                        Role = "Mentor"
+                        Role = "Mentor",
+                        IdCompany = 1
                     });
             });
 
@@ -488,8 +516,8 @@ namespace SkillRoadMapBack.DAL
                     {
                         Id = 29,
                         Skillname = "Angular Directives",
-                        StartDate = new DateTime(2021, 7, 10),
-                        EndDate = new DateTime(2021, 8, 10),
+                        StartDate = new DateTime(2019, 7, 10),
+                        EndDate = new DateTime(2019, 8, 10),
                         IdCategory = 4,
                         SkillLevel = 4,
                         IdEmployee = 1
@@ -1479,6 +1507,182 @@ namespace SkillRoadMapBack.DAL
                         UnitLevel = 4,
                         IdUserSkill = 33
                     });
+            });
+            
+            modelBuilder.Entity<Certificate>(entity => {
+                entity.HasKey(e => e.Id)
+                .HasName("XPKCertificate");
+
+                entity.Property(e => e.Id)
+                .HasColumnName("Id_Certificate");
+
+                entity.Property(e => e.CertificateTitle)
+                .HasMaxLength(500)
+                .IsUnicode(false);
+
+                entity.HasOne(c => c.IdPublisherNavigation)
+                .WithMany(e => e.Certificates)
+                .HasForeignKey(c => c.IdPublisher)
+                .HasConstraintName("R_17");
+
+                entity.HasOne(c => c.IdRecipientNavigation)
+                .WithMany(e => e.Certificates)
+                .HasForeignKey(c => c.IdRecipient)
+                .HasConstraintName("R_18");
+
+                entity.HasOne(c => c.IdUserSkillNavigation)
+                .WithMany(e => e.Certificates)
+                .HasForeignKey(c => c.IdUserSkill)
+                .HasConstraintName("R_19");
+            });
+
+            modelBuilder.Entity<Company>(entity => {
+                entity.HasKey(e => e.Id)
+                .HasName("XPKCompany");
+
+                entity.Property(e => e.Id)
+                .HasColumnName("Id_Company");
+
+                entity.Property(e => e.Name)
+                .HasMaxLength(50)
+                .IsUnicode(false);
+
+                entity.Property(e => e.Description)
+                .HasMaxLength(500)
+                .IsUnicode(false);
+
+                entity.Property(e => e.Specialization)
+                .HasMaxLength(100)
+                .IsUnicode(false);
+
+                entity.Property(e => e.Address)
+                .HasMaxLength(100)
+                .IsUnicode(false);
+
+                entity.Property(e => e.ContactPhone)
+                .HasMaxLength(20)
+                .IsUnicode(false);
+
+                entity.HasData(
+                    new Company 
+                    {
+                        Id = 1,
+                        Name = "InterLogic",
+                        EmployeesCount = 500,
+                        Description = "Some description about company",
+                        Specialization = "Software",
+                        Address = "Lviv, Grabovskogo 11",
+                        ContactPhone = "032-297-46-55"
+                    });
+            });
+
+            modelBuilder.Entity<RecMember>(entity => {
+                entity.HasKey(e => e.Id)
+                .HasName("XPKRecMember");
+
+                entity.Property(e => e.Id)
+                .HasColumnName("Id_RecMember");
+
+                entity.HasOne(rm => rm.IdRecommendNavigation)
+                .WithMany(r => r.RecMembers)
+                .HasForeignKey(rm => rm.IdRecommend)
+                .HasConstraintName("R_20");
+
+                entity.HasOne(rm => rm.IdTrainingNavigation)
+                .WithMany(t => t.RecMembers)
+                .HasForeignKey(rm => rm.IdTraining)
+                .HasConstraintName("R_21");
+            });
+
+            modelBuilder.Entity<Recommendation>(entity => {
+                entity.HasKey(e => e.Id)
+                .HasName("XPKRecommendation");
+
+                entity.Property(e => e.Id)
+                .HasColumnName("Id_Recommendation");
+
+                entity.Property(e => e.Title)
+                .HasMaxLength(200)
+                .IsUnicode(false);
+
+                entity.HasOne(r => r.IdEmployeeNavigation)
+                .WithMany(e => e.Recommendations)
+                .HasForeignKey(r => r.IdEmployee)
+                .HasConstraintName("R_22");
+            });
+
+            modelBuilder.Entity<SkillMetric>(entity => {
+                entity.HasKey(e => e.Id)
+                .HasName("XPKSkillMetric");
+
+                entity.Property(e => e.Id)
+                .HasColumnName("Id_SkillMetric");
+
+                entity.Property(e => e.MetricName)
+                .HasMaxLength(100)
+                .IsUnicode(false);
+
+                entity.HasOne(m => m.IdSkillUnitNavigation)
+                .WithMany(s => s.SkillMetrics)
+                .HasForeignKey(m => m.IdSkillUnit)
+                .HasConstraintName("R_23");
+            });
+
+            modelBuilder.Entity<Statistics>(entity => {
+                entity.HasKey(e => e.Id)
+                .HasName("XPKStatistics");
+
+                entity.Property(e => e.Id)
+                .HasColumnName("Id_Statistics");
+
+                entity.HasOne(s => s.IdEmployeeNavigation)
+                .WithMany(e => e.Statisticses)
+                .HasForeignKey(s => s.IdEmployee)
+                .HasConstraintName("R_24");
+            });
+
+            modelBuilder.Entity<Training>(entity => {
+                entity.HasKey(e => e.Id)
+                .HasName("XPKTraining");
+
+                entity.Property(e => e.Id)
+                .HasColumnName("Id_Training");
+
+                entity.Property(e => e.TrainingTitle)
+                .HasMaxLength(100)
+                .IsUnicode(false);
+
+                entity.Property(e => e.Description)
+                .HasMaxLength(500)
+                .IsUnicode(false);
+
+                entity.HasOne(t => t.IdCategoryNavigation)
+                .WithMany(c => c.Trainings)
+                .HasForeignKey(t => t.IdCategory)
+                .HasConstraintName("R_25");
+
+                entity.HasOne(t => t.IdCoachNavigation)
+                .WithMany(e => e.Trainings)
+                .HasForeignKey(t => t.IdCoach)
+                .HasConstraintName("R_26");
+            });
+
+            modelBuilder.Entity<TrainingMember>(entity => {
+                entity.HasKey(e => e.Id)
+                .HasName("XPKTrainingMember");
+
+                entity.Property(e => e.Id)
+                .HasColumnName("Id_TrainingMember");
+
+                entity.HasOne(t => t.IdMemberNavigation)
+                .WithMany(e => e.TrainingMembers)
+                .HasForeignKey(t => t.IdMember)
+                .HasConstraintName("R_27");
+
+                entity.HasOne(t => t.IdTrainingNavigation)
+                .WithMany(tr => tr.TrainingMembers)
+                .HasForeignKey(t => t.IdTraining)
+                .HasConstraintName("R_28");
             });
         }
     }
