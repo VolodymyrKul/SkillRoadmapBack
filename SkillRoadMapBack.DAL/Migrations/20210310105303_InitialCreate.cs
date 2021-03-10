@@ -22,6 +22,24 @@ namespace SkillRoadMapBack.DAL.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Companies",
+                columns: table => new
+                {
+                    Id_Company = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "varchar(50)", unicode: false, maxLength: 50, nullable: true),
+                    EmployeesCount = table.Column<int>(type: "int", nullable: false),
+                    Description = table.Column<string>(type: "varchar(500)", unicode: false, maxLength: 500, nullable: true),
+                    Specialization = table.Column<string>(type: "varchar(100)", unicode: false, maxLength: 100, nullable: true),
+                    Address = table.Column<string>(type: "varchar(100)", unicode: false, maxLength: 100, nullable: true),
+                    ContactPhone = table.Column<string>(type: "varchar(20)", unicode: false, maxLength: 20, nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("XPKCompany", x => x.Id_Company);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Employers",
                 columns: table => new
                 {
@@ -31,11 +49,18 @@ namespace SkillRoadMapBack.DAL.Migrations
                     Lastname = table.Column<string>(type: "varchar(50)", unicode: false, maxLength: 50, nullable: true),
                     Email = table.Column<string>(type: "varchar(50)", unicode: false, maxLength: 50, nullable: true),
                     Password = table.Column<string>(type: "varchar(50)", unicode: false, maxLength: 50, nullable: true),
-                    Role = table.Column<string>(type: "varchar(50)", unicode: false, maxLength: 50, nullable: true)
+                    Role = table.Column<string>(type: "varchar(50)", unicode: false, maxLength: 50, nullable: true),
+                    IdCompany = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("XPKEmployer", x => x.Id_Employer);
+                    table.ForeignKey(
+                        name: "R_16",
+                        column: x => x.IdCompany,
+                        principalTable: "Companies",
+                        principalColumn: "Id_Company",
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -51,16 +76,100 @@ namespace SkillRoadMapBack.DAL.Migrations
                     Role = table.Column<string>(type: "varchar(50)", unicode: false, maxLength: 50, nullable: true),
                     DevLevel = table.Column<string>(type: "varchar(50)", unicode: false, maxLength: 50, nullable: true),
                     Experience = table.Column<double>(type: "float", nullable: false),
-                    IdMentor = table.Column<int>(type: "int", nullable: true)
+                    IdMentor = table.Column<int>(type: "int", nullable: true),
+                    IdCompany = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("XPKEmployee", x => x.Id_Employee);
                     table.ForeignKey(
+                        name: "R_15",
+                        column: x => x.IdCompany,
+                        principalTable: "Companies",
+                        principalColumn: "Id_Company",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
                         name: "R_9",
                         column: x => x.IdMentor,
                         principalTable: "Employers",
                         principalColumn: "Id_Employer",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Trainings",
+                columns: table => new
+                {
+                    Id_Training = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    TrainingTitle = table.Column<string>(type: "varchar(100)", unicode: false, maxLength: 100, nullable: true),
+                    Description = table.Column<string>(type: "varchar(500)", unicode: false, maxLength: 500, nullable: true),
+                    StartDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    EndDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    TrainingLevel = table.Column<int>(type: "int", nullable: false),
+                    Payment = table.Column<double>(type: "float", nullable: false),
+                    IdCoach = table.Column<int>(type: "int", nullable: true),
+                    IdCategory = table.Column<int>(type: "int", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("XPKTraining", x => x.Id_Training);
+                    table.ForeignKey(
+                        name: "R_25",
+                        column: x => x.IdCategory,
+                        principalTable: "Categories",
+                        principalColumn: "Id_Category",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "R_26",
+                        column: x => x.IdCoach,
+                        principalTable: "Employers",
+                        principalColumn: "Id_Employer",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Recommendations",
+                columns: table => new
+                {
+                    Id_Recommendation = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    IdEmployee = table.Column<int>(type: "int", nullable: true),
+                    Title = table.Column<string>(type: "varchar(200)", unicode: false, maxLength: 200, nullable: true),
+                    IsUsed = table.Column<bool>(type: "bit", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("XPKRecommendation", x => x.Id_Recommendation);
+                    table.ForeignKey(
+                        name: "R_22",
+                        column: x => x.IdEmployee,
+                        principalTable: "Employees",
+                        principalColumn: "Id_Employee",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Statisticses",
+                columns: table => new
+                {
+                    Id_Statistics = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    IdEmployee = table.Column<int>(type: "int", nullable: true),
+                    StatYear = table.Column<int>(type: "int", nullable: false),
+                    NewSkillCount = table.Column<int>(type: "int", nullable: false),
+                    StudyingTime = table.Column<long>(type: "bigint", nullable: false),
+                    AverageSkillLevel = table.Column<double>(type: "float", nullable: false),
+                    BetterThanPercent = table.Column<double>(type: "float", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("XPKStatistics", x => x.Id_Statistics);
+                    table.ForeignKey(
+                        name: "R_24",
+                        column: x => x.IdEmployee,
+                        principalTable: "Employees",
+                        principalColumn: "Id_Employee",
                         onDelete: ReferentialAction.Restrict);
                 });
 
@@ -91,6 +200,96 @@ namespace SkillRoadMapBack.DAL.Migrations
                         column: x => x.IdCategory,
                         principalTable: "Categories",
                         principalColumn: "Id_Category",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "TrainingMembers",
+                columns: table => new
+                {
+                    Id_TrainingMember = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    IdTraining = table.Column<int>(type: "int", nullable: true),
+                    IdMember = table.Column<int>(type: "int", nullable: true),
+                    IsEnded = table.Column<bool>(type: "bit", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("XPKTrainingMember", x => x.Id_TrainingMember);
+                    table.ForeignKey(
+                        name: "R_27",
+                        column: x => x.IdMember,
+                        principalTable: "Employees",
+                        principalColumn: "Id_Employee",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "R_28",
+                        column: x => x.IdTraining,
+                        principalTable: "Trainings",
+                        principalColumn: "Id_Training",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "RecMembers",
+                columns: table => new
+                {
+                    Id_RecMember = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    IdRecommend = table.Column<int>(type: "int", nullable: true),
+                    IdTraining = table.Column<int>(type: "int", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("XPKRecMember", x => x.Id_RecMember);
+                    table.ForeignKey(
+                        name: "R_20",
+                        column: x => x.IdRecommend,
+                        principalTable: "Recommendations",
+                        principalColumn: "Id_Recommendation",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "R_21",
+                        column: x => x.IdTraining,
+                        principalTable: "Trainings",
+                        principalColumn: "Id_Training",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Certificates",
+                columns: table => new
+                {
+                    Id_Certificate = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    IdUserSkill = table.Column<int>(type: "int", nullable: true),
+                    CertificateTitle = table.Column<string>(type: "varchar(500)", unicode: false, maxLength: 500, nullable: true),
+                    SkillLevel = table.Column<int>(type: "int", nullable: false),
+                    DateOfIssue = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    ExpiryDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    IdRecipient = table.Column<int>(type: "int", nullable: true),
+                    IdPublisher = table.Column<int>(type: "int", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("XPKCertificate", x => x.Id_Certificate);
+                    table.ForeignKey(
+                        name: "R_17",
+                        column: x => x.IdPublisher,
+                        principalTable: "Employers",
+                        principalColumn: "Id_Employer",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "R_18",
+                        column: x => x.IdRecipient,
+                        principalTable: "Employees",
+                        principalColumn: "Id_Employee",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "R_19",
+                        column: x => x.IdUserSkill,
+                        principalTable: "UserSkills",
+                        principalColumn: "Id_UserSkill",
                         onDelete: ReferentialAction.Restrict);
                 });
 
@@ -180,6 +379,28 @@ namespace SkillRoadMapBack.DAL.Migrations
                         onDelete: ReferentialAction.Restrict);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "SkillMetrics",
+                columns: table => new
+                {
+                    Id_SkillMetric = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    MetricName = table.Column<string>(type: "varchar(100)", unicode: false, maxLength: 100, nullable: true),
+                    MetricValue = table.Column<int>(type: "int", nullable: false),
+                    MetricInfluence = table.Column<double>(type: "float", nullable: false),
+                    IdSkillUnit = table.Column<int>(type: "int", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("XPKSkillMetric", x => x.Id_SkillMetric);
+                    table.ForeignKey(
+                        name: "R_23",
+                        column: x => x.IdSkillUnit,
+                        principalTable: "SkillUnits",
+                        principalColumn: "Id_SkillUnit",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
             migrationBuilder.InsertData(
                 table: "Categories",
                 columns: new[] { "Id_Category", "Description", "Title" },
@@ -194,27 +415,32 @@ namespace SkillRoadMapBack.DAL.Migrations
                 });
 
             migrationBuilder.InsertData(
+                table: "Companies",
+                columns: new[] { "Id_Company", "Address", "ContactPhone", "Description", "EmployeesCount", "Name", "Specialization" },
+                values: new object[] { 1, "Lviv, Grabovskogo 11", "032-297-46-55", "Some description about company", 500, "InterLogic", "Software" });
+
+            migrationBuilder.InsertData(
                 table: "Employers",
-                columns: new[] { "Id_Employer", "Email", "Firstname", "Lastname", "Password", "Role" },
+                columns: new[] { "Id_Employer", "Email", "Firstname", "IdCompany", "Lastname", "Password", "Role" },
                 values: new object[,]
                 {
-                    { 1, "melnykmyk@gmail.com", "Mykola", "Melnyk", "_Aa123456", "HR" },
-                    { 2, "shevchenkovol@gmail.com", "Volodymyr", "Shevchenko", "_Aa123456", "HR" },
-                    { 3, "boikoolek@gmail.com", "Oleksandr", "Boiko", "_Aa123456", "Mentor" },
-                    { 4, "kovalenkoiv@gmail.com", "Ivan", "Kovalenko", "_Aa123456", "Mentor" },
-                    { 5, "bondarenkovas@gmail.com", "Vasyl", "Bondarenko", "_Aa123456", "Mentor" }
+                    { 1, "melnykmyk@gmail.com", "Mykola", 1, "Melnyk", "_Aa123456", "HR" },
+                    { 2, "shevchenkovol@gmail.com", "Volodymyr", 1, "Shevchenko", "_Aa123456", "HR" },
+                    { 3, "boikoolek@gmail.com", "Oleksandr", 1, "Boiko", "_Aa123456", "Mentor" },
+                    { 4, "kovalenkoiv@gmail.com", "Ivan", 1, "Kovalenko", "_Aa123456", "Mentor" },
+                    { 5, "bondarenkovas@gmail.com", "Vasyl", 1, "Bondarenko", "_Aa123456", "Mentor" }
                 });
 
             migrationBuilder.InsertData(
                 table: "Employees",
-                columns: new[] { "Id_Employee", "DevLevel", "Email", "Experience", "Firstname", "IdMentor", "Lastname", "Password", "Role" },
+                columns: new[] { "Id_Employee", "DevLevel", "Email", "Experience", "Firstname", "IdCompany", "IdMentor", "Lastname", "Password", "Role" },
                 values: new object[,]
                 {
-                    { 1, "Trainee C#", "ilivocs@gmail.com", 5.0, "Oksana", 3, "Iliv", "_Aa123456", "User" },
-                    { 2, "Junior C#", "turyanmykh@gmail.com", 5.0, "Mykhailo", 3, "Turianskyi", "_Aa123456", "User" },
-                    { 3, "Middle C#", "stasenoleks@gmail.com", 5.0, "Oleksandr", 3, "Stasenko", "_Aa123456", "User" },
-                    { 4, "Senior C#", "pynzynyura@gmail.com", 5.0, "Yurii", 4, "Pynzyn", "_Aa123456", "User" },
-                    { 5, "Middle C#", "hladyoandr@gmail.com", 5.0, "Andrii", 4, "Hlado", "_Aa123456", "User" }
+                    { 1, "Trainee C#", "ilivocs@gmail.com", 5.0, "Oksana", 1, 3, "Iliv", "_Aa123456", "User" },
+                    { 2, "Junior C#", "turyanmykh@gmail.com", 5.0, "Mykhailo", 1, 3, "Turianskyi", "_Aa123456", "User" },
+                    { 3, "Middle C#", "stasenoleks@gmail.com", 5.0, "Oleksandr", 1, 3, "Stasenko", "_Aa123456", "User" },
+                    { 4, "Senior C#", "pynzynyura@gmail.com", 5.0, "Yurii", 1, 4, "Pynzyn", "_Aa123456", "User" },
+                    { 5, "Middle C#", "hladyoandr@gmail.com", 5.0, "Andrii", 1, 4, "Hlado", "_Aa123456", "User" }
                 });
 
             migrationBuilder.InsertData(
@@ -395,6 +621,21 @@ namespace SkillRoadMapBack.DAL.Migrations
                 });
 
             migrationBuilder.CreateIndex(
+                name: "IX_Certificates_IdPublisher",
+                table: "Certificates",
+                column: "IdPublisher");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Certificates_IdRecipient",
+                table: "Certificates",
+                column: "IdRecipient");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Certificates_IdUserSkill",
+                table: "Certificates",
+                column: "IdUserSkill");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Comments_IdEmployer",
                 table: "Comments",
                 column: "IdEmployer");
@@ -405,9 +646,19 @@ namespace SkillRoadMapBack.DAL.Migrations
                 column: "IdUserSkill");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Employees_IdCompany",
+                table: "Employees",
+                column: "IdCompany");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Employees_IdMentor",
                 table: "Employees",
                 column: "IdMentor");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Employers_IdCompany",
+                table: "Employers",
+                column: "IdCompany");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Notifications_IdEmployee",
@@ -425,9 +676,54 @@ namespace SkillRoadMapBack.DAL.Migrations
                 column: "IdUserSkill");
 
             migrationBuilder.CreateIndex(
+                name: "IX_RecMembers_IdRecommend",
+                table: "RecMembers",
+                column: "IdRecommend");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_RecMembers_IdTraining",
+                table: "RecMembers",
+                column: "IdTraining");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Recommendations_IdEmployee",
+                table: "Recommendations",
+                column: "IdEmployee");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_SkillMetrics_IdSkillUnit",
+                table: "SkillMetrics",
+                column: "IdSkillUnit");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_SkillUnits_IdUserSkill",
                 table: "SkillUnits",
                 column: "IdUserSkill");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Statisticses_IdEmployee",
+                table: "Statisticses",
+                column: "IdEmployee");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_TrainingMembers_IdMember",
+                table: "TrainingMembers",
+                column: "IdMember");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_TrainingMembers_IdTraining",
+                table: "TrainingMembers",
+                column: "IdTraining");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Trainings_IdCategory",
+                table: "Trainings",
+                column: "IdCategory");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Trainings_IdCoach",
+                table: "Trainings",
+                column: "IdCoach");
 
             migrationBuilder.CreateIndex(
                 name: "IX_UserSkills_IdCategory",
@@ -443,13 +739,34 @@ namespace SkillRoadMapBack.DAL.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
+                name: "Certificates");
+
+            migrationBuilder.DropTable(
                 name: "Comments");
 
             migrationBuilder.DropTable(
                 name: "Notifications");
 
             migrationBuilder.DropTable(
+                name: "RecMembers");
+
+            migrationBuilder.DropTable(
+                name: "SkillMetrics");
+
+            migrationBuilder.DropTable(
+                name: "Statisticses");
+
+            migrationBuilder.DropTable(
+                name: "TrainingMembers");
+
+            migrationBuilder.DropTable(
+                name: "Recommendations");
+
+            migrationBuilder.DropTable(
                 name: "SkillUnits");
+
+            migrationBuilder.DropTable(
+                name: "Trainings");
 
             migrationBuilder.DropTable(
                 name: "UserSkills");
@@ -462,6 +779,9 @@ namespace SkillRoadMapBack.DAL.Migrations
 
             migrationBuilder.DropTable(
                 name: "Employers");
+
+            migrationBuilder.DropTable(
+                name: "Companies");
         }
     }
 }

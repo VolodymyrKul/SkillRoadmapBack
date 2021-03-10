@@ -37,7 +37,8 @@ namespace SkillRoadmapBack.Core.Mapping
                 .ForMember(dest => dest.UserSkillName, opts => opts.MapFrom(item => item.IdUserSkillNavigation.Skillname));
 
             CreateMap<Employee, EmployeeInfoDTO>()
-                .ForMember(dest => dest.MentorEmail, opts => opts.MapFrom(item => item.IdEmployerNavigation.Email));
+                .ForMember(dest => dest.MentorEmail, opts => opts.MapFrom(item => item.IdEmployerNavigation.Email))
+                .ForMember(dest => dest.CompanyName, opts => opts.MapFrom(item => item.IdCompanyNavigation.Name));
             CreateMap<Employer, EmployerInfoDTO>();
 
             CreateMap<GetUserSkillDTO, UserSkill>();

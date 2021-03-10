@@ -13,5 +13,6 @@ namespace SkillRoadmapBack.Core.DTO.SpecializedDTO
         public string DevLevel { get; set; }
         public double Experience { get; set; }
         public string MentorEmail { get; set; }
+        public string CompanyName { get; set; }
     }
 }

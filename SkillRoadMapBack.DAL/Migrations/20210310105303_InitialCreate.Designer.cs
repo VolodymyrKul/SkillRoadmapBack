@@ -10,7 +10,7 @@ using SkillRoadMapBack.DAL;
 namespace SkillRoadMapBack.DAL.Migrations
 {
     [DbContext(typeof(SkillRoadMapDbContext))]
-    [Migration("20210304200259_InitialCreate")]
+    [Migration("20210310105303_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -83,6 +83,49 @@ namespace SkillRoadMapBack.DAL.Migrations
                         });
                 });
 
+            modelBuilder.Entity("SkillRoadmapBack.Core.Models.Certificate", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasColumnName("Id_Certificate")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("CertificateTitle")
+                        .HasMaxLength(500)
+                        .IsUnicode(false)
+                        .HasColumnType("varchar(500)");
+
+                    b.Property<DateTime>("DateOfIssue")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("ExpiryDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int?>("IdPublisher")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("IdRecipient")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("IdUserSkill")
+                        .HasColumnType("int");
+
+                    b.Property<int>("SkillLevel")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id")
+                        .HasName("XPKCertificate");
+
+                    b.HasIndex("IdPublisher");
+
+                    b.HasIndex("IdRecipient");
+
+                    b.HasIndex("IdUserSkill");
+
+                    b.ToTable("Certificates");
+                });
+
             modelBuilder.Entity("SkillRoadmapBack.Core.Models.Comment", b =>
                 {
                     b.Property<int>("Id")
@@ -149,6 +192,60 @@ namespace SkillRoadMapBack.DAL.Migrations
                         });
                 });
 
+            modelBuilder.Entity("SkillRoadmapBack.Core.Models.Company", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasColumnName("Id_Company")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Address")
+                        .HasMaxLength(100)
+                        .IsUnicode(false)
+                        .HasColumnType("varchar(100)");
+
+                    b.Property<string>("ContactPhone")
+                        .HasMaxLength(20)
+                        .IsUnicode(false)
+                        .HasColumnType("varchar(20)");
+
+                    b.Property<string>("Description")
+                        .HasMaxLength(500)
+                        .IsUnicode(false)
+                        .HasColumnType("varchar(500)");
+
+                    b.Property<int>("EmployeesCount")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Name")
+                        .HasMaxLength(50)
+                        .IsUnicode(false)
+                        .HasColumnType("varchar(50)");
+
+                    b.Property<string>("Specialization")
+                        .HasMaxLength(100)
+                        .IsUnicode(false)
+                        .HasColumnType("varchar(100)");
+
+                    b.HasKey("Id")
+                        .HasName("XPKCompany");
+
+                    b.ToTable("Companies");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Address = "Lviv, Grabovskogo 11",
+                            ContactPhone = "032-297-46-55",
+                            Description = "Some description about company",
+                            EmployeesCount = 500,
+                            Name = "InterLogic",
+                            Specialization = "Software"
+                        });
+                });
+
             modelBuilder.Entity("SkillRoadmapBack.Core.Models.Employee", b =>
                 {
                     b.Property<int>("Id")
@@ -175,6 +272,9 @@ namespace SkillRoadMapBack.DAL.Migrations
                         .IsUnicode(false)
                         .HasColumnType("varchar(50)");
 
+                    b.Property<int?>("IdCompany")
+                        .HasColumnType("int");
+
                     b.Property<int?>("IdMentor")
                         .HasColumnType("int");
 
@@ -196,6 +296,8 @@ namespace SkillRoadMapBack.DAL.Migrations
                     b.HasKey("Id")
                         .HasName("XPKEmployee");
 
+                    b.HasIndex("IdCompany");
+
                     b.HasIndex("IdMentor");
 
                     b.ToTable("Employees");
@@ -208,6 +310,7 @@ namespace SkillRoadMapBack.DAL.Migrations
                             Email = "ilivocs@gmail.com",
                             Experience = 5.0,
                             Firstname = "Oksana",
+                            IdCompany = 1,
                             IdMentor = 3,
                             Lastname = "Iliv",
                             Password = "_Aa123456",
@@ -220,6 +323,7 @@ namespace SkillRoadMapBack.DAL.Migrations
                             Email = "turyanmykh@gmail.com",
                             Experience = 5.0,
                             Firstname = "Mykhailo",
+                            IdCompany = 1,
                             IdMentor = 3,
                             Lastname = "Turianskyi",
                             Password = "_Aa123456",
@@ -232,6 +336,7 @@ namespace SkillRoadMapBack.DAL.Migrations
                             Email = "stasenoleks@gmail.com",
                             Experience = 5.0,
                             Firstname = "Oleksandr",
+                            IdCompany = 1,
                             IdMentor = 3,
                             Lastname = "Stasenko",
                             Password = "_Aa123456",
@@ -244,6 +349,7 @@ namespace SkillRoadMapBack.DAL.Migrations
                             Email = "pynzynyura@gmail.com",
                             Experience = 5.0,
                             Firstname = "Yurii",
+                            IdCompany = 1,
                             IdMentor = 4,
                             Lastname = "Pynzyn",
                             Password = "_Aa123456",
@@ -256,6 +362,7 @@ namespace SkillRoadMapBack.DAL.Migrations
                             Email = "hladyoandr@gmail.com",
                             Experience = 5.0,
                             Firstname = "Andrii",
+                            IdCompany = 1,
                             IdMentor = 4,
                             Lastname = "Hlado",
                             Password = "_Aa123456",
@@ -281,6 +388,9 @@ namespace SkillRoadMapBack.DAL.Migrations
                         .IsUnicode(false)
                         .HasColumnType("varchar(50)");
 
+                    b.Property<int?>("IdCompany")
+                        .HasColumnType("int");
+
                     b.Property<string>("Lastname")
                         .HasMaxLength(50)
                         .IsUnicode(false)
@@ -299,6 +409,8 @@ namespace SkillRoadMapBack.DAL.Migrations
                     b.HasKey("Id")
                         .HasName("XPKEmployer");
 
+                    b.HasIndex("IdCompany");
+
                     b.ToTable("Employers");
 
                     b.HasData(
@@ -307,6 +419,7 @@ namespace SkillRoadMapBack.DAL.Migrations
                             Id = 1,
                             Email = "melnykmyk@gmail.com",
                             Firstname = "Mykola",
+                            IdCompany = 1,
                             Lastname = "Melnyk",
                             Password = "_Aa123456",
                             Role = "HR"
@@ -316,6 +429,7 @@ namespace SkillRoadMapBack.DAL.Migrations
                             Id = 2,
                             Email = "shevchenkovol@gmail.com",
                             Firstname = "Volodymyr",
+                            IdCompany = 1,
                             Lastname = "Shevchenko",
                             Password = "_Aa123456",
                             Role = "HR"
@@ -325,6 +439,7 @@ namespace SkillRoadMapBack.DAL.Migrations
                             Id = 3,
                             Email = "boikoolek@gmail.com",
                             Firstname = "Oleksandr",
+                            IdCompany = 1,
                             Lastname = "Boiko",
                             Password = "_Aa123456",
                             Role = "Mentor"
@@ -334,6 +449,7 @@ namespace SkillRoadMapBack.DAL.Migrations
                             Id = 4,
                             Email = "kovalenkoiv@gmail.com",
                             Firstname = "Ivan",
+                            IdCompany = 1,
                             Lastname = "Kovalenko",
                             Password = "_Aa123456",
                             Role = "Mentor"
@@ -343,6 +459,7 @@ namespace SkillRoadMapBack.DAL.Migrations
                             Id = 5,
                             Email = "bondarenkovas@gmail.com",
                             Firstname = "Vasyl",
+                            IdCompany = 1,
                             Lastname = "Bondarenko",
                             Password = "_Aa123456",
                             Role = "Mentor"
@@ -439,6 +556,87 @@ namespace SkillRoadMapBack.DAL.Migrations
                             NotificationText = "Need to learn C#",
                             SendingDate = new DateTime(2021, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         });
+                });
+
+            modelBuilder.Entity("SkillRoadmapBack.Core.Models.RecMember", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasColumnName("Id_RecMember")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int?>("IdRecommend")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("IdTraining")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id")
+                        .HasName("XPKRecMember");
+
+                    b.HasIndex("IdRecommend");
+
+                    b.HasIndex("IdTraining");
+
+                    b.ToTable("RecMembers");
+                });
+
+            modelBuilder.Entity("SkillRoadmapBack.Core.Models.Recommendation", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasColumnName("Id_Recommendation")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int?>("IdEmployee")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("IsUsed")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Title")
+                        .HasMaxLength(200)
+                        .IsUnicode(false)
+                        .HasColumnType("varchar(200)");
+
+                    b.HasKey("Id")
+                        .HasName("XPKRecommendation");
+
+                    b.HasIndex("IdEmployee");
+
+                    b.ToTable("Recommendations");
+                });
+
+            modelBuilder.Entity("SkillRoadmapBack.Core.Models.SkillMetric", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasColumnName("Id_SkillMetric")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int?>("IdSkillUnit")
+                        .HasColumnType("int");
+
+                    b.Property<double>("MetricInfluence")
+                        .HasColumnType("float");
+
+                    b.Property<string>("MetricName")
+                        .HasMaxLength(100)
+                        .IsUnicode(false)
+                        .HasColumnType("varchar(100)");
+
+                    b.Property<int>("MetricValue")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id")
+                        .HasName("XPKSkillMetric");
+
+                    b.HasIndex("IdSkillUnit");
+
+                    b.ToTable("SkillMetrics");
                 });
 
             modelBuilder.Entity("SkillRoadmapBack.Core.Models.SkillUnit", b =>
@@ -1304,6 +1502,113 @@ namespace SkillRoadMapBack.DAL.Migrations
                         });
                 });
 
+            modelBuilder.Entity("SkillRoadmapBack.Core.Models.Statistics", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasColumnName("Id_Statistics")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<double>("AverageSkillLevel")
+                        .HasColumnType("float");
+
+                    b.Property<double>("BetterThanPercent")
+                        .HasColumnType("float");
+
+                    b.Property<int?>("IdEmployee")
+                        .HasColumnType("int");
+
+                    b.Property<int>("NewSkillCount")
+                        .HasColumnType("int");
+
+                    b.Property<int>("StatYear")
+                        .HasColumnType("int");
+
+                    b.Property<long>("StudyingTime")
+                        .HasColumnType("bigint");
+
+                    b.HasKey("Id")
+                        .HasName("XPKStatistics");
+
+                    b.HasIndex("IdEmployee");
+
+                    b.ToTable("Statisticses");
+                });
+
+            modelBuilder.Entity("SkillRoadmapBack.Core.Models.Training", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasColumnName("Id_Training")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Description")
+                        .HasMaxLength(500)
+                        .IsUnicode(false)
+                        .HasColumnType("varchar(500)");
+
+                    b.Property<DateTime>("EndDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int?>("IdCategory")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("IdCoach")
+                        .HasColumnType("int");
+
+                    b.Property<double>("Payment")
+                        .HasColumnType("float");
+
+                    b.Property<DateTime>("StartDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("TrainingLevel")
+                        .HasColumnType("int");
+
+                    b.Property<string>("TrainingTitle")
+                        .HasMaxLength(100)
+                        .IsUnicode(false)
+                        .HasColumnType("varchar(100)");
+
+                    b.HasKey("Id")
+                        .HasName("XPKTraining");
+
+                    b.HasIndex("IdCategory");
+
+                    b.HasIndex("IdCoach");
+
+                    b.ToTable("Trainings");
+                });
+
+            modelBuilder.Entity("SkillRoadmapBack.Core.Models.TrainingMember", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasColumnName("Id_TrainingMember")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int?>("IdMember")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("IdTraining")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("IsEnded")
+                        .HasColumnType("bit");
+
+                    b.HasKey("Id")
+                        .HasName("XPKTrainingMember");
+
+                    b.HasIndex("IdMember");
+
+                    b.HasIndex("IdTraining");
+
+                    b.ToTable("TrainingMembers");
+                });
+
             modelBuilder.Entity("SkillRoadmapBack.Core.Models.UserSkill", b =>
                 {
                     b.Property<int>("Id")
@@ -1674,6 +1979,30 @@ namespace SkillRoadMapBack.DAL.Migrations
                         });
                 });
 
+            modelBuilder.Entity("SkillRoadmapBack.Core.Models.Certificate", b =>
+                {
+                    b.HasOne("SkillRoadmapBack.Core.Models.Employer", "IdPublisherNavigation")
+                        .WithMany("Certificates")
+                        .HasForeignKey("IdPublisher")
+                        .HasConstraintName("R_17");
+
+                    b.HasOne("SkillRoadmapBack.Core.Models.Employee", "IdRecipientNavigation")
+                        .WithMany("Certificates")
+                        .HasForeignKey("IdRecipient")
+                        .HasConstraintName("R_18");
+
+                    b.HasOne("SkillRoadmapBack.Core.Models.UserSkill", "IdUserSkillNavigation")
+                        .WithMany("Certificates")
+                        .HasForeignKey("IdUserSkill")
+                        .HasConstraintName("R_19");
+
+                    b.Navigation("IdPublisherNavigation");
+
+                    b.Navigation("IdRecipientNavigation");
+
+                    b.Navigation("IdUserSkillNavigation");
+                });
+
             modelBuilder.Entity("SkillRoadmapBack.Core.Models.Comment", b =>
                 {
                     b.HasOne("SkillRoadmapBack.Core.Models.Employer", "IdEmployerNavigation")
@@ -1693,12 +2022,29 @@ namespace SkillRoadMapBack.DAL.Migrations
 
             modelBuilder.Entity("SkillRoadmapBack.Core.Models.Employee", b =>
                 {
+                    b.HasOne("SkillRoadmapBack.Core.Models.Company", "IdCompanyNavigation")
+                        .WithMany("Employees")
+                        .HasForeignKey("IdCompany")
+                        .HasConstraintName("R_15");
+
                     b.HasOne("SkillRoadmapBack.Core.Models.Employer", "IdEmployerNavigation")
                         .WithMany("Employees")
                         .HasForeignKey("IdMentor")
                         .HasConstraintName("R_9");
 
+                    b.Navigation("IdCompanyNavigation");
+
                     b.Navigation("IdEmployerNavigation");
+                });
+
+            modelBuilder.Entity("SkillRoadmapBack.Core.Models.Employer", b =>
+                {
+                    b.HasOne("SkillRoadmapBack.Core.Models.Company", "IdCompanyNavigation")
+                        .WithMany("Employers")
+                        .HasForeignKey("IdCompany")
+                        .HasConstraintName("R_16");
+
+                    b.Navigation("IdCompanyNavigation");
                 });
 
             modelBuilder.Entity("SkillRoadmapBack.Core.Models.Notification", b =>
@@ -1725,6 +2071,43 @@ namespace SkillRoadMapBack.DAL.Migrations
                     b.Navigation("IdUserSkillNavigation");
                 });
 
+            modelBuilder.Entity("SkillRoadmapBack.Core.Models.RecMember", b =>
+                {
+                    b.HasOne("SkillRoadmapBack.Core.Models.Recommendation", "IdRecommendNavigation")
+                        .WithMany("RecMembers")
+                        .HasForeignKey("IdRecommend")
+                        .HasConstraintName("R_20");
+
+                    b.HasOne("SkillRoadmapBack.Core.Models.Training", "IdTrainingNavigation")
+                        .WithMany("RecMembers")
+                        .HasForeignKey("IdTraining")
+                        .HasConstraintName("R_21");
+
+                    b.Navigation("IdRecommendNavigation");
+
+                    b.Navigation("IdTrainingNavigation");
+                });
+
+            modelBuilder.Entity("SkillRoadmapBack.Core.Models.Recommendation", b =>
+                {
+                    b.HasOne("SkillRoadmapBack.Core.Models.Employee", "IdEmployeeNavigation")
+                        .WithMany("Recommendations")
+                        .HasForeignKey("IdEmployee")
+                        .HasConstraintName("R_22");
+
+                    b.Navigation("IdEmployeeNavigation");
+                });
+
+            modelBuilder.Entity("SkillRoadmapBack.Core.Models.SkillMetric", b =>
+                {
+                    b.HasOne("SkillRoadmapBack.Core.Models.SkillUnit", "IdSkillUnitNavigation")
+                        .WithMany("SkillMetrics")
+                        .HasForeignKey("IdSkillUnit")
+                        .HasConstraintName("R_23");
+
+                    b.Navigation("IdSkillUnitNavigation");
+                });
+
             modelBuilder.Entity("SkillRoadmapBack.Core.Models.SkillUnit", b =>
                 {
                     b.HasOne("SkillRoadmapBack.Core.Models.UserSkill", "IdUserSkillNavigation")
@@ -1733,6 +2116,50 @@ namespace SkillRoadMapBack.DAL.Migrations
                         .HasConstraintName("R_11");
 
                     b.Navigation("IdUserSkillNavigation");
+                });
+
+            modelBuilder.Entity("SkillRoadmapBack.Core.Models.Statistics", b =>
+                {
+                    b.HasOne("SkillRoadmapBack.Core.Models.Employee", "IdEmployeeNavigation")
+                        .WithMany("Statisticses")
+                        .HasForeignKey("IdEmployee")
+                        .HasConstraintName("R_24");
+
+                    b.Navigation("IdEmployeeNavigation");
+                });
+
+            modelBuilder.Entity("SkillRoadmapBack.Core.Models.Training", b =>
+                {
+                    b.HasOne("SkillRoadmapBack.Core.Models.Category", "IdCategoryNavigation")
+                        .WithMany("Trainings")
+                        .HasForeignKey("IdCategory")
+                        .HasConstraintName("R_25");
+
+                    b.HasOne("SkillRoadmapBack.Core.Models.Employer", "IdCoachNavigation")
+                        .WithMany("Trainings")
+                        .HasForeignKey("IdCoach")
+                        .HasConstraintName("R_26");
+
+                    b.Navigation("IdCategoryNavigation");
+
+                    b.Navigation("IdCoachNavigation");
+                });
+
+            modelBuilder.Entity("SkillRoadmapBack.Core.Models.TrainingMember", b =>
+                {
+                    b.HasOne("SkillRoadmapBack.Core.Models.Employee", "IdMemberNavigation")
+                        .WithMany("TrainingMembers")
+                        .HasForeignKey("IdMember")
+                        .HasConstraintName("R_27");
+
+                    b.HasOne("SkillRoadmapBack.Core.Models.Training", "IdTrainingNavigation")
+                        .WithMany("TrainingMembers")
+                        .HasForeignKey("IdTraining")
+                        .HasConstraintName("R_28");
+
+                    b.Navigation("IdMemberNavigation");
+
+                    b.Navigation("IdTrainingNavigation");
                 });
 
             modelBuilder.Entity("SkillRoadmapBack.Core.Models.UserSkill", b =>
@@ -1754,27 +2181,67 @@ namespace SkillRoadMapBack.DAL.Migrations
 
             modelBuilder.Entity("SkillRoadmapBack.Core.Models.Category", b =>
                 {
+                    b.Navigation("Trainings");
+
                     b.Navigation("UserSkills");
+                });
+
+            modelBuilder.Entity("SkillRoadmapBack.Core.Models.Company", b =>
+                {
+                    b.Navigation("Employees");
+
+                    b.Navigation("Employers");
                 });
 
             modelBuilder.Entity("SkillRoadmapBack.Core.Models.Employee", b =>
                 {
+                    b.Navigation("Certificates");
+
                     b.Navigation("Notifications");
+
+                    b.Navigation("Recommendations");
+
+                    b.Navigation("Statisticses");
+
+                    b.Navigation("TrainingMembers");
 
                     b.Navigation("UserSkills");
                 });
 
             modelBuilder.Entity("SkillRoadmapBack.Core.Models.Employer", b =>
                 {
+                    b.Navigation("Certificates");
+
                     b.Navigation("Comments");
 
                     b.Navigation("Employees");
 
                     b.Navigation("Notifications");
+
+                    b.Navigation("Trainings");
+                });
+
+            modelBuilder.Entity("SkillRoadmapBack.Core.Models.Recommendation", b =>
+                {
+                    b.Navigation("RecMembers");
+                });
+
+            modelBuilder.Entity("SkillRoadmapBack.Core.Models.SkillUnit", b =>
+                {
+                    b.Navigation("SkillMetrics");
+                });
+
+            modelBuilder.Entity("SkillRoadmapBack.Core.Models.Training", b =>
+                {
+                    b.Navigation("RecMembers");
+
+                    b.Navigation("TrainingMembers");
                 });
 
             modelBuilder.Entity("SkillRoadmapBack.Core.Models.UserSkill", b =>
                 {
+                    b.Navigation("Certificates");
+
                     b.Navigation("Comments");
 
                     b.Navigation("Notifications");
