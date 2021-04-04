@@ -17,7 +17,6 @@ namespace SkillRoadmapBack.Core.Abstractions
         ISkillUnitRepo SkillUnitRepo { get; }
         ICertificateRepo CertificateRepo { get; }
         ICompanyRepo CompanyRepo { get; }
-        IRecMemberRepo RecMemberRepo { get; }
         IRecommendationRepo RecommendationRepo { get; }
         ISkillMetricRepo SkillMetricRepo { get; }
         IStatisticsRepo StatisticsRepo { get; }

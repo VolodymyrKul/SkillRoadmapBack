@@ -70,5 +70,12 @@ namespace SkillRoadmapBack.Web.Controllers
             var result = await _userSkillService.GetYears(inuser);
             return Ok(result);
         }
+
+        [HttpGet("getonly/{inuser}")]
+        public async Task<ActionResult<List<GetUserSkillDTO>>> GetOnly(string inuser)
+        {
+            var result = await _userSkillService.GetOnlyUSkills(inuser);
+            return Ok(result);
+        }
     }
 }

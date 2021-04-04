@@ -113,8 +113,31 @@ namespace SkillRoadMapBack.Services
 
         public virtual async Task<List<int>> GetYears(string user) 
         {
-            var skillYears = (await _unitOfWork.UserSkillRepo.GetAllAsync()).Select(us => us.StartDate.Year).Distinct();
-            return skillYears.ToList();
+            var emp = (await _unitOfWork.EmployeeRepo.GetAllAsync()).FirstOrDefault(e => e.Email == user);
+            if(emp != null)
+            {
+                var skillYears = (await _unitOfWork.UserSkillRepo.GetAllAsync()).Where(us => us.IdEmployee == emp.Id).Select(us => us.StartDate.Year).Distinct();
+                return skillYears.ToList();
+            }
+            else
+            {
+                return new List<int>();
+            }
+        }
+
+        public virtual async Task<List<GetUserSkillDTO>> GetOnlyUSkills(string user)
+        {
+            List<GetUserSkillDTO> getUserSkillDTOs = new List<GetUserSkillDTO>();
+            var skills = (await _unitOfWork.UserSkillRepo.GetAllAsync()).Where(us => us.IdEmployeeNavigation.Email == user);
+            if (skills.Count() > 0)
+            {
+                getUserSkillDTOs = skills.Select(skill => _mapper.Map(skill, new GetUserSkillDTO())).ToList();
+                foreach (var skill in getUserSkillDTOs)
+                {
+                    skill.IsUserSkill = true;
+                }
+            }
+            return getUserSkillDTOs;
         }
     }
 }

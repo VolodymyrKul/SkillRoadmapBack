@@ -9,13 +9,14 @@ namespace SkillRoadmapBack.Core.Models
     {
         public Recommendation()
         {
-            RecMembers = new HashSet<RecMember>();
+            //RecMembers = new HashSet<RecMember>();
         }
         public int Id { get; set; }
         public int? IdEmployee { get; set; }
         public Employee IdEmployeeNavigation { get; set; }
-        public string Title { get; set; }
+        public string Invitation { get; set; }
         public bool IsUsed { get; set; }
-        public virtual ICollection<RecMember> RecMembers { get; set; }
+        public int? IdTraining { get; set; }
+        public Training IdTrainingNavigation { get; set; }
     }
 }

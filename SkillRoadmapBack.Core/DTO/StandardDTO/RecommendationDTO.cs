@@ -8,7 +8,8 @@ namespace SkillRoadmapBack.Core.DTO.StandardDTO
     {
         public int Id { get; set; }
         public int? IdEmployee { get; set; }
-        public string Title { get; set; }
+        public string Invitation { get; set; }
         public bool IsUsed { get; set; }
+        public int? IdTraining { get; set; }
     }
 }

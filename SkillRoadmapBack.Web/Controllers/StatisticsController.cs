@@ -55,5 +55,12 @@ namespace SkillRoadmapBack.Web.Controllers
             await _statisticsService.DeleteAsync(id);
             return NoContent();
         }
+
+        [HttpGet("uptstat/{emp}/{year}")]
+        public async Task<ActionResult<StatisticsDTO>> getByEmpAndYear(string emp, int year)
+        {
+            var result = await _statisticsService.UpdateStats(emp, year);
+            return Ok(result);
+        }
     }
 }

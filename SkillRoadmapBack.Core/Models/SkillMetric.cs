@@ -11,7 +11,7 @@ namespace SkillRoadmapBack.Core.Models
         public string MetricName { get; set; }
         public int MetricValue { get; set; }
         public double MetricInfluence { get; set; }
-        public int? IdSkillUnit { get; set; }
-        public SkillUnit IdSkillUnitNavigation { get; set; }
+        public int? IdUserSkill { get; set; }
+        public UserSkill IdUserSkillNavigation { get; set; }
     }
 }

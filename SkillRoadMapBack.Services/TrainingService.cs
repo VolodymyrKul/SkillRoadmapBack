@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using SkillRoadmapBack.Core.Abstractions;
 using SkillRoadmapBack.Core.Abstractions.IServices;
+using SkillRoadmapBack.Core.DTO.SpecializedDTO;
 using SkillRoadmapBack.Core.DTO.StandardDTO;
 using SkillRoadmapBack.Core.Models;
 using SkillRoadMapBack.Services.Base;
@@ -58,6 +59,27 @@ namespace SkillRoadMapBack.Services
             await _unitOfWork.TrainingRepo.UpdateAsync(value);
             await _unitOfWork.SaveChangesAsync();
             return entity;
+        }
+
+        public virtual async Task<List<SetTrainingDTO>> GetByCoach(string coach)
+        {
+            var trainings = (await _unitOfWork.TrainingRepo.GetAllAsync()).Where(tr => tr.IdCoachNavigation.Email == coach);
+            List<SetTrainingDTO> trainingDTOs = trainings.Select(training => _mapper.Map(training, new SetTrainingDTO())).ToList();
+            return trainingDTOs;
+        }
+
+        public virtual async Task<List<SetTrainingDTO>> GetByCategory(string category)
+        {
+            var trainings = (await _unitOfWork.TrainingRepo.GetAllAsync()).Where(tr => tr.IdCategoryNavigation.Title == category);
+            List<SetTrainingDTO> trainingDTOs = trainings.Select(training => _mapper.Map(training, new SetTrainingDTO())).ToList();
+            return trainingDTOs;
+        }
+
+        public virtual async Task<List<SetTrainingDTO>> GetAllWithCategs()
+        {
+            var trainings = await _unitOfWork.TrainingRepo.GetAllAsync();
+            List<SetTrainingDTO> trainingDTOs = trainings.Select(training => _mapper.Map(training, new SetTrainingDTO())).ToList();
+            return trainingDTOs;
         }
     }
 }

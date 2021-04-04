@@ -25,7 +25,6 @@ namespace SkillRoadMapBack.DAL
         public virtual DbSet<SkillUnit> SkillUnits { get; set; }
         public virtual DbSet<Certificate> Certificates { get; set; }
         public virtual DbSet<Company> Companies { get; set; }
-        public virtual DbSet<RecMember> RecMembers { get; set; }
         public virtual DbSet<Recommendation> Recommendations { get; set; }
         public virtual DbSet<SkillMetric> SkillMetrics { get; set; }
         public virtual DbSet<Statistics> Statisticses { get; set; }
@@ -244,7 +243,7 @@ namespace SkillRoadMapBack.DAL
                 .HasColumnName("Id_UserSkill");
 
                 entity.Property(e => e.Skillname)
-                .HasMaxLength(50)
+                .HasMaxLength(100)
                 .IsUnicode(false);
 
                 entity.HasOne(us => us.IdCategoryNavigation)
@@ -628,7 +627,7 @@ namespace SkillRoadMapBack.DAL
                 .HasColumnName("Id_Notification");
 
                 entity.Property(e => e.NotificationText)
-                .HasMaxLength(50)
+                .HasMaxLength(200)
                 .IsUnicode(false);
 
                 entity.HasOne(c => c.IdEmployerNavigation)
@@ -1534,6 +1533,118 @@ namespace SkillRoadMapBack.DAL
                 .WithMany(e => e.Certificates)
                 .HasForeignKey(c => c.IdUserSkill)
                 .HasConstraintName("R_19");
+
+                entity.HasData(
+                    new Certificate 
+                    {
+                        Id = 1,
+                        IdUserSkill = 1,
+                        IdPublisher = 1,
+                        IdRecipient = 1,
+                        CertificateTitle = "Our company present you certificate",
+                        DateOfIssue = new DateTime(2021,10,10),
+                        ExpiryDate = new DateTime(2022,10,10),
+                        SkillLevel = 5
+                    },
+                    new Certificate
+                    {
+                        Id = 2,
+                        IdUserSkill = 2,
+                        IdPublisher = 1,
+                        IdRecipient = 1,
+                        CertificateTitle = "Our company present you certificate",
+                        DateOfIssue = new DateTime(2021, 10, 10),
+                        ExpiryDate = new DateTime(2022, 10, 10),
+                        SkillLevel = 4
+                    },
+                    new Certificate
+                    {
+                        Id = 3,
+                        IdUserSkill = 3,
+                        IdPublisher = 1,
+                        IdRecipient = 1,
+                        CertificateTitle = "Our company present you certificate",
+                        DateOfIssue = new DateTime(2021, 10, 10),
+                        ExpiryDate = new DateTime(2022, 10, 10),
+                        SkillLevel = 5
+                    },
+                    new Certificate
+                    {
+                        Id = 4,
+                        IdUserSkill = 4,
+                        IdPublisher = 1,
+                        IdRecipient = 1,
+                        CertificateTitle = "Our company present you certificate",
+                        DateOfIssue = new DateTime(2021, 10, 10),
+                        ExpiryDate = new DateTime(2022, 10, 10),
+                        SkillLevel = 4
+                    },
+                    new Certificate
+                    {
+                        Id = 5,
+                        IdUserSkill = 5,
+                        IdPublisher = 1,
+                        IdRecipient = 1,
+                        CertificateTitle = "Our company present you certificate",
+                        DateOfIssue = new DateTime(2021, 10, 10),
+                        ExpiryDate = new DateTime(2022, 10, 10),
+                        SkillLevel = 5
+                    },
+                    new Certificate
+                    {
+                        Id = 6,
+                        IdUserSkill = 1,
+                        IdPublisher = 1,
+                        IdRecipient = 2,
+                        CertificateTitle = "Our company present you certificate",
+                        DateOfIssue = new DateTime(2021, 10, 10),
+                        ExpiryDate = new DateTime(2022, 10, 10),
+                        SkillLevel = 4
+                    },
+                    new Certificate
+                    {
+                        Id = 7,
+                        IdUserSkill = 1,
+                        IdPublisher = 1,
+                        IdRecipient = 2,
+                        CertificateTitle = "Our company present you certificate",
+                        DateOfIssue = new DateTime(2021, 10, 10),
+                        ExpiryDate = new DateTime(2022, 10, 10),
+                        SkillLevel = 5
+                    },
+                    new Certificate
+                    {
+                        Id = 8,
+                        IdUserSkill = 1,
+                        IdPublisher = 1,
+                        IdRecipient = 2,
+                        CertificateTitle = "Our company present you certificate",
+                        DateOfIssue = new DateTime(2021, 10, 10),
+                        ExpiryDate = new DateTime(2022, 10, 10),
+                        SkillLevel = 4
+                    },
+                    new Certificate
+                    {
+                        Id = 9,
+                        IdUserSkill = 1,
+                        IdPublisher = 1,
+                        IdRecipient = 2,
+                        CertificateTitle = "Our company present you certificate",
+                        DateOfIssue = new DateTime(2021, 10, 10),
+                        ExpiryDate = new DateTime(2022, 10, 10),
+                        SkillLevel = 4
+                    },
+                    new Certificate
+                    {
+                        Id = 10,
+                        IdUserSkill = 1,
+                        IdPublisher = 1,
+                        IdRecipient = 1,
+                        CertificateTitle = "Our company present you certificate",
+                        DateOfIssue = new DateTime(2021, 10, 10),
+                        ExpiryDate = new DateTime(2022, 10, 10),
+                        SkillLevel = 5
+                    });
             });
 
             modelBuilder.Entity<Company>(entity => {
@@ -1576,24 +1687,6 @@ namespace SkillRoadMapBack.DAL
                     });
             });
 
-            modelBuilder.Entity<RecMember>(entity => {
-                entity.HasKey(e => e.Id)
-                .HasName("XPKRecMember");
-
-                entity.Property(e => e.Id)
-                .HasColumnName("Id_RecMember");
-
-                entity.HasOne(rm => rm.IdRecommendNavigation)
-                .WithMany(r => r.RecMembers)
-                .HasForeignKey(rm => rm.IdRecommend)
-                .HasConstraintName("R_20");
-
-                entity.HasOne(rm => rm.IdTrainingNavigation)
-                .WithMany(t => t.RecMembers)
-                .HasForeignKey(rm => rm.IdTraining)
-                .HasConstraintName("R_21");
-            });
-
             modelBuilder.Entity<Recommendation>(entity => {
                 entity.HasKey(e => e.Id)
                 .HasName("XPKRecommendation");
@@ -1601,14 +1694,19 @@ namespace SkillRoadMapBack.DAL
                 entity.Property(e => e.Id)
                 .HasColumnName("Id_Recommendation");
 
-                entity.Property(e => e.Title)
-                .HasMaxLength(200)
+                entity.Property(e => e.Invitation)
+                .HasMaxLength(500)
                 .IsUnicode(false);
 
                 entity.HasOne(r => r.IdEmployeeNavigation)
                 .WithMany(e => e.Recommendations)
                 .HasForeignKey(r => r.IdEmployee)
                 .HasConstraintName("R_22");
+
+                entity.HasOne(r => r.IdTrainingNavigation)
+                .WithMany(t => t.Recommendations)
+                .HasForeignKey(r => r.IdTraining)
+                .HasConstraintName("R_29");
             });
 
             modelBuilder.Entity<SkillMetric>(entity => {
@@ -1622,10 +1720,804 @@ namespace SkillRoadMapBack.DAL
                 .HasMaxLength(100)
                 .IsUnicode(false);
 
-                entity.HasOne(m => m.IdSkillUnitNavigation)
-                .WithMany(s => s.SkillMetrics)
-                .HasForeignKey(m => m.IdSkillUnit)
+                entity.HasOne(m => m.IdUserSkillNavigation)
+                .WithMany(u => u.SkillMetrics)
+                .HasForeignKey(m => m.IdUserSkill)
                 .HasConstraintName("R_23");
+
+                entity.HasData(
+                    new SkillMetric 
+                    {
+                        Id = 1,
+                        IdUserSkill = 1,
+                        MetricName = "Interest in studying",
+                        MetricValue = 3,
+                        MetricInfluence = 0.3
+                    },
+                    new SkillMetric
+                    {
+                        Id = 2,
+                        IdUserSkill = 1,
+                        MetricName = "Quality of the studied material",
+                        MetricValue = 4,
+                        MetricInfluence = 0.4
+                    },
+                    new SkillMetric
+                    {
+                        Id = 3,
+                        IdUserSkill = 1,
+                        MetricName = "Use in practice",
+                        MetricValue = 5,
+                        MetricInfluence = 0.3
+                    },
+                    new SkillMetric
+                    {
+                        Id = 4,
+                        IdUserSkill = 2,
+                        MetricName = "Interest in studying",
+                        MetricValue = 3,
+                        MetricInfluence = 0.3
+                    },
+                    new SkillMetric
+                    {
+                        Id = 5,
+                        IdUserSkill = 2,
+                        MetricName = "Quality of the studied material",
+                        MetricValue = 4,
+                        MetricInfluence = 0.4
+                    },
+                    new SkillMetric
+                    {
+                        Id = 6,
+                        IdUserSkill = 2,
+                        MetricName = "Use in practice",
+                        MetricValue = 5,
+                        MetricInfluence = 0.3
+                    },
+                    new SkillMetric
+                    {
+                        Id = 7,
+                        IdUserSkill = 3,
+                        MetricName = "Interest in studying",
+                        MetricValue = 3,
+                        MetricInfluence = 0.3
+                    },
+                    new SkillMetric
+                    {
+                        Id = 8,
+                        IdUserSkill = 3,
+                        MetricName = "Quality of the studied material",
+                        MetricValue = 4,
+                        MetricInfluence = 0.4
+                    },
+                    new SkillMetric
+                    {
+                        Id = 9,
+                        IdUserSkill = 3,
+                        MetricName = "Use in practice",
+                        MetricValue = 5,
+                        MetricInfluence = 0.3
+                    },
+                    new SkillMetric
+                    {
+                        Id = 10,
+                        IdUserSkill = 4,
+                        MetricName = "Interest in studying",
+                        MetricValue = 3,
+                        MetricInfluence = 0.3
+                    },
+                    new SkillMetric
+                    {
+                        Id = 11,
+                        IdUserSkill = 4,
+                        MetricName = "Quality of the studied material",
+                        MetricValue = 4,
+                        MetricInfluence = 0.4
+                    },
+                    new SkillMetric
+                    {
+                        Id = 12,
+                        IdUserSkill = 4,
+                        MetricName = "Use in practice",
+                        MetricValue = 5,
+                        MetricInfluence = 0.3
+                    },
+                    new SkillMetric
+                    {
+                        Id = 13,
+                        IdUserSkill = 5,
+                        MetricName = "Interest in studying",
+                        MetricValue = 3,
+                        MetricInfluence = 0.3
+                    },
+                    new SkillMetric
+                    {
+                        Id = 14,
+                        IdUserSkill = 5,
+                        MetricName = "Quality of the studied material",
+                        MetricValue = 4,
+                        MetricInfluence = 0.4
+                    },
+                    new SkillMetric
+                    {
+                        Id = 15,
+                        IdUserSkill = 5,
+                        MetricName = "Use in practice",
+                        MetricValue = 5,
+                        MetricInfluence = 0.3
+                    },
+                    new SkillMetric
+                    {
+                        Id = 16,
+                        IdUserSkill = 6,
+                        MetricName = "Interest in studying",
+                        MetricValue = 3,
+                        MetricInfluence = 0.3
+                    },
+                    new SkillMetric
+                    {
+                        Id = 17,
+                        IdUserSkill = 6,
+                        MetricName = "Quality of the studied material",
+                        MetricValue = 4,
+                        MetricInfluence = 0.4
+                    },
+                    new SkillMetric
+                    {
+                        Id = 18,
+                        IdUserSkill = 6,
+                        MetricName = "Use in practice",
+                        MetricValue = 5,
+                        MetricInfluence = 0.3
+                    },
+                    new SkillMetric
+                    {
+                        Id = 19,
+                        IdUserSkill = 7,
+                        MetricName = "Interest in studying",
+                        MetricValue = 3,
+                        MetricInfluence = 0.3
+                    },
+                    new SkillMetric
+                    {
+                        Id = 20,
+                        IdUserSkill = 7,
+                        MetricName = "Quality of the studied material",
+                        MetricValue = 4,
+                        MetricInfluence = 0.4
+                    },
+                    new SkillMetric
+                    {
+                        Id = 21,
+                        IdUserSkill = 7,
+                        MetricName = "Use in practice",
+                        MetricValue = 5,
+                        MetricInfluence = 0.3
+                    },
+                    new SkillMetric
+                    {
+                        Id = 22,
+                        IdUserSkill = 8,
+                        MetricName = "Interest in studying",
+                        MetricValue = 3,
+                        MetricInfluence = 0.3
+                    },
+                    new SkillMetric
+                    {
+                        Id = 23,
+                        IdUserSkill = 8,
+                        MetricName = "Quality of the studied material",
+                        MetricValue = 4,
+                        MetricInfluence = 0.4
+                    },
+                    new SkillMetric
+                    {
+                        Id = 24,
+                        IdUserSkill = 8,
+                        MetricName = "Use in practice",
+                        MetricValue = 5,
+                        MetricInfluence = 0.3
+                    },
+                    new SkillMetric
+                    {
+                        Id = 25,
+                        IdUserSkill = 9,
+                        MetricName = "Interest in studying",
+                        MetricValue = 3,
+                        MetricInfluence = 0.3
+                    },
+                    new SkillMetric
+                    {
+                        Id = 26,
+                        IdUserSkill = 9,
+                        MetricName = "Quality of the studied material",
+                        MetricValue = 4,
+                        MetricInfluence = 0.4
+                    },
+                    new SkillMetric
+                    {
+                        Id = 27,
+                        IdUserSkill = 9,
+                        MetricName = "Use in practice",
+                        MetricValue = 5,
+                        MetricInfluence = 0.3
+                    },
+                    new SkillMetric
+                    {
+                        Id = 28,
+                        IdUserSkill = 10,
+                        MetricName = "Interest in studying",
+                        MetricValue = 3,
+                        MetricInfluence = 0.3
+                    },
+                    new SkillMetric
+                    {
+                        Id = 29,
+                        IdUserSkill = 10,
+                        MetricName = "Quality of the studied material",
+                        MetricValue = 4,
+                        MetricInfluence = 0.4
+                    },
+                    new SkillMetric
+                    {
+                        Id = 30,
+                        IdUserSkill = 10,
+                        MetricName = "Use in practice",
+                        MetricValue = 5,
+                        MetricInfluence = 0.3
+                    },
+                    new SkillMetric
+                    {
+                        Id = 31,
+                        IdUserSkill = 11,
+                        MetricName = "Interest in studying",
+                        MetricValue = 3,
+                        MetricInfluence = 0.3
+                    },
+                    new SkillMetric
+                    {
+                        Id = 32,
+                        IdUserSkill = 11,
+                        MetricName = "Quality of the studied material",
+                        MetricValue = 4,
+                        MetricInfluence = 0.4
+                    },
+                    new SkillMetric
+                    {
+                        Id = 33,
+                        IdUserSkill = 11,
+                        MetricName = "Use in practice",
+                        MetricValue = 5,
+                        MetricInfluence = 0.3
+                    },
+                    new SkillMetric
+                    {
+                        Id = 34,
+                        IdUserSkill = 12,
+                        MetricName = "Interest in studying",
+                        MetricValue = 3,
+                        MetricInfluence = 0.3
+                    },
+                    new SkillMetric
+                    {
+                        Id = 35,
+                        IdUserSkill = 12,
+                        MetricName = "Quality of the studied material",
+                        MetricValue = 4,
+                        MetricInfluence = 0.4
+                    },
+                    new SkillMetric
+                    {
+                        Id = 36,
+                        IdUserSkill = 12,
+                        MetricName = "Use in practice",
+                        MetricValue = 5,
+                        MetricInfluence = 0.3
+                    },
+                    new SkillMetric
+                    {
+                        Id = 37,
+                        IdUserSkill = 13,
+                        MetricName = "Interest in studying",
+                        MetricValue = 3,
+                        MetricInfluence = 0.3
+                    },
+                    new SkillMetric
+                    {
+                        Id = 38,
+                        IdUserSkill = 13,
+                        MetricName = "Quality of the studied material",
+                        MetricValue = 4,
+                        MetricInfluence = 0.4
+                    },
+                    new SkillMetric
+                    {
+                        Id = 39,
+                        IdUserSkill = 13,
+                        MetricName = "Use in practice",
+                        MetricValue = 5,
+                        MetricInfluence = 0.3
+                    },
+                    new SkillMetric
+                    {
+                        Id = 40,
+                        IdUserSkill = 14,
+                        MetricName = "Interest in studying",
+                        MetricValue = 3,
+                        MetricInfluence = 0.3
+                    },
+                    new SkillMetric
+                    {
+                        Id = 41,
+                        IdUserSkill = 14,
+                        MetricName = "Quality of the studied material",
+                        MetricValue = 4,
+                        MetricInfluence = 0.4
+                    },
+                    new SkillMetric
+                    {
+                        Id = 42,
+                        IdUserSkill = 14,
+                        MetricName = "Use in practice",
+                        MetricValue = 5,
+                        MetricInfluence = 0.3
+                    },
+                    new SkillMetric
+                    {
+                        Id = 43,
+                        IdUserSkill = 15,
+                        MetricName = "Interest in studying",
+                        MetricValue = 3,
+                        MetricInfluence = 0.3
+                    },
+                    new SkillMetric
+                    {
+                        Id = 44,
+                        IdUserSkill = 15,
+                        MetricName = "Quality of the studied material",
+                        MetricValue = 4,
+                        MetricInfluence = 0.4
+                    },
+                    new SkillMetric
+                    {
+                        Id = 45,
+                        IdUserSkill = 15,
+                        MetricName = "Use in practice",
+                        MetricValue = 5,
+                        MetricInfluence = 0.3
+                    },
+                    new SkillMetric
+                    {
+                        Id = 46,
+                        IdUserSkill = 16,
+                        MetricName = "Interest in studying",
+                        MetricValue = 3,
+                        MetricInfluence = 0.3
+                    },
+                    new SkillMetric
+                    {
+                        Id = 47,
+                        IdUserSkill = 16,
+                        MetricName = "Quality of the studied material",
+                        MetricValue = 4,
+                        MetricInfluence = 0.4
+                    },
+                    new SkillMetric
+                    {
+                        Id = 48,
+                        IdUserSkill = 16,
+                        MetricName = "Use in practice",
+                        MetricValue = 5,
+                        MetricInfluence = 0.3
+                    },
+                    new SkillMetric
+                    {
+                        Id = 49,
+                        IdUserSkill = 17,
+                        MetricName = "Interest in studying",
+                        MetricValue = 3,
+                        MetricInfluence = 0.3
+                    },
+                    new SkillMetric
+                    {
+                        Id = 50,
+                        IdUserSkill = 17,
+                        MetricName = "Quality of the studied material",
+                        MetricValue = 4,
+                        MetricInfluence = 0.4
+                    },
+                    new SkillMetric
+                    {
+                        Id = 51,
+                        IdUserSkill = 17,
+                        MetricName = "Use in practice",
+                        MetricValue = 5,
+                        MetricInfluence = 0.3
+                    },
+                    new SkillMetric
+                    {
+                        Id = 52,
+                        IdUserSkill = 18,
+                        MetricName = "Interest in studying",
+                        MetricValue = 3,
+                        MetricInfluence = 0.3
+                    },
+                    new SkillMetric
+                    {
+                        Id = 53,
+                        IdUserSkill = 18,
+                        MetricName = "Quality of the studied material",
+                        MetricValue = 4,
+                        MetricInfluence = 0.4
+                    },
+                    new SkillMetric
+                    {
+                        Id = 54,
+                        IdUserSkill = 18,
+                        MetricName = "Use in practice",
+                        MetricValue = 5,
+                        MetricInfluence = 0.3
+                    },
+                    new SkillMetric
+                    {
+                        Id = 55,
+                        IdUserSkill = 19,
+                        MetricName = "Interest in studying",
+                        MetricValue = 3,
+                        MetricInfluence = 0.3
+                    },
+                    new SkillMetric
+                    {
+                        Id = 56,
+                        IdUserSkill = 19,
+                        MetricName = "Quality of the studied material",
+                        MetricValue = 4,
+                        MetricInfluence = 0.4
+                    },
+                    new SkillMetric
+                    {
+                        Id = 57,
+                        IdUserSkill = 19,
+                        MetricName = "Use in practice",
+                        MetricValue = 5,
+                        MetricInfluence = 0.3
+                    },
+                    new SkillMetric
+                    {
+                        Id = 58,
+                        IdUserSkill = 20,
+                        MetricName = "Interest in studying",
+                        MetricValue = 3,
+                        MetricInfluence = 0.3
+                    },
+                    new SkillMetric
+                    {
+                        Id = 59,
+                        IdUserSkill = 20,
+                        MetricName = "Quality of the studied material",
+                        MetricValue = 4,
+                        MetricInfluence = 0.4
+                    },
+                    new SkillMetric
+                    {
+                        Id = 60,
+                        IdUserSkill = 20,
+                        MetricName = "Use in practice",
+                        MetricValue = 5,
+                        MetricInfluence = 0.3
+                    },
+                    new SkillMetric
+                    {
+                        Id = 61,
+                        IdUserSkill = 21,
+                        MetricName = "Interest in studying",
+                        MetricValue = 3,
+                        MetricInfluence = 0.3
+                    },
+                    new SkillMetric
+                    {
+                        Id = 62,
+                        IdUserSkill = 21,
+                        MetricName = "Quality of the studied material",
+                        MetricValue = 4,
+                        MetricInfluence = 0.4
+                    },
+                    new SkillMetric
+                    {
+                        Id = 63,
+                        IdUserSkill = 21,
+                        MetricName = "Use in practice",
+                        MetricValue = 5,
+                        MetricInfluence = 0.3
+                    },
+                    new SkillMetric
+                    {
+                        Id = 64,
+                        IdUserSkill = 22,
+                        MetricName = "Interest in studying",
+                        MetricValue = 3,
+                        MetricInfluence = 0.3
+                    },
+                    new SkillMetric
+                    {
+                        Id = 65,
+                        IdUserSkill = 22,
+                        MetricName = "Quality of the studied material",
+                        MetricValue = 4,
+                        MetricInfluence = 0.4
+                    },
+                    new SkillMetric
+                    {
+                        Id = 66,
+                        IdUserSkill = 22,
+                        MetricName = "Use in practice",
+                        MetricValue = 5,
+                        MetricInfluence = 0.3
+                    },
+                    new SkillMetric
+                    {
+                        Id = 67,
+                        IdUserSkill = 23,
+                        MetricName = "Interest in studying",
+                        MetricValue = 3,
+                        MetricInfluence = 0.3
+                    },
+                    new SkillMetric
+                    {
+                        Id = 68,
+                        IdUserSkill = 23,
+                        MetricName = "Quality of the studied material",
+                        MetricValue = 4,
+                        MetricInfluence = 0.4
+                    },
+                    new SkillMetric
+                    {
+                        Id = 69,
+                        IdUserSkill = 23,
+                        MetricName = "Use in practice",
+                        MetricValue = 5,
+                        MetricInfluence = 0.3
+                    },
+                    new SkillMetric
+                    {
+                        Id = 70,
+                        IdUserSkill = 24,
+                        MetricName = "Interest in studying",
+                        MetricValue = 3,
+                        MetricInfluence = 0.3
+                    },
+                    new SkillMetric
+                    {
+                        Id = 71,
+                        IdUserSkill = 24,
+                        MetricName = "Quality of the studied material",
+                        MetricValue = 4,
+                        MetricInfluence = 0.4
+                    },
+                    new SkillMetric
+                    {
+                        Id = 72,
+                        IdUserSkill = 24,
+                        MetricName = "Use in practice",
+                        MetricValue = 5,
+                        MetricInfluence = 0.3
+                    },
+                    new SkillMetric
+                    {
+                        Id = 73,
+                        IdUserSkill = 25,
+                        MetricName = "Interest in studying",
+                        MetricValue = 3,
+                        MetricInfluence = 0.3
+                    },
+                    new SkillMetric
+                    {
+                        Id = 74,
+                        IdUserSkill = 25,
+                        MetricName = "Quality of the studied material",
+                        MetricValue = 4,
+                        MetricInfluence = 0.4
+                    },
+                    new SkillMetric
+                    {
+                        Id = 75,
+                        IdUserSkill = 25,
+                        MetricName = "Use in practice",
+                        MetricValue = 5,
+                        MetricInfluence = 0.3
+                    },
+                    new SkillMetric
+                    {
+                        Id = 76,
+                        IdUserSkill = 26,
+                        MetricName = "Interest in studying",
+                        MetricValue = 3,
+                        MetricInfluence = 0.3
+                    },
+                    new SkillMetric
+                    {
+                        Id = 77,
+                        IdUserSkill = 26,
+                        MetricName = "Quality of the studied material",
+                        MetricValue = 4,
+                        MetricInfluence = 0.4
+                    },
+                    new SkillMetric
+                    {
+                        Id = 78,
+                        IdUserSkill = 26,
+                        MetricName = "Use in practice",
+                        MetricValue = 5,
+                        MetricInfluence = 0.3
+                    },
+                    new SkillMetric
+                    {
+                        Id = 79,
+                        IdUserSkill = 27,
+                        MetricName = "Interest in studying",
+                        MetricValue = 3,
+                        MetricInfluence = 0.3
+                    },
+                    new SkillMetric
+                    {
+                        Id = 80,
+                        IdUserSkill = 27,
+                        MetricName = "Quality of the studied material",
+                        MetricValue = 4,
+                        MetricInfluence = 0.4
+                    },
+                    new SkillMetric
+                    {
+                        Id = 81,
+                        IdUserSkill = 27,
+                        MetricName = "Use in practice",
+                        MetricValue = 5,
+                        MetricInfluence = 0.3
+                    },
+                    new SkillMetric
+                    {
+                        Id = 82,
+                        IdUserSkill = 28,
+                        MetricName = "Interest in studying",
+                        MetricValue = 3,
+                        MetricInfluence = 0.3
+                    },
+                    new SkillMetric
+                    {
+                        Id = 83,
+                        IdUserSkill = 28,
+                        MetricName = "Quality of the studied material",
+                        MetricValue = 4,
+                        MetricInfluence = 0.4
+                    },
+                    new SkillMetric
+                    {
+                        Id = 84,
+                        IdUserSkill = 28,
+                        MetricName = "Use in practice",
+                        MetricValue = 5,
+                        MetricInfluence = 0.3
+                    },
+                    new SkillMetric
+                    {
+                        Id = 85,
+                        IdUserSkill = 29,
+                        MetricName = "Interest in studying",
+                        MetricValue = 3,
+                        MetricInfluence = 0.3
+                    },
+                    new SkillMetric
+                    {
+                        Id = 86,
+                        IdUserSkill = 29,
+                        MetricName = "Quality of the studied material",
+                        MetricValue = 4,
+                        MetricInfluence = 0.4
+                    },
+                    new SkillMetric
+                    {
+                        Id = 87,
+                        IdUserSkill = 29,
+                        MetricName = "Use in practice",
+                        MetricValue = 5,
+                        MetricInfluence = 0.3
+                    },
+                    new SkillMetric
+                    {
+                        Id = 88,
+                        IdUserSkill = 30,
+                        MetricName = "Interest in studying",
+                        MetricValue = 3,
+                        MetricInfluence = 0.3
+                    },
+                    new SkillMetric
+                    {
+                        Id = 89,
+                        IdUserSkill = 30,
+                        MetricName = "Quality of the studied material",
+                        MetricValue = 4,
+                        MetricInfluence = 0.4
+                    },
+                    new SkillMetric
+                    {
+                        Id = 90,
+                        IdUserSkill = 30,
+                        MetricName = "Use in practice",
+                        MetricValue = 5,
+                        MetricInfluence = 0.3
+                    },
+                    new SkillMetric
+                    {
+                        Id = 91,
+                        IdUserSkill = 31,
+                        MetricName = "Interest in studying",
+                        MetricValue = 3,
+                        MetricInfluence = 0.3
+                    },
+                    new SkillMetric
+                    {
+                        Id = 92,
+                        IdUserSkill = 31,
+                        MetricName = "Quality of the studied material",
+                        MetricValue = 4,
+                        MetricInfluence = 0.4
+                    },
+                    new SkillMetric
+                    {
+                        Id = 93,
+                        IdUserSkill = 31,
+                        MetricName = "Use in practice",
+                        MetricValue = 5,
+                        MetricInfluence = 0.3
+                    },
+                    new SkillMetric
+                    {
+                        Id = 94,
+                        IdUserSkill = 32,
+                        MetricName = "Interest in studying",
+                        MetricValue = 3,
+                        MetricInfluence = 0.3
+                    },
+                    new SkillMetric
+                    {
+                        Id = 95,
+                        IdUserSkill = 32,
+                        MetricName = "Quality of the studied material",
+                        MetricValue = 4,
+                        MetricInfluence = 0.4
+                    },
+                    new SkillMetric
+                    {
+                        Id = 96,
+                        IdUserSkill = 32,
+                        MetricName = "Use in practice",
+                        MetricValue = 5,
+                        MetricInfluence = 0.3
+                    },
+                    new SkillMetric
+                    {
+                        Id = 97,
+                        IdUserSkill = 33,
+                        MetricName = "Interest in studying",
+                        MetricValue = 3,
+                        MetricInfluence = 0.3
+                    },
+                    new SkillMetric
+                    {
+                        Id = 98,
+                        IdUserSkill = 33,
+                        MetricName = "Quality of the studied material",
+                        MetricValue = 4,
+                        MetricInfluence = 0.4
+                    },
+                    new SkillMetric
+                    {
+                        Id = 99,
+                        IdUserSkill = 33,
+                        MetricName = "Use in practice",
+                        MetricValue = 5,
+                        MetricInfluence = 0.3
+                    });
             });
 
             modelBuilder.Entity<Statistics>(entity => {
@@ -1653,7 +2545,7 @@ namespace SkillRoadMapBack.DAL
                 .IsUnicode(false);
 
                 entity.Property(e => e.Description)
-                .HasMaxLength(500)
+                .HasMaxLength(1000)
                 .IsUnicode(false);
 
                 entity.HasOne(t => t.IdCategoryNavigation)
@@ -1665,6 +2557,128 @@ namespace SkillRoadMapBack.DAL
                 .WithMany(e => e.Trainings)
                 .HasForeignKey(t => t.IdCoach)
                 .HasConstraintName("R_26");
+
+                entity.HasData(
+                    new Training 
+                    {
+                        Id = 1,
+                        TrainingTitle = "Multithreading",
+                        Description = "Learn multithreading in c#",
+                        TrainingLevel = 4,
+                        StartDate = new DateTime(2021, 10, 10),
+                        EndDate = new DateTime(2021, 11, 10),
+                        Payment = 0,
+                        IdCoach = 3,
+                        IdCategory = 1
+                    },
+                    new Training
+                    {
+                        Id = 2,
+                        TrainingTitle = "Parallel programming",
+                        Description = "Learn Parallel in c#",
+                        TrainingLevel = 4,
+                        StartDate = new DateTime(2021, 10, 10),
+                        EndDate = new DateTime(2021, 11, 10),
+                        Payment = 0,
+                        IdCoach = 3,
+                        IdCategory = 1
+                    },
+                    new Training
+                    {
+                        Id = 3,
+                        TrainingTitle = "LINQ",
+                        Description = "Learn LINQ in c#",
+                        TrainingLevel = 4,
+                        StartDate = new DateTime(2021, 10, 10),
+                        EndDate = new DateTime(2021, 11, 10),
+                        Payment = 0,
+                        IdCoach = 3,
+                        IdCategory = 1
+                    },
+                    new Training
+                    {
+                        Id = 4,
+                        TrainingTitle = "Reflection",
+                        Description = "Learn reflection in c#",
+                        TrainingLevel = 4,
+                        StartDate = new DateTime(2021, 10, 10),
+                        EndDate = new DateTime(2021, 11, 10),
+                        Payment = 0,
+                        IdCoach = 3,
+                        IdCategory = 1
+                    },
+                    new Training
+                    {
+                        Id = 5,
+                        TrainingTitle = "Work with file system",
+                        Description = "Learn file system in c#",
+                        TrainingLevel = 4,
+                        StartDate = new DateTime(2021, 10, 10),
+                        EndDate = new DateTime(2021, 11, 10),
+                        Payment = 0,
+                        IdCoach = 3,
+                        IdCategory = 1
+                    },
+                    new Training
+                    {
+                        Id = 6,
+                        TrainingTitle = "Alpha testing",
+                        Description = "Learn alpha testing",
+                        TrainingLevel = 4,
+                        StartDate = new DateTime(2021, 10, 10),
+                        EndDate = new DateTime(2021, 11, 10),
+                        Payment = 0,
+                        IdCoach = 4,
+                        IdCategory = 2
+                    },
+                    new Training
+                    {
+                        Id = 7,
+                        TrainingTitle = "Smoke testing",
+                        Description = "Learn smoke testing",
+                        TrainingLevel = 4,
+                        StartDate = new DateTime(2021, 10, 10),
+                        EndDate = new DateTime(2021, 11, 10),
+                        Payment = 0,
+                        IdCoach = 4,
+                        IdCategory = 2
+                    },
+                    new Training
+                    {
+                        Id = 8,
+                        TrainingTitle = "New feature testing",
+                        Description = "Learn new feature testing",
+                        TrainingLevel = 4,
+                        StartDate = new DateTime(2021, 10, 10),
+                        EndDate = new DateTime(2021, 11, 10),
+                        Payment = 0,
+                        IdCoach = 4,
+                        IdCategory = 2
+                    },
+                    new Training
+                    {
+                        Id = 9,
+                        TrainingTitle = "Regression testing",
+                        Description = "Learn regression testing",
+                        TrainingLevel = 4,
+                        StartDate = new DateTime(2021, 10, 10),
+                        EndDate = new DateTime(2021, 11, 10),
+                        Payment = 0,
+                        IdCoach = 4,
+                        IdCategory = 2
+                    },
+                    new Training
+                    {
+                        Id = 10,
+                        TrainingTitle = "Acceptance testing",
+                        Description = "Learn acceptance testing",
+                        TrainingLevel = 4,
+                        StartDate = new DateTime(2021, 10, 10),
+                        EndDate = new DateTime(2021, 11, 10),
+                        Payment = 0,
+                        IdCoach = 4,
+                        IdCategory = 2
+                    });
             });
 
             modelBuilder.Entity<TrainingMember>(entity => {
@@ -1683,6 +2697,92 @@ namespace SkillRoadMapBack.DAL
                 .WithMany(tr => tr.TrainingMembers)
                 .HasForeignKey(t => t.IdTraining)
                 .HasConstraintName("R_28");
+
+                entity.HasData(
+                    new TrainingMember
+                    {
+                        Id = 1,
+                        IdMember = 1,
+                        IdTraining = 1,
+                        IsEnded = false
+                    },
+                    new TrainingMember
+                    {
+                        Id = 2,
+                        IdMember = 2,
+                        IdTraining = 1,
+                        IsEnded = false
+                    },
+                    new TrainingMember
+                    {
+                        Id = 3,
+                        IdMember = 3,
+                        IdTraining = 2,
+                        IsEnded = false
+                    },
+                    new TrainingMember
+                    {
+                        Id = 4,
+                        IdMember = 4,
+                        IdTraining = 2,
+                        IsEnded = false
+                    },
+                    new TrainingMember
+                    {
+                        Id = 5,
+                        IdMember = 5,
+                        IdTraining = 6,
+                        IsEnded = false
+                    },
+                    new TrainingMember
+                    {
+                        Id = 6,
+                        IdMember = 1,
+                        IdTraining = 6,
+                        IsEnded = false
+                    },
+                    new TrainingMember
+                    {
+                        Id = 7,
+                        IdMember = 2,
+                        IdTraining = 7,
+                        IsEnded = false
+                    },
+                    new TrainingMember
+                    {
+                        Id = 8,
+                        IdMember = 3,
+                        IdTraining = 7,
+                        IsEnded = false
+                    },
+                    new TrainingMember
+                    {
+                        Id = 9,
+                        IdMember = 4,
+                        IdTraining = 3,
+                        IsEnded = false
+                    },
+                    new TrainingMember
+                    {
+                        Id = 10,
+                        IdMember = 5,
+                        IdTraining = 3,
+                        IsEnded = false
+                    },
+                    new TrainingMember
+                    {
+                        Id = 11,
+                        IdMember = 1,
+                        IdTraining = 8,
+                        IsEnded = false
+                    },
+                    new TrainingMember
+                    {
+                        Id = 12,
+                        IdMember = 2,
+                        IdTraining = 8,
+                        IsEnded = false
+                    }); ;
             });
         }
     }

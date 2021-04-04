@@ -94,10 +94,10 @@ namespace SkillRoadMapBack.DAL.Migrations
                         .IsUnicode(false)
                         .HasColumnType("varchar(500)");
 
-                    b.Property<DateTime>("DateOfIssue")
+                    b.Property<DateTime?>("DateOfIssue")
                         .HasColumnType("datetime2");
 
-                    b.Property<DateTime>("ExpiryDate")
+                    b.Property<DateTime?>("ExpiryDate")
                         .HasColumnType("datetime2");
 
                     b.Property<int?>("IdPublisher")
@@ -122,6 +122,118 @@ namespace SkillRoadMapBack.DAL.Migrations
                     b.HasIndex("IdUserSkill");
 
                     b.ToTable("Certificates");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CertificateTitle = "Our company present you certificate",
+                            DateOfIssue = new DateTime(2021, 10, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            ExpiryDate = new DateTime(2022, 10, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IdPublisher = 1,
+                            IdRecipient = 1,
+                            IdUserSkill = 1,
+                            SkillLevel = 5
+                        },
+                        new
+                        {
+                            Id = 2,
+                            CertificateTitle = "Our company present you certificate",
+                            DateOfIssue = new DateTime(2021, 10, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            ExpiryDate = new DateTime(2022, 10, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IdPublisher = 1,
+                            IdRecipient = 1,
+                            IdUserSkill = 2,
+                            SkillLevel = 4
+                        },
+                        new
+                        {
+                            Id = 3,
+                            CertificateTitle = "Our company present you certificate",
+                            DateOfIssue = new DateTime(2021, 10, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            ExpiryDate = new DateTime(2022, 10, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IdPublisher = 1,
+                            IdRecipient = 1,
+                            IdUserSkill = 3,
+                            SkillLevel = 5
+                        },
+                        new
+                        {
+                            Id = 4,
+                            CertificateTitle = "Our company present you certificate",
+                            DateOfIssue = new DateTime(2021, 10, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            ExpiryDate = new DateTime(2022, 10, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IdPublisher = 1,
+                            IdRecipient = 1,
+                            IdUserSkill = 4,
+                            SkillLevel = 4
+                        },
+                        new
+                        {
+                            Id = 5,
+                            CertificateTitle = "Our company present you certificate",
+                            DateOfIssue = new DateTime(2021, 10, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            ExpiryDate = new DateTime(2022, 10, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IdPublisher = 1,
+                            IdRecipient = 1,
+                            IdUserSkill = 5,
+                            SkillLevel = 5
+                        },
+                        new
+                        {
+                            Id = 6,
+                            CertificateTitle = "Our company present you certificate",
+                            DateOfIssue = new DateTime(2021, 10, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            ExpiryDate = new DateTime(2022, 10, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IdPublisher = 1,
+                            IdRecipient = 2,
+                            IdUserSkill = 1,
+                            SkillLevel = 4
+                        },
+                        new
+                        {
+                            Id = 7,
+                            CertificateTitle = "Our company present you certificate",
+                            DateOfIssue = new DateTime(2021, 10, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            ExpiryDate = new DateTime(2022, 10, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IdPublisher = 1,
+                            IdRecipient = 2,
+                            IdUserSkill = 1,
+                            SkillLevel = 5
+                        },
+                        new
+                        {
+                            Id = 8,
+                            CertificateTitle = "Our company present you certificate",
+                            DateOfIssue = new DateTime(2021, 10, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            ExpiryDate = new DateTime(2022, 10, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IdPublisher = 1,
+                            IdRecipient = 2,
+                            IdUserSkill = 1,
+                            SkillLevel = 4
+                        },
+                        new
+                        {
+                            Id = 9,
+                            CertificateTitle = "Our company present you certificate",
+                            DateOfIssue = new DateTime(2021, 10, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            ExpiryDate = new DateTime(2022, 10, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IdPublisher = 1,
+                            IdRecipient = 2,
+                            IdUserSkill = 1,
+                            SkillLevel = 4
+                        },
+                        new
+                        {
+                            Id = 10,
+                            CertificateTitle = "Our company present you certificate",
+                            DateOfIssue = new DateTime(2021, 10, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            ExpiryDate = new DateTime(2022, 10, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IdPublisher = 1,
+                            IdRecipient = 1,
+                            IdUserSkill = 1,
+                            SkillLevel = 5
+                        });
                 });
 
             modelBuilder.Entity("SkillRoadmapBack.Core.Models.Comment", b =>
@@ -485,9 +597,9 @@ namespace SkillRoadMapBack.DAL.Migrations
                         .HasColumnType("bit");
 
                     b.Property<string>("NotificationText")
-                        .HasMaxLength(50)
+                        .HasMaxLength(200)
                         .IsUnicode(false)
-                        .HasColumnType("varchar(50)");
+                        .HasColumnType("varchar(200)");
 
                     b.Property<DateTime>("SendingDate")
                         .HasColumnType("datetime2");
@@ -556,30 +668,6 @@ namespace SkillRoadMapBack.DAL.Migrations
                         });
                 });
 
-            modelBuilder.Entity("SkillRoadmapBack.Core.Models.RecMember", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasColumnName("Id_RecMember")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int?>("IdRecommend")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("IdTraining")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id")
-                        .HasName("XPKRecMember");
-
-                    b.HasIndex("IdRecommend");
-
-                    b.HasIndex("IdTraining");
-
-                    b.ToTable("RecMembers");
-                });
-
             modelBuilder.Entity("SkillRoadmapBack.Core.Models.Recommendation", b =>
                 {
                     b.Property<int>("Id")
@@ -591,18 +679,23 @@ namespace SkillRoadMapBack.DAL.Migrations
                     b.Property<int?>("IdEmployee")
                         .HasColumnType("int");
 
+                    b.Property<int?>("IdTraining")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Invitation")
+                        .HasMaxLength(500)
+                        .IsUnicode(false)
+                        .HasColumnType("varchar(500)");
+
                     b.Property<bool>("IsUsed")
                         .HasColumnType("bit");
-
-                    b.Property<string>("Title")
-                        .HasMaxLength(200)
-                        .IsUnicode(false)
-                        .HasColumnType("varchar(200)");
 
                     b.HasKey("Id")
                         .HasName("XPKRecommendation");
 
                     b.HasIndex("IdEmployee");
+
+                    b.HasIndex("IdTraining");
 
                     b.ToTable("Recommendations");
                 });
@@ -615,7 +708,7 @@ namespace SkillRoadMapBack.DAL.Migrations
                         .HasColumnName("Id_SkillMetric")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int?>("IdSkillUnit")
+                    b.Property<int?>("IdUserSkill")
                         .HasColumnType("int");
 
                     b.Property<double>("MetricInfluence")
@@ -632,9 +725,803 @@ namespace SkillRoadMapBack.DAL.Migrations
                     b.HasKey("Id")
                         .HasName("XPKSkillMetric");
 
-                    b.HasIndex("IdSkillUnit");
+                    b.HasIndex("IdUserSkill");
 
                     b.ToTable("SkillMetrics");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            IdUserSkill = 1,
+                            MetricInfluence = 0.29999999999999999,
+                            MetricName = "Interest in studying",
+                            MetricValue = 3
+                        },
+                        new
+                        {
+                            Id = 2,
+                            IdUserSkill = 1,
+                            MetricInfluence = 0.40000000000000002,
+                            MetricName = "Quality of the studied material",
+                            MetricValue = 4
+                        },
+                        new
+                        {
+                            Id = 3,
+                            IdUserSkill = 1,
+                            MetricInfluence = 0.29999999999999999,
+                            MetricName = "Use in practice",
+                            MetricValue = 5
+                        },
+                        new
+                        {
+                            Id = 4,
+                            IdUserSkill = 2,
+                            MetricInfluence = 0.29999999999999999,
+                            MetricName = "Interest in studying",
+                            MetricValue = 3
+                        },
+                        new
+                        {
+                            Id = 5,
+                            IdUserSkill = 2,
+                            MetricInfluence = 0.40000000000000002,
+                            MetricName = "Quality of the studied material",
+                            MetricValue = 4
+                        },
+                        new
+                        {
+                            Id = 6,
+                            IdUserSkill = 2,
+                            MetricInfluence = 0.29999999999999999,
+                            MetricName = "Use in practice",
+                            MetricValue = 5
+                        },
+                        new
+                        {
+                            Id = 7,
+                            IdUserSkill = 3,
+                            MetricInfluence = 0.29999999999999999,
+                            MetricName = "Interest in studying",
+                            MetricValue = 3
+                        },
+                        new
+                        {
+                            Id = 8,
+                            IdUserSkill = 3,
+                            MetricInfluence = 0.40000000000000002,
+                            MetricName = "Quality of the studied material",
+                            MetricValue = 4
+                        },
+                        new
+                        {
+                            Id = 9,
+                            IdUserSkill = 3,
+                            MetricInfluence = 0.29999999999999999,
+                            MetricName = "Use in practice",
+                            MetricValue = 5
+                        },
+                        new
+                        {
+                            Id = 10,
+                            IdUserSkill = 4,
+                            MetricInfluence = 0.29999999999999999,
+                            MetricName = "Interest in studying",
+                            MetricValue = 3
+                        },
+                        new
+                        {
+                            Id = 11,
+                            IdUserSkill = 4,
+                            MetricInfluence = 0.40000000000000002,
+                            MetricName = "Quality of the studied material",
+                            MetricValue = 4
+                        },
+                        new
+                        {
+                            Id = 12,
+                            IdUserSkill = 4,
+                            MetricInfluence = 0.29999999999999999,
+                            MetricName = "Use in practice",
+                            MetricValue = 5
+                        },
+                        new
+                        {
+                            Id = 13,
+                            IdUserSkill = 5,
+                            MetricInfluence = 0.29999999999999999,
+                            MetricName = "Interest in studying",
+                            MetricValue = 3
+                        },
+                        new
+                        {
+                            Id = 14,
+                            IdUserSkill = 5,
+                            MetricInfluence = 0.40000000000000002,
+                            MetricName = "Quality of the studied material",
+                            MetricValue = 4
+                        },
+                        new
+                        {
+                            Id = 15,
+                            IdUserSkill = 5,
+                            MetricInfluence = 0.29999999999999999,
+                            MetricName = "Use in practice",
+                            MetricValue = 5
+                        },
+                        new
+                        {
+                            Id = 16,
+                            IdUserSkill = 6,
+                            MetricInfluence = 0.29999999999999999,
+                            MetricName = "Interest in studying",
+                            MetricValue = 3
+                        },
+                        new
+                        {
+                            Id = 17,
+                            IdUserSkill = 6,
+                            MetricInfluence = 0.40000000000000002,
+                            MetricName = "Quality of the studied material",
+                            MetricValue = 4
+                        },
+                        new
+                        {
+                            Id = 18,
+                            IdUserSkill = 6,
+                            MetricInfluence = 0.29999999999999999,
+                            MetricName = "Use in practice",
+                            MetricValue = 5
+                        },
+                        new
+                        {
+                            Id = 19,
+                            IdUserSkill = 7,
+                            MetricInfluence = 0.29999999999999999,
+                            MetricName = "Interest in studying",
+                            MetricValue = 3
+                        },
+                        new
+                        {
+                            Id = 20,
+                            IdUserSkill = 7,
+                            MetricInfluence = 0.40000000000000002,
+                            MetricName = "Quality of the studied material",
+                            MetricValue = 4
+                        },
+                        new
+                        {
+                            Id = 21,
+                            IdUserSkill = 7,
+                            MetricInfluence = 0.29999999999999999,
+                            MetricName = "Use in practice",
+                            MetricValue = 5
+                        },
+                        new
+                        {
+                            Id = 22,
+                            IdUserSkill = 8,
+                            MetricInfluence = 0.29999999999999999,
+                            MetricName = "Interest in studying",
+                            MetricValue = 3
+                        },
+                        new
+                        {
+                            Id = 23,
+                            IdUserSkill = 8,
+                            MetricInfluence = 0.40000000000000002,
+                            MetricName = "Quality of the studied material",
+                            MetricValue = 4
+                        },
+                        new
+                        {
+                            Id = 24,
+                            IdUserSkill = 8,
+                            MetricInfluence = 0.29999999999999999,
+                            MetricName = "Use in practice",
+                            MetricValue = 5
+                        },
+                        new
+                        {
+                            Id = 25,
+                            IdUserSkill = 9,
+                            MetricInfluence = 0.29999999999999999,
+                            MetricName = "Interest in studying",
+                            MetricValue = 3
+                        },
+                        new
+                        {
+                            Id = 26,
+                            IdUserSkill = 9,
+                            MetricInfluence = 0.40000000000000002,
+                            MetricName = "Quality of the studied material",
+                            MetricValue = 4
+                        },
+                        new
+                        {
+                            Id = 27,
+                            IdUserSkill = 9,
+                            MetricInfluence = 0.29999999999999999,
+                            MetricName = "Use in practice",
+                            MetricValue = 5
+                        },
+                        new
+                        {
+                            Id = 28,
+                            IdUserSkill = 10,
+                            MetricInfluence = 0.29999999999999999,
+                            MetricName = "Interest in studying",
+                            MetricValue = 3
+                        },
+                        new
+                        {
+                            Id = 29,
+                            IdUserSkill = 10,
+                            MetricInfluence = 0.40000000000000002,
+                            MetricName = "Quality of the studied material",
+                            MetricValue = 4
+                        },
+                        new
+                        {
+                            Id = 30,
+                            IdUserSkill = 10,
+                            MetricInfluence = 0.29999999999999999,
+                            MetricName = "Use in practice",
+                            MetricValue = 5
+                        },
+                        new
+                        {
+                            Id = 31,
+                            IdUserSkill = 11,
+                            MetricInfluence = 0.29999999999999999,
+                            MetricName = "Interest in studying",
+                            MetricValue = 3
+                        },
+                        new
+                        {
+                            Id = 32,
+                            IdUserSkill = 11,
+                            MetricInfluence = 0.40000000000000002,
+                            MetricName = "Quality of the studied material",
+                            MetricValue = 4
+                        },
+                        new
+                        {
+                            Id = 33,
+                            IdUserSkill = 11,
+                            MetricInfluence = 0.29999999999999999,
+                            MetricName = "Use in practice",
+                            MetricValue = 5
+                        },
+                        new
+                        {
+                            Id = 34,
+                            IdUserSkill = 12,
+                            MetricInfluence = 0.29999999999999999,
+                            MetricName = "Interest in studying",
+                            MetricValue = 3
+                        },
+                        new
+                        {
+                            Id = 35,
+                            IdUserSkill = 12,
+                            MetricInfluence = 0.40000000000000002,
+                            MetricName = "Quality of the studied material",
+                            MetricValue = 4
+                        },
+                        new
+                        {
+                            Id = 36,
+                            IdUserSkill = 12,
+                            MetricInfluence = 0.29999999999999999,
+                            MetricName = "Use in practice",
+                            MetricValue = 5
+                        },
+                        new
+                        {
+                            Id = 37,
+                            IdUserSkill = 13,
+                            MetricInfluence = 0.29999999999999999,
+                            MetricName = "Interest in studying",
+                            MetricValue = 3
+                        },
+                        new
+                        {
+                            Id = 38,
+                            IdUserSkill = 13,
+                            MetricInfluence = 0.40000000000000002,
+                            MetricName = "Quality of the studied material",
+                            MetricValue = 4
+                        },
+                        new
+                        {
+                            Id = 39,
+                            IdUserSkill = 13,
+                            MetricInfluence = 0.29999999999999999,
+                            MetricName = "Use in practice",
+                            MetricValue = 5
+                        },
+                        new
+                        {
+                            Id = 40,
+                            IdUserSkill = 14,
+                            MetricInfluence = 0.29999999999999999,
+                            MetricName = "Interest in studying",
+                            MetricValue = 3
+                        },
+                        new
+                        {
+                            Id = 41,
+                            IdUserSkill = 14,
+                            MetricInfluence = 0.40000000000000002,
+                            MetricName = "Quality of the studied material",
+                            MetricValue = 4
+                        },
+                        new
+                        {
+                            Id = 42,
+                            IdUserSkill = 14,
+                            MetricInfluence = 0.29999999999999999,
+                            MetricName = "Use in practice",
+                            MetricValue = 5
+                        },
+                        new
+                        {
+                            Id = 43,
+                            IdUserSkill = 15,
+                            MetricInfluence = 0.29999999999999999,
+                            MetricName = "Interest in studying",
+                            MetricValue = 3
+                        },
+                        new
+                        {
+                            Id = 44,
+                            IdUserSkill = 15,
+                            MetricInfluence = 0.40000000000000002,
+                            MetricName = "Quality of the studied material",
+                            MetricValue = 4
+                        },
+                        new
+                        {
+                            Id = 45,
+                            IdUserSkill = 15,
+                            MetricInfluence = 0.29999999999999999,
+                            MetricName = "Use in practice",
+                            MetricValue = 5
+                        },
+                        new
+                        {
+                            Id = 46,
+                            IdUserSkill = 16,
+                            MetricInfluence = 0.29999999999999999,
+                            MetricName = "Interest in studying",
+                            MetricValue = 3
+                        },
+                        new
+                        {
+                            Id = 47,
+                            IdUserSkill = 16,
+                            MetricInfluence = 0.40000000000000002,
+                            MetricName = "Quality of the studied material",
+                            MetricValue = 4
+                        },
+                        new
+                        {
+                            Id = 48,
+                            IdUserSkill = 16,
+                            MetricInfluence = 0.29999999999999999,
+                            MetricName = "Use in practice",
+                            MetricValue = 5
+                        },
+                        new
+                        {
+                            Id = 49,
+                            IdUserSkill = 17,
+                            MetricInfluence = 0.29999999999999999,
+                            MetricName = "Interest in studying",
+                            MetricValue = 3
+                        },
+                        new
+                        {
+                            Id = 50,
+                            IdUserSkill = 17,
+                            MetricInfluence = 0.40000000000000002,
+                            MetricName = "Quality of the studied material",
+                            MetricValue = 4
+                        },
+                        new
+                        {
+                            Id = 51,
+                            IdUserSkill = 17,
+                            MetricInfluence = 0.29999999999999999,
+                            MetricName = "Use in practice",
+                            MetricValue = 5
+                        },
+                        new
+                        {
+                            Id = 52,
+                            IdUserSkill = 18,
+                            MetricInfluence = 0.29999999999999999,
+                            MetricName = "Interest in studying",
+                            MetricValue = 3
+                        },
+                        new
+                        {
+                            Id = 53,
+                            IdUserSkill = 18,
+                            MetricInfluence = 0.40000000000000002,
+                            MetricName = "Quality of the studied material",
+                            MetricValue = 4
+                        },
+                        new
+                        {
+                            Id = 54,
+                            IdUserSkill = 18,
+                            MetricInfluence = 0.29999999999999999,
+                            MetricName = "Use in practice",
+                            MetricValue = 5
+                        },
+                        new
+                        {
+                            Id = 55,
+                            IdUserSkill = 19,
+                            MetricInfluence = 0.29999999999999999,
+                            MetricName = "Interest in studying",
+                            MetricValue = 3
+                        },
+                        new
+                        {
+                            Id = 56,
+                            IdUserSkill = 19,
+                            MetricInfluence = 0.40000000000000002,
+                            MetricName = "Quality of the studied material",
+                            MetricValue = 4
+                        },
+                        new
+                        {
+                            Id = 57,
+                            IdUserSkill = 19,
+                            MetricInfluence = 0.29999999999999999,
+                            MetricName = "Use in practice",
+                            MetricValue = 5
+                        },
+                        new
+                        {
+                            Id = 58,
+                            IdUserSkill = 20,
+                            MetricInfluence = 0.29999999999999999,
+                            MetricName = "Interest in studying",
+                            MetricValue = 3
+                        },
+                        new
+                        {
+                            Id = 59,
+                            IdUserSkill = 20,
+                            MetricInfluence = 0.40000000000000002,
+                            MetricName = "Quality of the studied material",
+                            MetricValue = 4
+                        },
+                        new
+                        {
+                            Id = 60,
+                            IdUserSkill = 20,
+                            MetricInfluence = 0.29999999999999999,
+                            MetricName = "Use in practice",
+                            MetricValue = 5
+                        },
+                        new
+                        {
+                            Id = 61,
+                            IdUserSkill = 21,
+                            MetricInfluence = 0.29999999999999999,
+                            MetricName = "Interest in studying",
+                            MetricValue = 3
+                        },
+                        new
+                        {
+                            Id = 62,
+                            IdUserSkill = 21,
+                            MetricInfluence = 0.40000000000000002,
+                            MetricName = "Quality of the studied material",
+                            MetricValue = 4
+                        },
+                        new
+                        {
+                            Id = 63,
+                            IdUserSkill = 21,
+                            MetricInfluence = 0.29999999999999999,
+                            MetricName = "Use in practice",
+                            MetricValue = 5
+                        },
+                        new
+                        {
+                            Id = 64,
+                            IdUserSkill = 22,
+                            MetricInfluence = 0.29999999999999999,
+                            MetricName = "Interest in studying",
+                            MetricValue = 3
+                        },
+                        new
+                        {
+                            Id = 65,
+                            IdUserSkill = 22,
+                            MetricInfluence = 0.40000000000000002,
+                            MetricName = "Quality of the studied material",
+                            MetricValue = 4
+                        },
+                        new
+                        {
+                            Id = 66,
+                            IdUserSkill = 22,
+                            MetricInfluence = 0.29999999999999999,
+                            MetricName = "Use in practice",
+                            MetricValue = 5
+                        },
+                        new
+                        {
+                            Id = 67,
+                            IdUserSkill = 23,
+                            MetricInfluence = 0.29999999999999999,
+                            MetricName = "Interest in studying",
+                            MetricValue = 3
+                        },
+                        new
+                        {
+                            Id = 68,
+                            IdUserSkill = 23,
+                            MetricInfluence = 0.40000000000000002,
+                            MetricName = "Quality of the studied material",
+                            MetricValue = 4
+                        },
+                        new
+                        {
+                            Id = 69,
+                            IdUserSkill = 23,
+                            MetricInfluence = 0.29999999999999999,
+                            MetricName = "Use in practice",
+                            MetricValue = 5
+                        },
+                        new
+                        {
+                            Id = 70,
+                            IdUserSkill = 24,
+                            MetricInfluence = 0.29999999999999999,
+                            MetricName = "Interest in studying",
+                            MetricValue = 3
+                        },
+                        new
+                        {
+                            Id = 71,
+                            IdUserSkill = 24,
+                            MetricInfluence = 0.40000000000000002,
+                            MetricName = "Quality of the studied material",
+                            MetricValue = 4
+                        },
+                        new
+                        {
+                            Id = 72,
+                            IdUserSkill = 24,
+                            MetricInfluence = 0.29999999999999999,
+                            MetricName = "Use in practice",
+                            MetricValue = 5
+                        },
+                        new
+                        {
+                            Id = 73,
+                            IdUserSkill = 25,
+                            MetricInfluence = 0.29999999999999999,
+                            MetricName = "Interest in studying",
+                            MetricValue = 3
+                        },
+                        new
+                        {
+                            Id = 74,
+                            IdUserSkill = 25,
+                            MetricInfluence = 0.40000000000000002,
+                            MetricName = "Quality of the studied material",
+                            MetricValue = 4
+                        },
+                        new
+                        {
+                            Id = 75,
+                            IdUserSkill = 25,
+                            MetricInfluence = 0.29999999999999999,
+                            MetricName = "Use in practice",
+                            MetricValue = 5
+                        },
+                        new
+                        {
+                            Id = 76,
+                            IdUserSkill = 26,
+                            MetricInfluence = 0.29999999999999999,
+                            MetricName = "Interest in studying",
+                            MetricValue = 3
+                        },
+                        new
+                        {
+                            Id = 77,
+                            IdUserSkill = 26,
+                            MetricInfluence = 0.40000000000000002,
+                            MetricName = "Quality of the studied material",
+                            MetricValue = 4
+                        },
+                        new
+                        {
+                            Id = 78,
+                            IdUserSkill = 26,
+                            MetricInfluence = 0.29999999999999999,
+                            MetricName = "Use in practice",
+                            MetricValue = 5
+                        },
+                        new
+                        {
+                            Id = 79,
+                            IdUserSkill = 27,
+                            MetricInfluence = 0.29999999999999999,
+                            MetricName = "Interest in studying",
+                            MetricValue = 3
+                        },
+                        new
+                        {
+                            Id = 80,
+                            IdUserSkill = 27,
+                            MetricInfluence = 0.40000000000000002,
+                            MetricName = "Quality of the studied material",
+                            MetricValue = 4
+                        },
+                        new
+                        {
+                            Id = 81,
+                            IdUserSkill = 27,
+                            MetricInfluence = 0.29999999999999999,
+                            MetricName = "Use in practice",
+                            MetricValue = 5
+                        },
+                        new
+                        {
+                            Id = 82,
+                            IdUserSkill = 28,
+                            MetricInfluence = 0.29999999999999999,
+                            MetricName = "Interest in studying",
+                            MetricValue = 3
+                        },
+                        new
+                        {
+                            Id = 83,
+                            IdUserSkill = 28,
+                            MetricInfluence = 0.40000000000000002,
+                            MetricName = "Quality of the studied material",
+                            MetricValue = 4
+                        },
+                        new
+                        {
+                            Id = 84,
+                            IdUserSkill = 28,
+                            MetricInfluence = 0.29999999999999999,
+                            MetricName = "Use in practice",
+                            MetricValue = 5
+                        },
+                        new
+                        {
+                            Id = 85,
+                            IdUserSkill = 29,
+                            MetricInfluence = 0.29999999999999999,
+                            MetricName = "Interest in studying",
+                            MetricValue = 3
+                        },
+                        new
+                        {
+                            Id = 86,
+                            IdUserSkill = 29,
+                            MetricInfluence = 0.40000000000000002,
+                            MetricName = "Quality of the studied material",
+                            MetricValue = 4
+                        },
+                        new
+                        {
+                            Id = 87,
+                            IdUserSkill = 29,
+                            MetricInfluence = 0.29999999999999999,
+                            MetricName = "Use in practice",
+                            MetricValue = 5
+                        },
+                        new
+                        {
+                            Id = 88,
+                            IdUserSkill = 30,
+                            MetricInfluence = 0.29999999999999999,
+                            MetricName = "Interest in studying",
+                            MetricValue = 3
+                        },
+                        new
+                        {
+                            Id = 89,
+                            IdUserSkill = 30,
+                            MetricInfluence = 0.40000000000000002,
+                            MetricName = "Quality of the studied material",
+                            MetricValue = 4
+                        },
+                        new
+                        {
+                            Id = 90,
+                            IdUserSkill = 30,
+                            MetricInfluence = 0.29999999999999999,
+                            MetricName = "Use in practice",
+                            MetricValue = 5
+                        },
+                        new
+                        {
+                            Id = 91,
+                            IdUserSkill = 31,
+                            MetricInfluence = 0.29999999999999999,
+                            MetricName = "Interest in studying",
+                            MetricValue = 3
+                        },
+                        new
+                        {
+                            Id = 92,
+                            IdUserSkill = 31,
+                            MetricInfluence = 0.40000000000000002,
+                            MetricName = "Quality of the studied material",
+                            MetricValue = 4
+                        },
+                        new
+                        {
+                            Id = 93,
+                            IdUserSkill = 31,
+                            MetricInfluence = 0.29999999999999999,
+                            MetricName = "Use in practice",
+                            MetricValue = 5
+                        },
+                        new
+                        {
+                            Id = 94,
+                            IdUserSkill = 32,
+                            MetricInfluence = 0.29999999999999999,
+                            MetricName = "Interest in studying",
+                            MetricValue = 3
+                        },
+                        new
+                        {
+                            Id = 95,
+                            IdUserSkill = 32,
+                            MetricInfluence = 0.40000000000000002,
+                            MetricName = "Quality of the studied material",
+                            MetricValue = 4
+                        },
+                        new
+                        {
+                            Id = 96,
+                            IdUserSkill = 32,
+                            MetricInfluence = 0.29999999999999999,
+                            MetricName = "Use in practice",
+                            MetricValue = 5
+                        },
+                        new
+                        {
+                            Id = 97,
+                            IdUserSkill = 33,
+                            MetricInfluence = 0.29999999999999999,
+                            MetricName = "Interest in studying",
+                            MetricValue = 3
+                        },
+                        new
+                        {
+                            Id = 98,
+                            IdUserSkill = 33,
+                            MetricInfluence = 0.40000000000000002,
+                            MetricName = "Quality of the studied material",
+                            MetricValue = 4
+                        },
+                        new
+                        {
+                            Id = 99,
+                            IdUserSkill = 33,
+                            MetricInfluence = 0.29999999999999999,
+                            MetricName = "Use in practice",
+                            MetricValue = 5
+                        });
                 });
 
             modelBuilder.Entity("SkillRoadmapBack.Core.Models.SkillUnit", b =>
@@ -1543,9 +2430,9 @@ namespace SkillRoadMapBack.DAL.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Description")
-                        .HasMaxLength(500)
+                        .HasMaxLength(1000)
                         .IsUnicode(false)
-                        .HasColumnType("varchar(500)");
+                        .HasColumnType("varchar(1000)");
 
                     b.Property<DateTime>("EndDate")
                         .HasColumnType("datetime2");
@@ -1578,6 +2465,128 @@ namespace SkillRoadMapBack.DAL.Migrations
                     b.HasIndex("IdCoach");
 
                     b.ToTable("Trainings");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Description = "Learn multithreading in c#",
+                            EndDate = new DateTime(2021, 11, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IdCategory = 1,
+                            IdCoach = 3,
+                            Payment = 0.0,
+                            StartDate = new DateTime(2021, 10, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            TrainingLevel = 4,
+                            TrainingTitle = "Multithreading"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Description = "Learn Parallel in c#",
+                            EndDate = new DateTime(2021, 11, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IdCategory = 1,
+                            IdCoach = 3,
+                            Payment = 0.0,
+                            StartDate = new DateTime(2021, 10, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            TrainingLevel = 4,
+                            TrainingTitle = "Parallel programming"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Description = "Learn LINQ in c#",
+                            EndDate = new DateTime(2021, 11, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IdCategory = 1,
+                            IdCoach = 3,
+                            Payment = 0.0,
+                            StartDate = new DateTime(2021, 10, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            TrainingLevel = 4,
+                            TrainingTitle = "LINQ"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Description = "Learn reflection in c#",
+                            EndDate = new DateTime(2021, 11, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IdCategory = 1,
+                            IdCoach = 3,
+                            Payment = 0.0,
+                            StartDate = new DateTime(2021, 10, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            TrainingLevel = 4,
+                            TrainingTitle = "Reflection"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            Description = "Learn file system in c#",
+                            EndDate = new DateTime(2021, 11, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IdCategory = 1,
+                            IdCoach = 3,
+                            Payment = 0.0,
+                            StartDate = new DateTime(2021, 10, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            TrainingLevel = 4,
+                            TrainingTitle = "Work with file system"
+                        },
+                        new
+                        {
+                            Id = 6,
+                            Description = "Learn alpha testing",
+                            EndDate = new DateTime(2021, 11, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IdCategory = 2,
+                            IdCoach = 4,
+                            Payment = 0.0,
+                            StartDate = new DateTime(2021, 10, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            TrainingLevel = 4,
+                            TrainingTitle = "Alpha testing"
+                        },
+                        new
+                        {
+                            Id = 7,
+                            Description = "Learn smoke testing",
+                            EndDate = new DateTime(2021, 11, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IdCategory = 2,
+                            IdCoach = 4,
+                            Payment = 0.0,
+                            StartDate = new DateTime(2021, 10, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            TrainingLevel = 4,
+                            TrainingTitle = "Smoke testing"
+                        },
+                        new
+                        {
+                            Id = 8,
+                            Description = "Learn new feature testing",
+                            EndDate = new DateTime(2021, 11, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IdCategory = 2,
+                            IdCoach = 4,
+                            Payment = 0.0,
+                            StartDate = new DateTime(2021, 10, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            TrainingLevel = 4,
+                            TrainingTitle = "New feature testing"
+                        },
+                        new
+                        {
+                            Id = 9,
+                            Description = "Learn regression testing",
+                            EndDate = new DateTime(2021, 11, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IdCategory = 2,
+                            IdCoach = 4,
+                            Payment = 0.0,
+                            StartDate = new DateTime(2021, 10, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            TrainingLevel = 4,
+                            TrainingTitle = "Regression testing"
+                        },
+                        new
+                        {
+                            Id = 10,
+                            Description = "Learn acceptance testing",
+                            EndDate = new DateTime(2021, 11, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IdCategory = 2,
+                            IdCoach = 4,
+                            Payment = 0.0,
+                            StartDate = new DateTime(2021, 10, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            TrainingLevel = 4,
+                            TrainingTitle = "Acceptance testing"
+                        });
                 });
 
             modelBuilder.Entity("SkillRoadmapBack.Core.Models.TrainingMember", b =>
@@ -1605,6 +2614,92 @@ namespace SkillRoadMapBack.DAL.Migrations
                     b.HasIndex("IdTraining");
 
                     b.ToTable("TrainingMembers");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            IdMember = 1,
+                            IdTraining = 1,
+                            IsEnded = false
+                        },
+                        new
+                        {
+                            Id = 2,
+                            IdMember = 2,
+                            IdTraining = 1,
+                            IsEnded = false
+                        },
+                        new
+                        {
+                            Id = 3,
+                            IdMember = 3,
+                            IdTraining = 2,
+                            IsEnded = false
+                        },
+                        new
+                        {
+                            Id = 4,
+                            IdMember = 4,
+                            IdTraining = 2,
+                            IsEnded = false
+                        },
+                        new
+                        {
+                            Id = 5,
+                            IdMember = 5,
+                            IdTraining = 6,
+                            IsEnded = false
+                        },
+                        new
+                        {
+                            Id = 6,
+                            IdMember = 1,
+                            IdTraining = 6,
+                            IsEnded = false
+                        },
+                        new
+                        {
+                            Id = 7,
+                            IdMember = 2,
+                            IdTraining = 7,
+                            IsEnded = false
+                        },
+                        new
+                        {
+                            Id = 8,
+                            IdMember = 3,
+                            IdTraining = 7,
+                            IsEnded = false
+                        },
+                        new
+                        {
+                            Id = 9,
+                            IdMember = 4,
+                            IdTraining = 3,
+                            IsEnded = false
+                        },
+                        new
+                        {
+                            Id = 10,
+                            IdMember = 5,
+                            IdTraining = 3,
+                            IsEnded = false
+                        },
+                        new
+                        {
+                            Id = 11,
+                            IdMember = 1,
+                            IdTraining = 8,
+                            IsEnded = false
+                        },
+                        new
+                        {
+                            Id = 12,
+                            IdMember = 2,
+                            IdTraining = 8,
+                            IsEnded = false
+                        });
                 });
 
             modelBuilder.Entity("SkillRoadmapBack.Core.Models.UserSkill", b =>
@@ -1628,9 +2723,9 @@ namespace SkillRoadMapBack.DAL.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("Skillname")
-                        .HasMaxLength(50)
+                        .HasMaxLength(100)
                         .IsUnicode(false)
-                        .HasColumnType("varchar(50)");
+                        .HasColumnType("varchar(100)");
 
                     b.Property<DateTime>("StartDate")
                         .HasColumnType("datetime2");
@@ -2069,23 +3164,6 @@ namespace SkillRoadMapBack.DAL.Migrations
                     b.Navigation("IdUserSkillNavigation");
                 });
 
-            modelBuilder.Entity("SkillRoadmapBack.Core.Models.RecMember", b =>
-                {
-                    b.HasOne("SkillRoadmapBack.Core.Models.Recommendation", "IdRecommendNavigation")
-                        .WithMany("RecMembers")
-                        .HasForeignKey("IdRecommend")
-                        .HasConstraintName("R_20");
-
-                    b.HasOne("SkillRoadmapBack.Core.Models.Training", "IdTrainingNavigation")
-                        .WithMany("RecMembers")
-                        .HasForeignKey("IdTraining")
-                        .HasConstraintName("R_21");
-
-                    b.Navigation("IdRecommendNavigation");
-
-                    b.Navigation("IdTrainingNavigation");
-                });
-
             modelBuilder.Entity("SkillRoadmapBack.Core.Models.Recommendation", b =>
                 {
                     b.HasOne("SkillRoadmapBack.Core.Models.Employee", "IdEmployeeNavigation")
@@ -2093,17 +3171,24 @@ namespace SkillRoadMapBack.DAL.Migrations
                         .HasForeignKey("IdEmployee")
                         .HasConstraintName("R_22");
 
+                    b.HasOne("SkillRoadmapBack.Core.Models.Training", "IdTrainingNavigation")
+                        .WithMany("Recommendations")
+                        .HasForeignKey("IdTraining")
+                        .HasConstraintName("R_29");
+
                     b.Navigation("IdEmployeeNavigation");
+
+                    b.Navigation("IdTrainingNavigation");
                 });
 
             modelBuilder.Entity("SkillRoadmapBack.Core.Models.SkillMetric", b =>
                 {
-                    b.HasOne("SkillRoadmapBack.Core.Models.SkillUnit", "IdSkillUnitNavigation")
+                    b.HasOne("SkillRoadmapBack.Core.Models.UserSkill", "IdUserSkillNavigation")
                         .WithMany("SkillMetrics")
-                        .HasForeignKey("IdSkillUnit")
+                        .HasForeignKey("IdUserSkill")
                         .HasConstraintName("R_23");
 
-                    b.Navigation("IdSkillUnitNavigation");
+                    b.Navigation("IdUserSkillNavigation");
                 });
 
             modelBuilder.Entity("SkillRoadmapBack.Core.Models.SkillUnit", b =>
@@ -2219,19 +3304,9 @@ namespace SkillRoadMapBack.DAL.Migrations
                     b.Navigation("Trainings");
                 });
 
-            modelBuilder.Entity("SkillRoadmapBack.Core.Models.Recommendation", b =>
-                {
-                    b.Navigation("RecMembers");
-                });
-
-            modelBuilder.Entity("SkillRoadmapBack.Core.Models.SkillUnit", b =>
-                {
-                    b.Navigation("SkillMetrics");
-                });
-
             modelBuilder.Entity("SkillRoadmapBack.Core.Models.Training", b =>
                 {
-                    b.Navigation("RecMembers");
+                    b.Navigation("Recommendations");
 
                     b.Navigation("TrainingMembers");
                 });
@@ -2243,6 +3318,8 @@ namespace SkillRoadMapBack.DAL.Migrations
                     b.Navigation("Comments");
 
                     b.Navigation("Notifications");
+
+                    b.Navigation("SkillMetrics");
 
                     b.Navigation("SkillUnits");
                 });

@@ -77,5 +77,12 @@ namespace SkillRoadmapBack.Web.Controllers
             var result = await _employerService.GetInfoAsync(email);
             return Ok(result);
         }
+
+        [HttpGet("getallinfo/{company}")]
+        public async Task<ActionResult<EmployerInfoDTO>> GetAllInfo(string company)
+        {
+            var result = await _employerService.GetAllInfoAsync(company);
+            return Ok(result);
+        }
     }
 }

@@ -10,7 +10,7 @@ namespace SkillRoadmapBack.Core.Models
         public Training()
         {
             TrainingMembers = new HashSet<TrainingMember>();
-            RecMembers = new HashSet<RecMember>();
+            //RecMembers = new HashSet<RecMember>();
         }
         public int Id { get; set; }
         public string TrainingTitle { get; set; }
@@ -24,6 +24,6 @@ namespace SkillRoadmapBack.Core.Models
         public int? IdCategory { get; set; }
         public Category IdCategoryNavigation { get; set; }
         public virtual ICollection<TrainingMember> TrainingMembers { get; set; }
-        public virtual ICollection<RecMember> RecMembers { get; set; }
+        public virtual ICollection<Recommendation> Recommendations { get; set; }
     }
 }

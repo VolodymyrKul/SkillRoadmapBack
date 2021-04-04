@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using SkillRoadmapBack.Core.Abstractions.IServices;
+using SkillRoadmapBack.Core.DTO.SpecializedDTO;
 using SkillRoadmapBack.Core.DTO.StandardDTO;
 using System;
 using System.Collections.Generic;
@@ -42,7 +43,7 @@ namespace SkillRoadmapBack.Web.Controllers
             return Ok(order);
         }
 
-        [HttpPut]
+        [HttpPut("update")]
         public async Task<ActionResult<CertificateDTO>> Update(CertificateDTO order)
         {
             var result = await _certificateService.UpdateAsync(order);
@@ -53,6 +54,41 @@ namespace SkillRoadmapBack.Web.Controllers
         public async Task<IActionResult> Delete(int id)
         {
             await _certificateService.DeleteAsync(id);
+            return NoContent();
+        }
+
+        [HttpGet("byuser/{email}")]
+        public async Task<ActionResult<List<GetCertificateDTO>>> getByEmail(string email)
+        {
+            var result = await _certificateService.GetByEmail(email);
+            return Ok(result);
+        }
+
+        [HttpGet("bymentor/{email}")]
+        public async Task<ActionResult<List<GetCertificateDTO>>> getByMentor(string email)
+        {
+            var result = await _certificateService.GetByMentor(email);
+            return Ok(result);
+        }
+
+        [HttpPost("order")]
+        public async Task<ActionResult<bool>> Order(OrderCertificateDTO order)
+        {
+            await _certificateService.OrderCertificate(order);
+            return Ok(order);
+        }
+
+        [HttpPut("accept")]
+        public async Task<ActionResult<bool>> Accept(GetCertificateDTO order)
+        {
+            var result = await _certificateService.AcceptCertificate(order);
+            return Ok(result);
+        }
+
+        [HttpPost("decline")]
+        public async Task<IActionResult> Decline(OrderCertificateDTO order)
+        {
+            await _certificateService.DeclineCertificate(order);
             return NoContent();
         }
     }

@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using SkillRoadmapBack.Core.Abstractions.IServices;
+using SkillRoadmapBack.Core.DTO.SpecializedDTO;
 using SkillRoadmapBack.Core.DTO.StandardDTO;
 using System;
 using System.Collections.Generic;
@@ -54,6 +55,24 @@ namespace SkillRoadmapBack.Web.Controllers
         {
             await _notificationService.DeleteAsync(id);
             return NoContent();
+        }
+
+        [HttpGet("byemployee/{email}")]
+        public async Task<ActionResult<List<GetNotificationDTO>>> GetByEmployee(string email)
+        {
+
+            var result = await _notificationService.GetByEmployee(email);
+            return Ok(result);
+
+        }
+
+        [HttpGet("byemployer/{email}")]
+        public async Task<ActionResult<List<GetNotificationDTO>>> GetByEmployer(string email)
+        {
+
+            var result = await _notificationService.GetByEmployer(email);
+            return Ok(result);
+
         }
     }
 }

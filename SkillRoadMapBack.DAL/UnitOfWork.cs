@@ -20,7 +20,6 @@ namespace SkillRoadMapBack.DAL
         private ISkillUnitRepo _skillUnitRepo;
         private ICertificateRepo _certificateRepo;
         private ICompanyRepo _companyRepo;
-        private IRecMemberRepo _recMemberRepo;
         private IRecommendationRepo _recommendationRepo;
         private ISkillMetricRepo _skillMetricRepo;
         private IStatisticsRepo _statisticsRepo;
@@ -96,14 +95,6 @@ namespace SkillRoadMapBack.DAL
             get
             {
                 return _companyRepo ??= new CompanyRepo(_context);
-            }
-        }
-
-        public IRecMemberRepo RecMemberRepo
-        {
-            get
-            {
-                return _recMemberRepo ??= new RecMemberRepo(_context);
             }
         }
 

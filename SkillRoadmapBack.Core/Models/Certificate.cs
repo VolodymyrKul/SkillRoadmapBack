@@ -12,8 +12,8 @@ namespace SkillRoadmapBack.Core.Models
         public UserSkill IdUserSkillNavigation { get; set; }
         public string CertificateTitle { get; set; }
         public int SkillLevel { get; set; }
-        public DateTime DateOfIssue { get; set; }
-        public DateTime ExpiryDate { get; set; }
+        public DateTime? DateOfIssue { get; set; }
+        public DateTime? ExpiryDate { get; set; }
         public int? IdRecipient { get; set; }
         public Employee IdRecipientNavigation { get; set; }
         public int? IdPublisher { get; set; }

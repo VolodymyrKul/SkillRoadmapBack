@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using SkillRoadmapBack.Core.Abstractions;
 using SkillRoadmapBack.Core.Abstractions.IServices;
+using SkillRoadmapBack.Core.DTO.SpecializedDTO;
 using SkillRoadmapBack.Core.DTO.StandardDTO;
 using SkillRoadmapBack.Core.Models;
 using SkillRoadMapBack.Services.Base;
@@ -58,6 +59,19 @@ namespace SkillRoadMapBack.Services
             await _unitOfWork.NotificationRepo.UpdateAsync(value);
             await _unitOfWork.SaveChangesAsync();
             return entity;
+        }
+
+        public virtual async Task<List<GetNotificationDTO>> GetByEmployee(string email)
+        {
+            var notifications = (await _unitOfWork.NotificationRepo.GetAllAsync()).Where(n => n.IdEmployeeNavigation.Email == email && n.IsRead == false);
+            List<GetNotificationDTO> notificationDTOs = notifications.Select(notification => _mapper.Map(notification, new GetNotificationDTO())).ToList();
+            return notificationDTOs;
+        }
+        public virtual async Task<List<GetNotificationDTO>> GetByEmployer(string email)
+        {
+            var notifications = (await _unitOfWork.NotificationRepo.GetAllAsync()).Where(n => n.IdEmployerNavigation.Email == email && n.IsRead == false);
+            List<GetNotificationDTO> notificationDTOs = notifications.Select(notification => _mapper.Map(notification, new GetNotificationDTO())).ToList();
+            return notificationDTOs;
         }
     }
 }

@@ -68,5 +68,19 @@ namespace SkillRoadMapBack.Services
             _mapper.Map(user, dto);
             return dto;
         }
+
+        public virtual async Task<List<EmployeeInfoDTO>> GetAllInfoAsync(string company)
+        {
+            var users = (await _unitOfWork.EmployeeRepo.GetAllAsync()).Where(u => u.IdCompanyNavigation.Name == company);
+            List<EmployeeInfoDTO> employeeInfoDTOs = users.Select(user => _mapper.Map(user, new EmployeeInfoDTO())).ToList();
+            return employeeInfoDTOs;
+        }
+
+        public virtual async Task<List<EmployeeInfoDTO>> GetAllByTrainingAsync(string training)
+        {
+            var trainingMembers = (await _unitOfWork.TrainingMemberRepo.GetAllAsync()).Where(tr => tr.IdTrainingNavigation.TrainingTitle == training);
+            List<EmployeeInfoDTO> employeeInfoDTOs = trainingMembers.Select(tr => _mapper.Map(tr.IdMemberNavigation, new EmployeeInfoDTO())).ToList();
+            return employeeInfoDTOs;
+        }
     }
 }

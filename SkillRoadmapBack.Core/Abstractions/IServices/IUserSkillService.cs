@@ -12,5 +12,6 @@ namespace SkillRoadmapBack.Core.Abstractions.IServices
     {
         Task<List<GetUserSkillDTO>> GetByYear(string user, int year);
         Task<List<int>> GetYears(string user);
+        Task<List<GetUserSkillDTO>> GetOnlyUSkills(string user);
     }
 }

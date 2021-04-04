@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using SkillRoadmapBack.Core.Abstractions.IServices;
+using SkillRoadmapBack.Core.DTO.SpecializedDTO;
 using SkillRoadmapBack.Core.DTO.StandardDTO;
 using System;
 using System.Collections.Generic;
@@ -36,7 +37,7 @@ namespace SkillRoadmapBack.Web.Controllers
         }
 
         [HttpPost("pull")]
-        public async Task<ActionResult<SkillMetricDTO>> Pull(SkillMetricDTO order)
+        public async Task<ActionResult<SkillMetricDTO>> Pull(SetSkillMetricDTO order)
         {
             await _skillMetricService.CreateAsync(order);
             return Ok(order);

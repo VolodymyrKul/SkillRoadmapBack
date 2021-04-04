@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using SkillRoadmapBack.Core.Abstractions.IServices;
+using SkillRoadmapBack.Core.DTO.SpecializedDTO;
 using SkillRoadmapBack.Core.DTO.StandardDTO;
 using System;
 using System.Collections.Generic;
@@ -22,10 +23,8 @@ namespace SkillRoadmapBack.Web.Controllers
         [HttpGet]
         public async Task<ActionResult<List<TrainingDTO>>> Get()
         {
-
             var result = await _trainingService.GetAll();
             return Ok(result);
-
         }
 
         [HttpGet("{id}")]
@@ -54,6 +53,27 @@ namespace SkillRoadmapBack.Web.Controllers
         {
             await _trainingService.DeleteAsync(id);
             return NoContent();
+        }
+
+        [HttpGet("bycoach/{coach}")]
+        public async Task<ActionResult<List<SetTrainingDTO>>> GetByCoach(string coach)
+        {
+            var result = await _trainingService.GetByCoach(coach);
+            return Ok(result);
+        }
+
+        [HttpGet("bycateg/{categ}")]
+        public async Task<ActionResult<List<SetTrainingDTO>>> GetByCategory(string categ)
+        {
+            var result = await _trainingService.GetByCategory(categ);
+            return Ok(result);
+        }
+
+        [HttpGet("withcategs")]
+        public async Task<ActionResult<List<SetTrainingDTO>>> GetWithCategs()
+        {
+            var result = await _trainingService.GetAllWithCategs();
+            return Ok(result);
         }
     }
 }

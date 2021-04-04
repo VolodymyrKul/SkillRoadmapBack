@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using SkillRoadmapBack.Core.Abstractions;
 using SkillRoadmapBack.Core.Abstractions.IServices;
+using SkillRoadmapBack.Core.DTO.SpecializedDTO;
 using SkillRoadmapBack.Core.DTO.StandardDTO;
 using SkillRoadmapBack.Core.Models;
 using SkillRoadMapBack.Services.Base;
@@ -19,10 +20,11 @@ namespace SkillRoadMapBack.Services
 
         }
 
-        public virtual async Task CreateAsync(SkillMetricDTO entity)
+        public virtual async Task CreateAsync(SetSkillMetricDTO entity)
         {
             var value = new SkillMetric();
             _mapper.Map(entity, value);
+            value.IdUserSkill = (await _unitOfWork.UserSkillRepo.GetAllAsync()).FirstOrDefault(us => us.Skillname == entity.Skillname).Id;
             await _unitOfWork.SkillMetricRepo.AddAsync(value);
             await _unitOfWork.SaveChangesAsync();
         }

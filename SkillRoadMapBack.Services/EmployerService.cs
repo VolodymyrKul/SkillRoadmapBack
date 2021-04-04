@@ -122,5 +122,12 @@ namespace SkillRoadMapBack.Services
             _mapper.Map(user, dto);
             return dto;
         }
+
+        public virtual async Task<List<EmployerInfoDTO>> GetAllInfoAsync(string company)
+        {
+            var users = (await _unitOfWork.EmployerRepo.GetAllAsync()).Where(u => u.IdCompanyNavigation.Name == company);
+            List<EmployerInfoDTO> employerInfoDTOs = users.Select(user => _mapper.Map(user, new EmployerInfoDTO())).ToList();
+            return employerInfoDTOs;
+        }
     }
 }

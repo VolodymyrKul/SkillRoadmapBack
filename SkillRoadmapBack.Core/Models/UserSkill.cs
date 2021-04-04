@@ -13,6 +13,7 @@ namespace SkillRoadmapBack.Core.Models
             Notifications = new HashSet<Notification>();
             SkillUnits = new HashSet<SkillUnit>();
             Certificates = new HashSet<Certificate>();
+            SkillMetrics = new HashSet<SkillMetric>();
         }
         public int Id { get; set; }
         public string Skillname { get; set; }
@@ -27,5 +28,6 @@ namespace SkillRoadmapBack.Core.Models
         public virtual ICollection<Notification> Notifications { get; set; }
         public virtual ICollection<SkillUnit> SkillUnits { get; set; }
         public virtual ICollection<Certificate> Certificates { get; set; }
+        public virtual ICollection<SkillMetric> SkillMetrics { get; set; }
     }
 }

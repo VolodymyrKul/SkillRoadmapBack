@@ -27,7 +27,6 @@ namespace SkillRoadmapBack.Web.Extensions
             services.AddScoped<ISkillUnitService, SkillUnitService>();
             services.AddScoped<ICertificateService, CertificateService>();
             services.AddScoped<ICompanyService, CompanyService>();
-            services.AddScoped<IRecMemberService, RecMemberService>();
             services.AddScoped<IRecommendationService, RecommendationService>();
             services.AddScoped<ISkillMetricService, SkillMetricService>();
             services.AddScoped<IStatisticsService, StatisticsService>();

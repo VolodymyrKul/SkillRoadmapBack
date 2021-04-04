@@ -11,5 +11,6 @@ namespace SkillRoadmapBack.Core.Abstractions.IServices
     public interface IEmployeeService : IBaseService<EmployeeDTO, EmployeeDTO>
     {
         Task<EmployeeInfoDTO> GetInfoAsync(string email);
+        Task<List<EmployeeInfoDTO>> GetAllInfoAsync(string company);
     }
 }
