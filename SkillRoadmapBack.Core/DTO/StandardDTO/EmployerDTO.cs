@@ -13,5 +13,6 @@ namespace SkillRoadmapBack.Core.DTO.StandardDTO
         public string Password { get; set; }
         public string Role { get; set; }
         public int? IdCompany { get; set; }
+        public string CompanyName { get; set; }
     }
 }

@@ -13,5 +13,7 @@ namespace SkillRoadmapBack.Core.DTO.StandardDTO
         public long StudyingTime { get; set; }
         public double AverageSkillLevel { get; set; }
         public double BetterThanPercent { get; set; }
+        public string EmployeeEmail { get; set; }
+        public string EmployeeNSN { get; set; }
     }
 }

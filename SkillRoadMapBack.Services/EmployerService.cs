@@ -123,11 +123,106 @@ namespace SkillRoadMapBack.Services
             return dto;
         }
 
+        public virtual async Task<EmployerDTO> GetInfoFullAsync(string email)
+        {
+            var user = (await _unitOfWork.EmployerRepo.GetAllAsync()).FirstOrDefault(e => e.Email == email);
+            var dto = new EmployerDTO();
+            _mapper.Map(user, dto);
+            return dto;
+        }
+
         public virtual async Task<List<EmployerInfoDTO>> GetAllInfoAsync(string company)
         {
             var users = (await _unitOfWork.EmployerRepo.GetAllAsync()).Where(u => u.IdCompanyNavigation.Name == company);
             List<EmployerInfoDTO> employerInfoDTOs = users.Select(user => _mapper.Map(user, new EmployerInfoDTO())).ToList();
             return employerInfoDTOs;
+        }
+
+        public virtual async Task<List<EmployerDTO>> GetAllInfoAsync(int companyId)
+        {
+            var users = (await _unitOfWork.EmployerRepo.GetAllAsync()).Where(u => u.IdCompanyNavigation.Id == companyId);
+            List<EmployerDTO> employerInfoDTOs = users.Select(user => _mapper.Map(user, new EmployerDTO())).ToList();
+            return employerInfoDTOs;
+        }
+
+        public virtual async Task<bool> SetAsHr(string email)
+        {
+            var employee = (await _unitOfWork.EmployeeRepo.GetAllAsync()).FirstOrDefault(emp => emp.Email == email);
+            if(employee != null)
+            {
+                Employer employer = new Employer()
+                {
+                    Email = employee.Email,
+                    Firstname = employee.Firstname,
+                    Lastname = employee.Lastname,
+                    IdCompany = employee.IdCompany,
+                    Password = employee.Password,
+                    Role = "HR"
+                };
+                await _unitOfWork.EmployerRepo.AddAsync(employer);
+                return true;
+            }
+            return false;
+        }
+
+        public virtual async Task<bool> SetAsHr(int userId)
+        {
+            var employee = (await _unitOfWork.EmployeeRepo.GetAllAsync()).FirstOrDefault(emp => emp.Id == userId);
+            if (employee != null)
+            {
+                Employer employer = new Employer()
+                {
+                    Email = employee.Email,
+                    Firstname = employee.Firstname,
+                    Lastname = employee.Lastname,
+                    IdCompany = employee.IdCompany,
+                    Password = employee.Password,
+                    Role = "HR"
+                };
+                await _unitOfWork.EmployerRepo.AddAsync(employer);
+                return true;
+            }
+            return false;
+        }
+
+        public virtual async Task<bool> SetAsMentor(string email)
+        {
+            var employee = (await _unitOfWork.EmployeeRepo.GetAllAsync()).FirstOrDefault(emp => emp.Email == email);
+            if (employee != null)
+            {
+                Employer employer = new Employer()
+                {
+                    Email = employee.Email,
+                    Firstname = employee.Firstname,
+                    Lastname = employee.Lastname,
+                    IdCompany = employee.IdCompany,
+                    Password = employee.Password,
+                    Role = "Mentor"
+                };
+                await _unitOfWork.EmployerRepo.AddAsync(employer);
+                return true;
+            }
+            return false;
+        }
+
+        public virtual async Task<bool> SetAsMentor(int userId)
+        {
+            var employee = (await _unitOfWork.EmployeeRepo.GetAllAsync()).FirstOrDefault(emp => emp.Id == userId);
+            if (employee != null)
+            {
+                Employer employer = new Employer()
+                {
+                    Email = employee.Email,
+                    Firstname = employee.Firstname,
+                    Lastname = employee.Lastname,
+                    IdCompany = employee.IdCompany,
+                    Password = employee.Password,
+                    Role = "Mentor"
+                };
+                await _unitOfWork.EmployerRepo.AddAsync(employer);
+                return true;
+            }
+            return false;
         }
     }
 }

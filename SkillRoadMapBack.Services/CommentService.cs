@@ -78,5 +78,23 @@ namespace SkillRoadMapBack.Services
             List<GetCommentDTO> commentDTOs = comments.Select(comment => _mapper.Map(comment, new GetCommentDTO())).ToList();
             return commentDTOs;
         }
+
+        public virtual async Task<List<CommentDTO>> GetByEmployee(int userId)
+        {
+            Employee employee = (await _unitOfWork.EmployeeRepo.GetAllAsync()).FirstOrDefault(emp => emp.Id == userId);
+            var skills = (await _unitOfWork.UserSkillRepo.GetAllAsync()).Where(skill => skill.IdEmployee == employee.Id);
+            var allComments = await _unitOfWork.CommentRepo.GetAllAsync();
+            List<Comment> comments = new List<Comment>();
+            foreach (var skill in skills)
+            {
+                var comment = allComments.FirstOrDefault(com => com.IdUserSkill == skill.Id);
+                if (comment != null)
+                {
+                    comments.Add(comment);
+                }
+            }
+            List<CommentDTO> commentDTOs = comments.Select(comment => _mapper.Map(comment, new CommentDTO())).ToList();
+            return commentDTOs;
+        }
     }
 }

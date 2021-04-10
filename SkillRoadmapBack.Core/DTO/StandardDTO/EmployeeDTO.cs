@@ -16,5 +16,8 @@ namespace SkillRoadmapBack.Core.DTO.StandardDTO
         public double Experience { get; set; }
         public int IdMentor { get; set; }
         public int? IdCompany { get; set; }
+        public string MentorEmail { get; set; }
+        public string MentorNSN { get; set; }
+        public string CompanyName { get; set; }
     }
 }

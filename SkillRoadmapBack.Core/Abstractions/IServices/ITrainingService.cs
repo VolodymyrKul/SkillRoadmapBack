@@ -11,7 +11,9 @@ namespace SkillRoadmapBack.Core.Abstractions.IServices
     public interface ITrainingService : IBaseService<TrainingDTO, TrainingDTO>
     {
         Task<List<SetTrainingDTO>> GetByCoach(string coach);
-        Task<List<SetTrainingDTO>> GetByCategory(string category); 
+        Task<List<TrainingDTO>> GetByCoach(int coachId);
+        Task<List<SetTrainingDTO>> GetByCategory(string category);
+        Task<List<TrainingDTO>> GetByCategory(int categoryId);
         Task<List<SetTrainingDTO>> GetAllWithCategs();
     }
 }

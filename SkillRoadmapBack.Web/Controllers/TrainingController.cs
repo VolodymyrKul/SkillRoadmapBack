@@ -62,10 +62,24 @@ namespace SkillRoadmapBack.Web.Controllers
             return Ok(result);
         }
 
+        [HttpGet("bycoachid/{coachid}")]
+        public async Task<ActionResult<List<TrainingDTO>>> GetByCoach(int coachid)
+        {
+            var result = await _trainingService.GetByCoach(coachid);
+            return Ok(result);
+        }
+
         [HttpGet("bycateg/{categ}")]
         public async Task<ActionResult<List<SetTrainingDTO>>> GetByCategory(string categ)
         {
             var result = await _trainingService.GetByCategory(categ);
+            return Ok(result);
+        }
+
+        [HttpGet("bycategid/{categid}")]
+        public async Task<ActionResult<List<TrainingDTO>>> GetByCategory(int categid)
+        {
+            var result = await _trainingService.GetByCategory(categid);
             return Ok(result);
         }
 

@@ -11,5 +11,6 @@ namespace SkillRoadmapBack.Core.DTO.StandardDTO
         public int MetricValue { get; set; }
         public double MetricInfluence { get; set; }
         public int? IdUserSkill { get; set; }
+        public string SkillName { get; set; }
     }
 }

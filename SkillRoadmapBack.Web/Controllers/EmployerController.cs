@@ -78,10 +78,52 @@ namespace SkillRoadmapBack.Web.Controllers
             return Ok(result);
         }
 
+        [HttpGet("getinfofull/{email}")]
+        public async Task<ActionResult<EmployerDTO>> GetInfoFull(string email)
+        {
+            var result = await _employerService.GetInfoFullAsync(email);
+            return Ok(result);
+        }
+
         [HttpGet("getallinfo/{company}")]
-        public async Task<ActionResult<EmployerInfoDTO>> GetAllInfo(string company)
+        public async Task<ActionResult<List<EmployerInfoDTO>>> GetAllInfo(string company)
         {
             var result = await _employerService.GetAllInfoAsync(company);
+            return Ok(result);
+        }
+
+        [HttpGet("getallinfoid/{companyid}")]
+        public async Task<ActionResult<List<EmployerDTO>>> GetAllInfo(int companyid)
+        {
+            var result = await _employerService.GetAllInfoAsync(companyid);
+            return Ok(result);
+        }
+
+        [HttpGet("sethr/{email}")]
+        public async Task<ActionResult<bool>> SetHr(string email)
+        {
+            var result = await _employerService.SetAsHr(email);
+            return Ok(result);
+        }
+
+        [HttpGet("sethrid/{userid}")]
+        public async Task<ActionResult<bool>> SetHr(int userid)
+        {
+            var result = await _employerService.SetAsHr(userid);
+            return Ok(result);
+        }
+
+        [HttpGet("setmentor/{email}")]
+        public async Task<ActionResult<bool>> SetMentor(string email)
+        {
+            var result = await _employerService.SetAsMentor(email);
+            return Ok(result);
+        }
+
+        [HttpGet("setmentorid/{userid}")]
+        public async Task<ActionResult<bool>> SetMentor(int userid)
+        {
+            var result = await _employerService.SetAsMentor(userid);
             return Ok(result);
         }
     }

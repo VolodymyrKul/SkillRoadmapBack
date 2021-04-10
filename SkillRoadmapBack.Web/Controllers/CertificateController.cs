@@ -64,6 +64,13 @@ namespace SkillRoadmapBack.Web.Controllers
             return Ok(result);
         }
 
+        [HttpGet("byuserid/{recipientId}")]
+        public async Task<ActionResult<List<CertificateDTO>>> getByEmail(int recipientId)
+        {
+            var result = await _certificateService.GetByRecipient(recipientId);
+            return Ok(result);
+        }
+
         [HttpGet("bymentor/{email}")]
         public async Task<ActionResult<List<GetCertificateDTO>>> getByMentor(string email)
         {
@@ -71,8 +78,22 @@ namespace SkillRoadmapBack.Web.Controllers
             return Ok(result);
         }
 
+        [HttpGet("bymentorid/{mentorId}")]
+        public async Task<ActionResult<List<GetCertificateDTO>>> getByMentor(int mentorId)
+        {
+            var result = await _certificateService.GetByMentor(mentorId);
+            return Ok(result);
+        }
+
         [HttpPost("order")]
         public async Task<ActionResult<bool>> Order(OrderCertificateDTO order)
+        {
+            await _certificateService.OrderCertificate(order);
+            return Ok(order);
+        }
+
+        [HttpPost("ordernew")]
+        public async Task<ActionResult<bool>> Order(CertificateDTO order)
         {
             await _certificateService.OrderCertificate(order);
             return Ok(order);
@@ -85,8 +106,22 @@ namespace SkillRoadmapBack.Web.Controllers
             return Ok(result);
         }
 
+        [HttpPut("acceptnew")]
+        public async Task<ActionResult<bool>> Accept(CertificateDTO order)
+        {
+            var result = await _certificateService.AcceptCertificate(order);
+            return Ok(result);
+        }
+
         [HttpPost("decline")]
         public async Task<IActionResult> Decline(OrderCertificateDTO order)
+        {
+            await _certificateService.DeclineCertificate(order);
+            return NoContent();
+        }
+
+        [HttpPost("declinenew")]
+        public async Task<IActionResult> Decline(CertificateDTO order)
         {
             await _certificateService.DeclineCertificate(order);
             return NoContent();

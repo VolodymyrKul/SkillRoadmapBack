@@ -64,10 +64,24 @@ namespace SkillRoadmapBack.Web.Controllers
             return Ok(result);
         }
 
+        [HttpGet("byyearid/{userid}/{inyear}")]
+        public async Task<ActionResult<List<UserSkillDTO>>> GetByUserYear(int userid, int inyear)
+        {
+            var result = await _userSkillService.GetByYear(userid, inyear);
+            return Ok(result);
+        }
+
         [HttpGet("getyears/{inuser}")]
-        public async Task<ActionResult<List<GetUserSkillDTO>>> GetYears(string inuser)
+        public async Task<ActionResult<List<int>>> GetYears(string inuser)
         {
             var result = await _userSkillService.GetYears(inuser);
+            return Ok(result);
+        }
+
+        [HttpGet("getyearsid/{userid}")]
+        public async Task<ActionResult<List<int>>> GetYears(int userid)
+        {
+            var result = await _userSkillService.GetYears(userid);
             return Ok(result);
         }
 
@@ -75,6 +89,13 @@ namespace SkillRoadmapBack.Web.Controllers
         public async Task<ActionResult<List<GetUserSkillDTO>>> GetOnly(string inuser)
         {
             var result = await _userSkillService.GetOnlyUSkills(inuser);
+            return Ok(result);
+        }
+
+        [HttpGet("getonlyid/{userid}")]
+        public async Task<ActionResult<List<GetUserSkillDTO>>> GetOnly(int userid)
+        {
+            var result = await _userSkillService.GetOnlyUSkills(userid);
             return Ok(result);
         }
     }

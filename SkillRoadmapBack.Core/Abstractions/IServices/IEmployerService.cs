@@ -13,6 +13,12 @@ namespace SkillRoadmapBack.Core.Abstractions.IServices
         Task<LoginInfo> LoginAsync(SignInDTO entity);
         Task<bool> RegisterAsync(SignInDTO entity);
         Task<EmployerInfoDTO> GetInfoAsync(string email);
+        Task<EmployerDTO> GetInfoFullAsync(string email);
         Task<List<EmployerInfoDTO>> GetAllInfoAsync(string company);
+        Task<List<EmployerDTO>> GetAllInfoAsync(int companyId);
+        Task<bool> SetAsHr(string email);
+        Task<bool> SetAsHr(int userId);
+        Task<bool> SetAsMentor(string email);
+        Task<bool> SetAsMentor(int userId);
     }
 }

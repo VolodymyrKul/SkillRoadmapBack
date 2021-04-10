@@ -11,6 +11,8 @@ namespace SkillRoadmapBack.Core.Abstractions.IServices
     public interface INotificationService : IBaseService<NotificationDTO, NotificationDTO>
     {
         Task<List<GetNotificationDTO>> GetByEmployee(string email);
+        Task<List<NotificationDTO>> GetByEmployee(int userId);
         Task<List<GetNotificationDTO>> GetByEmployer(string email);
+        Task<List<NotificationDTO>> GetByEmployer(int userId);
     }
 }

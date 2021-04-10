@@ -62,5 +62,12 @@ namespace SkillRoadmapBack.Web.Controllers
             var result = await _statisticsService.UpdateStats(emp, year);
             return Ok(result);
         }
+
+        [HttpGet("uptstatid/{empid}/{year}")]
+        public async Task<ActionResult<StatisticsDTO>> getByEmpAndYear(int empid, int year)
+        {
+            var result = await _statisticsService.UpdateStats(empid, year);
+            return Ok(result);
+        }
     }
 }

@@ -64,10 +64,38 @@ namespace SkillRoadmapBack.Web.Controllers
             return Ok(result);
         }
 
+        [HttpGet("getinfofull/{email}")]
+        public async Task<ActionResult<EmployeeDTO>> GetInfoFull(string email)
+        {
+            var result = await _employeeService.GetInfoFullAsync(email);
+            return Ok(result);
+        }
+
         [HttpGet("getallinfo/{company}")]
         public async Task<ActionResult<EmployeeInfoDTO>> GetAllInfo(string company)
         {
             var result = await _employeeService.GetAllInfoAsync(company);
+            return Ok(result);
+        }
+
+        [HttpGet("getallinfoid/{companyid}")]
+        public async Task<ActionResult<EmployeeDTO>> GetAllInfo(int companyid)
+        {
+            var result = await _employeeService.GetAllInfoAsync(companyid);
+            return Ok(result);
+        }
+
+        [HttpGet("getbytraining/{training}")]
+        public async Task<ActionResult<EmployeeDTO>> GetByTrainingInfo(string training)
+        {
+            var result = await _employeeService.GetAllByTrainingAsync(training);
+            return Ok(result);
+        }
+
+        [HttpGet("getbytrainingid/{trainingid}")]
+        public async Task<ActionResult<EmployeeDTO>> GetByTrainingInfo(int trainingid)
+        {
+            var result = await _employeeService.GetAllByTrainingAsync(trainingid);
             return Ok(result);
         }
     }

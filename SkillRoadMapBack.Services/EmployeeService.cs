@@ -69,6 +69,14 @@ namespace SkillRoadMapBack.Services
             return dto;
         }
 
+        public virtual async Task<EmployeeDTO> GetInfoFullAsync(string email)
+        {
+            var user = (await _unitOfWork.EmployeeRepo.GetAllAsync()).FirstOrDefault(e => e.Email == email);
+            var dto = new EmployeeDTO();
+            _mapper.Map(user, dto);
+            return dto;
+        }
+
         public virtual async Task<List<EmployeeInfoDTO>> GetAllInfoAsync(string company)
         {
             var users = (await _unitOfWork.EmployeeRepo.GetAllAsync()).Where(u => u.IdCompanyNavigation.Name == company);
@@ -76,10 +84,24 @@ namespace SkillRoadMapBack.Services
             return employeeInfoDTOs;
         }
 
+        public virtual async Task<List<EmployeeDTO>> GetAllInfoAsync(int companyId)
+        {
+            var users = (await _unitOfWork.EmployeeRepo.GetAllAsync()).Where(u => u.IdCompanyNavigation.Id == companyId);
+            List<EmployeeDTO> employeeInfoDTOs = users.Select(user => _mapper.Map(user, new EmployeeDTO())).ToList();
+            return employeeInfoDTOs;
+        }
+
         public virtual async Task<List<EmployeeInfoDTO>> GetAllByTrainingAsync(string training)
         {
             var trainingMembers = (await _unitOfWork.TrainingMemberRepo.GetAllAsync()).Where(tr => tr.IdTrainingNavigation.TrainingTitle == training);
             List<EmployeeInfoDTO> employeeInfoDTOs = trainingMembers.Select(tr => _mapper.Map(tr.IdMemberNavigation, new EmployeeInfoDTO())).ToList();
+            return employeeInfoDTOs;
+        }
+
+        public virtual async Task<List<EmployeeDTO>> GetAllByTrainingAsync(int trainingId)
+        {
+            var trainingMembers = (await _unitOfWork.TrainingMemberRepo.GetAllAsync()).Where(tr => tr.IdTrainingNavigation.Id == trainingId);
+            List<EmployeeDTO> employeeInfoDTOs = trainingMembers.Select(tr => _mapper.Map(tr.IdMemberNavigation, new EmployeeDTO())).ToList();
             return employeeInfoDTOs;
         }
     }

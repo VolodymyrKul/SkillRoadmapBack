@@ -63,5 +63,12 @@ namespace SkillRoadmapBack.Web.Controllers
             var result = await _commentService.GetBySkill(inemail);
             return Ok(result);
         }
+
+        [HttpGet("byskillid/{userid}")]
+        public async Task<ActionResult<List<CommentDTO>>> GetByUserSkill(int userid)
+        {
+            var result = await _commentService.GetByEmployee(userid);
+            return Ok(result);
+        }
     }
 }

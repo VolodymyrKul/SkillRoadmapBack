@@ -12,20 +12,79 @@ namespace SkillRoadmapBack.Core.Mapping
     {
         public MappingProfile()
         {
-            CreateMap<Comment, CommentDTO>().ReverseMap();
-            CreateMap<Notification, NotificationDTO>().ReverseMap();
-            CreateMap<Employee, EmployeeDTO>().ReverseMap();
-            CreateMap<Employer, EmployerDTO>().ReverseMap();
-            CreateMap<UserSkill, UserSkillDTO>().ReverseMap();
+            CreateMap<Comment, CommentDTO>()
+                .ForMember(dest => dest.SkillName, opts => opts.MapFrom(item => item.IdUserSkillNavigation.Skillname))
+                .ForMember(dest => dest.EmployerEmail, opts => opts.MapFrom(item => item.IdEmployerNavigation.Email))
+                .ForMember(dest => dest.EmployerNSN, opts => opts.MapFrom(item => item.IdEmployerNavigation.Firstname + " " + item.IdEmployerNavigation.Lastname));
+            CreateMap<CommentDTO, Comment>();
+
+
+            CreateMap<Notification, NotificationDTO>()
+                .ForMember(dest => dest.EmployeeEmail, opts => opts.MapFrom(item => item.IdEmployeeNavigation.Email))
+                .ForMember(dest => dest.EmployeeNSN, opts => opts.MapFrom(item => item.IdEmployeeNavigation.Firstname + " " + item.IdEmployeeNavigation.Lastname))
+                .ForMember(dest => dest.EmployerEmail, opts => opts.MapFrom(item => item.IdEmployerNavigation.Email))
+                .ForMember(dest => dest.EmployerNSN, opts => opts.MapFrom(item => item.IdEmployerNavigation.Firstname + " " + item.IdEmployerNavigation.Lastname))
+                .ForMember(dest => dest.SkillName, opts => opts.MapFrom(item => item.IdUserSkillNavigation.Skillname));
+            CreateMap<NotificationDTO, Notification>();
+
+            CreateMap<Employee, EmployeeDTO>()
+                .ForMember(dest => dest.MentorEmail, opts => opts.MapFrom(item => item.IdEmployerNavigation.Email))
+                .ForMember(dest => dest.MentorNSN, opts => opts.MapFrom(item => item.IdEmployerNavigation.Firstname + " " + item.IdEmployerNavigation.Lastname))
+                .ForMember(dest => dest.CompanyName, opts => opts.MapFrom(item => item.IdCompanyNavigation.Name));
+            CreateMap<EmployeeDTO, Employee>();
+
+            CreateMap<Employer, EmployerDTO>()
+                .ForMember(dest => dest.CompanyName, opts => opts.MapFrom(item => item.IdCompanyNavigation.Name));
+            CreateMap<EmployerDTO, Employer>();
+
+            CreateMap<UserSkill, UserSkillDTO>()
+                .ForMember(dest => dest.EmployeeEmail, opts => opts.MapFrom(item => item.IdEmployeeNavigation.Email))
+                .ForMember(dest => dest.EmployeeNSN, opts => opts.MapFrom(item => item.IdEmployeeNavigation.Firstname + " " + item.IdEmployeeNavigation.Lastname))
+                .ForMember(dest => dest.CategoryTitle, opts => opts.MapFrom(item => item.IdCategoryNavigation.Title));
+            CreateMap<UserSkillDTO, UserSkill>();
+
             CreateMap<Category, CategoryDTO>().ReverseMap();
-            CreateMap<SkillUnit, SkillUnitDTO>().ReverseMap();
-            CreateMap<Certificate, CertificateDTO>().ReverseMap();
+
+            CreateMap<SkillUnit, SkillUnitDTO>()
+                .ForMember(dest => dest.SkillName, opts => opts.MapFrom(item => item.IdUserSkillNavigation.Skillname));
+            CreateMap<SkillUnitDTO, SkillUnit>();
+
+            CreateMap<Certificate, CertificateDTO>()
+                .ForMember(dest => dest.PublisherEmail, opts => opts.MapFrom(item => item.IdPublisherNavigation.Email))
+                .ForMember(dest => dest.PublisherNSN, opts => opts.MapFrom(item => item.IdPublisherNavigation.Firstname + " " + item.IdPublisherNavigation.Lastname))
+                .ForMember(dest => dest.RecipientEmail, opts => opts.MapFrom(item => item.IdRecipientNavigation.Email))
+                .ForMember(dest => dest.RecipientNSN, opts => opts.MapFrom(item => item.IdRecipientNavigation.Firstname + " " + item.IdRecipientNavigation.Lastname))
+                .ForMember(dest => dest.SkillName, opts => opts.MapFrom(item => item.IdUserSkillNavigation.Skillname));
+            CreateMap<CertificateDTO, Certificate>();
+
             CreateMap<Company, CompanyDTO>().ReverseMap();
-            CreateMap<Recommendation, RecommendationDTO>().ReverseMap();
-            CreateMap<SkillMetric, SkillMetricDTO>().ReverseMap();
-            CreateMap<Statistics, StatisticsDTO>().ReverseMap();
-            CreateMap<Training, TrainingDTO>().ReverseMap();
-            CreateMap<TrainingMember, TrainingMemberDTO>().ReverseMap();
+
+            CreateMap<Recommendation, RecommendationDTO>()
+                .ForMember(dest => dest.EmployeeEmail, opts => opts.MapFrom(item => item.IdEmployeeNavigation.Email))
+                .ForMember(dest => dest.EmployeeNSN, opts => opts.MapFrom(item => item.IdEmployeeNavigation.Firstname + " " + item.IdEmployeeNavigation.Lastname))
+                .ForMember(dest => dest.TrainingTitle, opts => opts.MapFrom(item => item.IdTrainingNavigation.TrainingTitle));
+            CreateMap<RecommendationDTO, Recommendation>();
+
+            CreateMap<SkillMetric, SkillMetricDTO>()
+                .ForMember(dest => dest.SkillName, opts => opts.MapFrom(item => item.IdUserSkillNavigation.Skillname));
+            CreateMap<SkillMetricDTO, SkillMetricDTO>();
+
+            CreateMap<Statistics, StatisticsDTO>()
+                .ForMember(dest => dest.EmployeeEmail, opts => opts.MapFrom(item => item.IdEmployeeNavigation.Email))
+                .ForMember(dest => dest.EmployeeNSN, opts => opts.MapFrom(item => item.IdEmployeeNavigation.Firstname + " " + item.IdEmployeeNavigation.Lastname));
+            CreateMap<StatisticsDTO, Statistics>();
+
+            CreateMap<Training, TrainingDTO>()
+                .ForMember(dest => dest.CoachEmail, opts => opts.MapFrom(item => item.IdCoachNavigation.Email))
+                .ForMember(dest => dest.CoachNSN, opts => opts.MapFrom(item => item.IdCoachNavigation.Firstname + " " + item.IdCoachNavigation.Lastname))
+                .ForMember(dest => dest.CategoryTitle, opts => opts.MapFrom(item => item.IdCategoryNavigation.Title));
+            CreateMap<TrainingDTO, Training>();
+
+            CreateMap<TrainingMember, TrainingMemberDTO>()
+                .ForMember(dest => dest.MemberEmail, opts => opts.MapFrom(item => item.IdMemberNavigation.Email))
+                .ForMember(dest => dest.MemberNSN, opts => opts.MapFrom(item => item.IdMemberNavigation.Firstname + " " + item.IdMemberNavigation.Lastname))
+                .ForMember(dest => dest.TrainingTitle, opts => opts.MapFrom(item => item.IdTrainingNavigation.TrainingTitle));
+            CreateMap<TrainingMemberDTO, TrainingMember>();
 
             CreateMap<UserSkill, GetUserSkillDTO>()
                 .ForMember(dest => dest.CategoryName, opts => opts.MapFrom(item => item.IdCategoryNavigation.Title))

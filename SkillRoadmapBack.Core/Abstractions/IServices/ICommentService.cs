@@ -11,5 +11,6 @@ namespace SkillRoadmapBack.Core.Abstractions.IServices
     public interface ICommentService : IBaseService<CommentDTO, CommentDTO>
     {
         Task<List<GetCommentDTO>> GetBySkill(string user);
+        Task<List<CommentDTO>> GetByEmployee(int userId);
     }
 }

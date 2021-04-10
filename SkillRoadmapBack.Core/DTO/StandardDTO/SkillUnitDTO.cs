@@ -12,5 +12,6 @@ namespace SkillRoadmapBack.Core.DTO.StandardDTO
         public DateTime EndDate { get; set; }
         public int UnitLevel { get; set; }
         public int IdUserSkill { get; set; }
+        public string SkillName { get; set; }
     }
 }

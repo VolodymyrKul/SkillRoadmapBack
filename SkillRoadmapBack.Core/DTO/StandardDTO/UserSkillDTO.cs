@@ -13,5 +13,9 @@ namespace SkillRoadmapBack.Core.DTO.StandardDTO
         public int IdCategory { get; set; }
         public int SkillLevel { get; set; }
         public int IdEmployee { get; set; }
+        public string CategoryTitle { get; set; }
+        public string EmployeeEmail { get; set; }
+        public string EmployeeNSN { get; set; }
+        public bool IsUserSkill { get; set; }
     }
 }

@@ -10,5 +10,6 @@ namespace SkillRoadmapBack.Core.Abstractions.IServices
     public interface IStatisticsService : IBaseService<StatisticsDTO, StatisticsDTO>
     {
         Task<StatisticsDTO> UpdateStats(string email, int year);
+        Task<StatisticsDTO> UpdateStats(int userId, int year);
     }
 }

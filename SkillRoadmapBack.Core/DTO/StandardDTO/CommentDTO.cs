@@ -10,5 +10,8 @@ namespace SkillRoadmapBack.Core.DTO.StandardDTO
         public string CommentText { get; set; }
         public int IdEmployer { get; set; }
         public int IdUserSkill { get; set; }
+        public string EmployerEmail { get; set; }
+        public string EmployerNSN { get; set; }
+        public string SkillName { get; set; }
     }
 }

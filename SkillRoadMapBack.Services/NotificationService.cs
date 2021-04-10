@@ -67,10 +67,25 @@ namespace SkillRoadMapBack.Services
             List<GetNotificationDTO> notificationDTOs = notifications.Select(notification => _mapper.Map(notification, new GetNotificationDTO())).ToList();
             return notificationDTOs;
         }
+
+        public virtual async Task<List<NotificationDTO>> GetByEmployee(int userId)
+        {
+            var notifications = (await _unitOfWork.NotificationRepo.GetAllAsync()).Where(n => n.IdEmployeeNavigation.Id == userId && n.IsRead == false);
+            List<NotificationDTO> notificationDTOs = notifications.Select(notification => _mapper.Map(notification, new NotificationDTO())).ToList();
+            return notificationDTOs;
+        }
+
         public virtual async Task<List<GetNotificationDTO>> GetByEmployer(string email)
         {
             var notifications = (await _unitOfWork.NotificationRepo.GetAllAsync()).Where(n => n.IdEmployerNavigation.Email == email && n.IsRead == false);
             List<GetNotificationDTO> notificationDTOs = notifications.Select(notification => _mapper.Map(notification, new GetNotificationDTO())).ToList();
+            return notificationDTOs;
+        }
+
+        public virtual async Task<List<NotificationDTO>> GetByEmployer(int userId)
+        {
+            var notifications = (await _unitOfWork.NotificationRepo.GetAllAsync()).Where(n => n.IdEmployerNavigation.Id == userId && n.IsRead == false);
+            List<NotificationDTO> notificationDTOs = notifications.Select(notification => _mapper.Map(notification, new NotificationDTO())).ToList();
             return notificationDTOs;
         }
     }

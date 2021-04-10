@@ -60,19 +60,29 @@ namespace SkillRoadmapBack.Web.Controllers
         [HttpGet("byemployee/{email}")]
         public async Task<ActionResult<List<GetNotificationDTO>>> GetByEmployee(string email)
         {
-
             var result = await _notificationService.GetByEmployee(email);
             return Ok(result);
+        }
 
+        [HttpGet("byemployeeid/{userid}")]
+        public async Task<ActionResult<List<GetNotificationDTO>>> GetByEmployee(int userid)
+        {
+            var result = await _notificationService.GetByEmployee(userid);
+            return Ok(result);
         }
 
         [HttpGet("byemployer/{email}")]
         public async Task<ActionResult<List<GetNotificationDTO>>> GetByEmployer(string email)
         {
-
             var result = await _notificationService.GetByEmployer(email);
             return Ok(result);
+        }
 
+        [HttpGet("byemployerid/{userid}")]
+        public async Task<ActionResult<List<GetNotificationDTO>>> GetByEmployer(int userid)
+        {
+            var result = await _notificationService.GetByEmployer(userid);
+            return Ok(result);
         }
     }
 }

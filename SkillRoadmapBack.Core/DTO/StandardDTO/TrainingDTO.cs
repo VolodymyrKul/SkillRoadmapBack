@@ -15,5 +15,8 @@ namespace SkillRoadmapBack.Core.DTO.StandardDTO
         public double Payment { get; set; }
         public int? IdCoach { get; set; }
         public int? IdCategory { get; set; }
+        public string CoachEmail { get; set; }
+        public string CoachNSN { get; set; }
+        public string CategoryTitle { get; set; }
     }
 }
