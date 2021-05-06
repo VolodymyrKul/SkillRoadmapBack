@@ -55,5 +55,19 @@ namespace SkillRoadmapBack.Web.Controllers
             await _trainingmemberService.DeleteAsync(id);
             return NoContent();
         }
+
+        [HttpGet("training/{id}")]
+        public async Task<ActionResult<List<TrainingMemberDTO>>> getByTrainingId(int id)
+        {
+            var result = await _trainingmemberService.GetTrainingIdAsync(id);
+            return Ok(result);
+        }
+
+        [HttpGet("member/{id}")]
+        public async Task<ActionResult<List<TrainingMemberDTO>>> getByMemberId(int id)
+        {
+            var result = await _trainingmemberService.GetMemberIdAsync(id);
+            return Ok(result);
+        }
     }
 }

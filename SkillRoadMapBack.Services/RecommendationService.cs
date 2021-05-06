@@ -43,7 +43,7 @@ namespace SkillRoadMapBack.Services
 
         public virtual async Task<RecommendationDTO> GetIdAsync(int id)
         {
-            var recommendation = await _unitOfWork.CategoryRepo.GetByIdAsync(id);
+            var recommendation = await _unitOfWork.RecommendationRepo.GetByIdAsync(id);
             if (recommendation == null)
                 throw new Exception("Such category not found");
             var dto = new RecommendationDTO();
@@ -58,6 +58,20 @@ namespace SkillRoadMapBack.Services
             await _unitOfWork.RecommendationRepo.UpdateAsync(value);
             await _unitOfWork.SaveChangesAsync();
             return entity;
+        }
+
+        public virtual async Task<List<RecommendationDTO>> GetEmployeeIdAsync(int id)
+        {
+            var recommendations = (await _unitOfWork.RecommendationRepo.GetAllAsync()).Where(r => r.IdEmployee == id);
+            List<RecommendationDTO> recommendationDTOs = recommendations.Select(recommendation => _mapper.Map(recommendation, new RecommendationDTO())).ToList();
+            return recommendationDTOs;
+        }
+
+        public virtual async Task<List<RecommendationDTO>> GetTrainingIdAsync(int id)
+        {
+            var recommendations = (await _unitOfWork.RecommendationRepo.GetAllAsync()).Where(r => r.IdTraining == id);
+            List<RecommendationDTO> recommendationDTOs = recommendations.Select(recommendation => _mapper.Map(recommendation, new RecommendationDTO())).ToList();
+            return recommendationDTOs;
         }
     }
 }

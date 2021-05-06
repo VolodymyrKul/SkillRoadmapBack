@@ -32,6 +32,9 @@ namespace SkillRoadmapBack.Web.Extensions
             services.AddScoped<IStatisticsService, StatisticsService>();
             services.AddScoped<ITrainingService, TrainingService>();
             services.AddScoped<ITrainingMemberService, TrainingMemberService>();
+            services.AddScoped<ISkillTemplateService, SkillTemplateService>();
+            services.AddScoped<IRequirementService, RequirementService>();
+            services.AddScoped<IComparationService, ComparationService>();
         }
 
         public static void ConfigureSwagger(this IServiceCollection services)

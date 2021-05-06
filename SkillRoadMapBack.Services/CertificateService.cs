@@ -1,4 +1,7 @@
 ﻿using AutoMapper;
+using PdfSharp.Drawing;
+using PdfSharp.Drawing.Layout;
+using PdfSharp.Pdf;
 using SkillRoadmapBack.Core.Abstractions;
 using SkillRoadmapBack.Core.Abstractions.IServices;
 using SkillRoadmapBack.Core.DTO.SpecializedDTO;
@@ -7,6 +10,8 @@ using SkillRoadmapBack.Core.Models;
 using SkillRoadMapBack.Services.Base;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -219,6 +224,108 @@ namespace SkillRoadMapBack.Services
                 && c.IdUserSkillNavigation.Skillname == orderCertificateDTO.SkillName);
             await _unitOfWork.CertificateRepo.DeleteAsync(certificate);
             await _unitOfWork.SaveChangesAsync();
+        }
+
+        public virtual async Task PrintCertificate(CertificateDTO orderCertificateDTO)
+        {
+            var recip = await _unitOfWork.EmployeeRepo.GetByIdAsync((int)orderCertificateDTO.IdRecipient);
+            var publish = await _unitOfWork.EmployerRepo.GetByIdAsync((int)orderCertificateDTO.IdPublisher);
+            var findMentor = await _unitOfWork.EmployerRepo.GetByIdAsync((int)recip.IdMentor);
+            string cerTitleLine = "CERTIFICATE OF COMPLETION";
+            string underTitleLine = "THIS IS AWARDED TO";
+            string FirstName = recip.Firstname.ToUpper();
+            string LastName = recip.Lastname.ToUpper();
+            string skillTitle = orderCertificateDTO.SkillName;
+            string skillLevel = orderCertificateDTO.SkillLevel.ToString();
+            string[] cerText = orderCertificateDTO.CertificateTitle.Split(' ');
+            
+            string certificateText = cerText[0];
+            for(int i = 1;i < cerText.Length; i++)
+            {
+                certificateText += " "+cerText[i];
+                if (i % 10 == 0)
+                {
+                    certificateText += "\n";
+                }
+            }
+            string signline = "     ________________________________________";
+            string whogivementor = "";
+            string whogivehr = "";
+            string seal = "_______________Approval seal_______________     ";
+            string mentor = $"Mentor: {findMentor.Firstname} {findMentor.Lastname}";
+            string hrspec = $"HR Manager: {publish.Firstname} {publish.Lastname}";
+            for (int i = 0; i < 15; i++)
+            {
+                whogivementor += " ";
+            }
+            whogivementor += mentor;
+
+            for (int i = 0; i < 15; i++)
+            {
+                whogivehr += " ";
+            }
+            whogivehr += hrspec;
+
+            var pdf = new PdfDocument();
+            var pdfPage = pdf.Pages.Add();
+            pdfPage.Orientation = PdfSharp.PageOrientation.Landscape;
+            var graph = XGraphics.FromPdfPage(pdfPage);
+            var titleFont = new XFont("Times New Roman", 32, XFontStyle.Bold);
+            var titleLine1Font = new XFont("Times New Roman", 16, XFontStyle.Bold);
+            var personFont = new XFont("Times New Roman", 56, XFontStyle.Regular);
+            var font = new XFont("Consolas", 8, XFontStyle.Regular);
+            var tf = new XTextFormatter(graph);
+            var yPoint = 60;
+
+            tf.Alignment = XParagraphAlignment.Center;
+            tf.DrawString(cerTitleLine, titleFont, XBrushes.RoyalBlue, new XRect(32, yPoint, pdfPage.Width, pdfPage.Height),
+                XStringFormats.TopLeft);
+            yPoint += 64;
+            tf.DrawString(underTitleLine, titleLine1Font, XBrushes.Black, new XRect(16, yPoint, pdfPage.Width, pdfPage.Height),
+                    XStringFormats.TopLeft);
+            yPoint += 16;
+            tf.DrawString(FirstName, personFont, XBrushes.DarkBlue, new XRect(16, yPoint, pdfPage.Width, pdfPage.Height),
+                    XStringFormats.TopLeft);
+            yPoint += 56;
+            tf.DrawString(LastName, personFont, XBrushes.DarkBlue, new XRect(16, yPoint, pdfPage.Width, pdfPage.Height),
+                    XStringFormats.TopLeft);
+            yPoint += 80;
+            tf.DrawString($"Skill: {skillTitle}", titleLine1Font, XBrushes.Black, new XRect(16, yPoint, pdfPage.Width, pdfPage.Height),
+                    XStringFormats.TopLeft);
+            yPoint += 16;
+            tf.DrawString($"Level: {skillLevel}", titleLine1Font, XBrushes.Black, new XRect(16, yPoint, pdfPage.Width, pdfPage.Height),
+                    XStringFormats.TopLeft);
+            yPoint += 32;
+            tf.DrawString(certificateText, titleLine1Font, XBrushes.Black, new XRect(16, yPoint, pdfPage.Width, pdfPage.Height),
+                    XStringFormats.TopLeft);
+            yPoint += 128;
+
+            tf.Alignment = XParagraphAlignment.Left;
+            tf.DrawString(signline, titleLine1Font, XBrushes.Black, new XRect(16, yPoint, pdfPage.Width, pdfPage.Height),
+                    XStringFormats.TopLeft);
+            yPoint += 24;
+            tf.DrawString(whogivementor, titleLine1Font, XBrushes.RoyalBlue, new XRect(16, yPoint, pdfPage.Width, pdfPage.Height),
+                    XStringFormats.TopLeft);
+            yPoint += 24;
+
+            tf.DrawString(signline, titleLine1Font, XBrushes.Black, new XRect(16, yPoint, pdfPage.Width, pdfPage.Height),
+                    XStringFormats.TopLeft);
+            yPoint += 24;
+            tf.DrawString(whogivehr, titleLine1Font, XBrushes.RoyalBlue, new XRect(16, yPoint, pdfPage.Width, pdfPage.Height),
+                    XStringFormats.TopLeft);
+
+            tf.Alignment = XParagraphAlignment.Right;
+            tf.DrawString(seal, titleLine1Font, XBrushes.Black, new XRect(0, yPoint, pdfPage.Width, pdfPage.Height),
+                    XStringFormats.TopLeft);
+            yPoint += 24;
+            
+            tf.DrawString($"{orderCertificateDTO.DateOfIssue?.ToString("dd/MM/yyyy")}-{orderCertificateDTO.ExpiryDate?.ToString("dd/MM/yyyy")}     ", titleLine1Font, XBrushes.RoyalBlue, new XRect(0, yPoint, pdfPage.Width, pdfPage.Height),
+                    XStringFormats.TopLeft);
+
+            var pdfFilename = $"Certificate{orderCertificateDTO.Id}.pdf";
+            pdf.Save(pdfFilename);
+            Process.Start("C:\\Program Files (x86)\\Google\\Chrome\\Application\\chrome.exe",
+                Path.GetFullPath(pdfFilename));
         }
     }
 }

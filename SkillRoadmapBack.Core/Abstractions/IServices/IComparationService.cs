@@ -1,5 +1,4 @@
 ﻿using SkillRoadmapBack.Core.Abstractions.IServices.Base;
-using SkillRoadmapBack.Core.DTO.SpecializedDTO;
 using SkillRoadmapBack.Core.DTO.StandardDTO;
 using System;
 using System.Collections.Generic;
@@ -8,8 +7,9 @@ using System.Threading.Tasks;
 
 namespace SkillRoadmapBack.Core.Abstractions.IServices
 {
-    public interface ISkillUnitService : IBaseService<SkillUnitDTO, SetSkillUnitDTO>
+    public interface IComparationService : IBaseService<ComparationDTO, ComparationDTO>
     {
-        Task<List<SkillUnitDTO>> GetUserSkillIdAsync(int id);
+        Task<List<ComparationDTO>> GetRequirementIdAsync(int id);
+        Task<List<ComparationDTO>> GetEmployeeIdAsync(int id);
     }
 }

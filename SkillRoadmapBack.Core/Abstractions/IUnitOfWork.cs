@@ -22,6 +22,9 @@ namespace SkillRoadmapBack.Core.Abstractions
         IStatisticsRepo StatisticsRepo { get; }
         ITrainingRepo TrainingRepo { get; }
         ITrainingMemberRepo TrainingMemberRepo { get; }
+        ISkillTemplateRepo SkillTemplateRepo { get; }
+        IRequirementRepo RequirementRepo { get; }
+        IComparationRepo ComparationRepo { get; }
         Task SaveChangesAsync();
     }
 }

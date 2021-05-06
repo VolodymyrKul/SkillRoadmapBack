@@ -55,5 +55,19 @@ namespace SkillRoadmapBack.Web.Controllers
             await _recommendationService.DeleteAsync(id);
             return NoContent();
         }
+
+        [HttpGet("employee/{id}")]
+        public async Task<ActionResult<RecommendationDTO>> getByEmployeeId(int id)
+        {
+            var result = await _recommendationService.GetEmployeeIdAsync(id);
+            return Ok(result);
+        }
+
+        [HttpGet("training/{id}")]
+        public async Task<ActionResult<RecommendationDTO>> getByTrainingId(int id)
+        {
+            var result = await _recommendationService.GetTrainingIdAsync(id);
+            return Ok(result);
+        }
     }
 }

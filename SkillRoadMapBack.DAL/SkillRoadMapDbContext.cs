@@ -30,6 +30,10 @@ namespace SkillRoadMapBack.DAL
         public virtual DbSet<Statistics> Statisticses { get; set; }
         public virtual DbSet<Training> Trainings { get; set; }
         public virtual DbSet<TrainingMember> TrainingMembers { get; set; }
+        public virtual DbSet<SkillTemplate> SkillTemplates { get; set; }
+        public virtual DbSet<Requirement> Requirements { get; set; }
+        public virtual DbSet<Comparation> Comparations { get; set; }
+        public CustomDataGenerator customDataGenerator = new CustomDataGenerator();
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -40,6 +44,145 @@ namespace SkillRoadMapBack.DAL
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
+
+            int EmployeeCount = 50;
+            int MentorsCount = 20;
+            int CompanyCount = 10;
+            int HrCount = 20;
+            int UserCountForSkill = 5;
+            int TemplateCount = 20;
+            //Handwriting
+            modelBuilder.Entity<Company>(entity => {
+                entity.HasKey(e => e.Id)
+                .HasName("XPKCompany");
+
+                entity.Property(e => e.Id)
+                .HasColumnName("Id_Company");
+
+                entity.Property(e => e.Name)
+                .HasMaxLength(50)
+                .IsUnicode(false);
+
+                entity.Property(e => e.Description)
+                .HasMaxLength(500)
+                .IsUnicode(false);
+
+                entity.Property(e => e.Specialization)
+                .HasMaxLength(100)
+                .IsUnicode(false);
+
+                entity.Property(e => e.Address)
+                .HasMaxLength(100)
+                .IsUnicode(false);
+
+                entity.Property(e => e.ContactPhone)
+                .HasMaxLength(20)
+                .IsUnicode(false);
+
+                entity.HasData(
+                    new Company
+                    {
+                        Id = 1,
+                        Name = "InterLogic",
+                        EmployeesCount = 300,
+                        Description = "InterLogic is one of the nice Lviv companies that make software. There are many other companies, but, as my uncle says, some are not so nice, some do not make software at all, and some are a little cool, but do not do anything (at least they were good) until a month after the deadline.",
+                        Specialization = "Software",
+                        Address = "Lviv, Grabovskogo 11",
+                        ContactPhone = "032-297-12-34"
+                    },
+                    new Company
+                    {
+                        Id = 2,
+                        Name = "SoftServe",
+                        EmployeesCount = 700,
+                        Description = "SoftServe is one of the nice Lviv companies that make software. There are many other companies, but, as my uncle says, some are not so nice, some do not make software at all, and some are a little cool, but do not do anything (at least they were good) until a month after the deadline.",
+                        Specialization = "Software",
+                        Address = "Lviv, Grabovskogo 22",
+                        ContactPhone = "032-297-23-45"
+                    },
+                    new Company
+                    {
+                        Id = 3,
+                        Name = "GlobalLogic",
+                        EmployeesCount = 200,
+                        Description = "GlobalLogic is one of the nice Lviv companies that make software. There are many other companies, but, as my uncle says, some are not so nice, some do not make software at all, and some are a little cool, but do not do anything (at least they were good) until a month after the deadline.",
+                        Specialization = "Software",
+                        Address = "Lviv, Grabovskogo 33",
+                        ContactPhone = "032-297-34-56"
+                    },
+                    new Company
+                    {
+                        Id = 4,
+                        Name = "Leobit",
+                        EmployeesCount = 400,
+                        Description = "Leobit is one of the nice Lviv companies that make software. There are many other companies, but, as my uncle says, some are not so nice, some do not make software at all, and some are a little cool, but do not do anything (at least they were good) until a month after the deadline.",
+                        Specialization = "Software",
+                        Address = "Lviv, Grabovskogo 44",
+                        ContactPhone = "032-297-45-67"
+                    },
+                    new Company
+                    {
+                        Id = 5,
+                        Name = "SigmaSoftware",
+                        EmployeesCount = 600,
+                        Description = "SigmaSoftware is one of the nice Lviv companies that make software. There are many other companies, but, as my uncle says, some are not so nice, some do not make software at all, and some are a little cool, but do not do anything (at least they were good) until a month after the deadline.",
+                        Specialization = "Software",
+                        Address = "Lviv, Grabovskogo 16",
+                        ContactPhone = "032-297-56-78"
+                    },
+                    new Company
+                    {
+                        Id = 6,
+                        Name = "EveryMatrix",
+                        EmployeesCount = 800,
+                        Description = "EveryMatrix is one of the nice Lviv companies that make software. There are many other companies, but, as my uncle says, some are not so nice, some do not make software at all, and some are a little cool, but do not do anything (at least they were good) until a month after the deadline.",
+                        Specialization = "Software",
+                        Address = "Lviv, Grabovskogo 26",
+                        ContactPhone = "032-297-67-89"
+                    },
+                    new Company
+                    {
+                        Id = 7,
+                        Name = "AbtoSoftWare",
+                        EmployeesCount = 900,
+                        Description = "AbtoSoftWare is one of the nice Lviv companies that make software. There are many other companies, but, as my uncle says, some are not so nice, some do not make software at all, and some are a little cool, but do not do anything (at least they were good) until a month after the deadline.",
+                        Specialization = "Software",
+                        Address = "Lviv, Grabovskogo 36",
+                        ContactPhone = "032-297-87-65"
+                    },
+                    new Company
+                    {
+                        Id = 8,
+                        Name = "BinaryStudion",
+                        EmployeesCount = 750,
+                        Description = "BinaryStudion is one of the nice Lviv companies that make software. There are many other companies, but, as my uncle says, some are not so nice, some do not make software at all, and some are a little cool, but do not do anything (at least they were good) until a month after the deadline.",
+                        Specialization = "Software",
+                        Address = "Lviv, Grabovskogo 46",
+                        ContactPhone = "032-297-76-54"
+                    },
+                    new Company
+                    {
+                        Id = 9,
+                        Name = "TechMagic",
+                        EmployeesCount = 150,
+                        Description = "TechMagic is one of the nice Lviv companies that make software. There are many other companies, but, as my uncle says, some are not so nice, some do not make software at all, and some are a little cool, but do not do anything (at least they were good) until a month after the deadline.",
+                        Specialization = "Software",
+                        Address = "Lviv, Grabovskogo 33",
+                        ContactPhone = "032-297-65-43"
+                    },
+                    new Company
+                    {
+                        Id = 10,
+                        Name = "Eleks",
+                        EmployeesCount = 250,
+                        Description = "Eleks is one of the nice Lviv companies that make software. There are many other companies, but, as my uncle says, some are not so nice, some do not make software at all, and some are a little cool, but do not do anything (at least they were good) until a month after the deadline.",
+                        Specialization = "Software",
+                        Address = "Lviv, Grabovskogo 23",
+                        ContactPhone = "032-297-54-32"
+                    });
+            });
+
+            //Generation
             modelBuilder.Entity<Employee>(entity =>
             {
                 entity.HasKey(e => e.Id)
@@ -82,8 +225,8 @@ namespace SkillRoadMapBack.DAL
                 .HasForeignKey(e => e.IdCompany)
                 .HasConstraintName("R_15");
 
-                entity.HasData(
-                    new Employee {
+                entity.HasData(customDataGenerator.GenerateEmployees(EmployeeCount, MentorsCount, CompanyCount)
+                    /*new Employee {
                         Id = 1,
                         Firstname = "Oksana",
                         Lastname = "Iliv",
@@ -146,9 +289,10 @@ namespace SkillRoadMapBack.DAL
                         Experience = 5,
                         IdMentor = 4,
                         IdCompany = 1
-                    });
+                    }*/);
             });
 
+            //Generation
             modelBuilder.Entity<Employer>(entity =>
             {
                 entity.HasKey(e => e.Id)
@@ -182,8 +326,8 @@ namespace SkillRoadMapBack.DAL
                 .HasForeignKey(e => e.IdCompany)
                 .HasConstraintName("R_16");
 
-                entity.HasData(
-                    new Employer {
+                entity.HasData(customDataGenerator.GenerateEmployers(MentorsCount, HrCount, CompanyCount)
+                    /*new Employer {
                         Id = 1,
                         Firstname = "Mykola",
                         Lastname = "Melnyk",
@@ -231,9 +375,65 @@ namespace SkillRoadMapBack.DAL
                         Password = "_Aa123456",
                         Role = "Mentor",
                         IdCompany = 1
+                    }*/);
+            });
+
+            //Handwriting
+            modelBuilder.Entity<Category>(entity => {
+                entity.HasKey(e => e.Id)
+                .HasName("XPKCategory");
+
+                entity.Property(e => e.Id)
+                .HasColumnName("Id_Category");
+
+                entity.Property(e => e.Title)
+                .HasMaxLength(50)
+                .IsUnicode(false);
+
+                entity.Property(e => e.Description)
+                .HasMaxLength(500)
+                .IsUnicode(false);
+
+                entity.HasData(
+                    new Category
+                    {
+                        Id = 1,
+                        Title = "Mobile",
+                        Description = "Includes different types of mobile languages"
+                    },
+                    new Category
+                    {
+                        Id = 2,
+                        Title = "GameDev",
+                        Description = "Includes different types of game dev languages"
+                    },
+                    new Category
+                    {
+                        Id = 3,
+                        Title = "Desktop",
+                        Description = "Includes different types of desktop languages"
+                    },
+                    new Category
+                    {
+                        Id = 4,
+                        Title = "Web",
+                        Description = "Includes different types of web languages"
+                    },
+                    new Category
+                    {
+                        Id = 5,
+                        Title = "Database",
+                        Description = "Includes different types of database languages"
+                    },
+                    new Category
+                    {
+                        Id = 6,
+                        Title = "Server",
+                        Description = "Includes different types of server languages"
                     });
             });
 
+            //Generation
             modelBuilder.Entity<UserSkill>(entity =>
             {
                 entity.HasKey(e => e.Id)
@@ -256,7 +456,8 @@ namespace SkillRoadMapBack.DAL
                 .HasForeignKey(us => us.IdEmployee)
                 .HasConstraintName("R_1");
 
-                entity.HasData(
+                entity.HasData(customDataGenerator.GenerateSkills(UserCountForSkill));
+                /*entity.HasData(
                     new UserSkill {
                         Id = 1,
                         Skillname = "С# Basics",
@@ -556,201 +757,10 @@ namespace SkillRoadMapBack.DAL
                         IdCategory = 4,
                         SkillLevel = 4,
                         IdEmployee = 1
-                    });
+                    });*/
             });
 
-            modelBuilder.Entity<Comment>(entity =>
-            {
-                entity.HasKey(e => e.Id)
-                .HasName("XPKComment");
-
-                entity.Property(e => e.Id)
-                .HasColumnName("Id_Comment");
-
-                entity.Property(e => e.CommentText)
-                .HasMaxLength(50)
-                .IsUnicode(false);
-
-                entity.HasOne(c => c.IdEmployerNavigation)
-                .WithMany(e => e.Comments)
-                .HasForeignKey(c => c.IdEmployer)
-                .HasConstraintName("R_2");
-
-                entity.HasOne(c => c.IdUserSkillNavigation)
-                .WithMany(us => us.Comments)
-                .HasForeignKey(c => c.IdUserSkill)
-                .HasConstraintName("R_3");
-
-                entity.HasData(
-                    new Comment {
-                        Id = 1,
-                        CommentText = "Need to learn C#",
-                        IdEmployer = 1,
-                        IdUserSkill = 1
-                    },
-                    new Comment
-                    {
-                        Id = 2,
-                        CommentText = "Need to learn C#",
-                        IdEmployer = 1,
-                        IdUserSkill = 2
-                    },
-                    new Comment
-                    {
-                        Id = 3,
-                        CommentText = "Need to learn C#",
-                        IdEmployer = 1,
-                        IdUserSkill = 3
-                    },
-                    new Comment
-                    {
-                        Id = 4,
-                        CommentText = "Need to learn C#",
-                        IdEmployer = 1,
-                        IdUserSkill = 4
-                    },
-                    new Comment
-                    {
-                        Id = 5,
-                        CommentText = "Need to learn C#",
-                        IdEmployer = 1,
-                        IdUserSkill = 5
-                    });
-            });
-
-            modelBuilder.Entity<Notification>(entity =>
-            {
-                entity.HasKey(e => e.Id)
-                .HasName("XPKNotification");
-
-                entity.Property(e => e.Id)
-                .HasColumnName("Id_Notification");
-
-                entity.Property(e => e.NotificationText)
-                .HasMaxLength(200)
-                .IsUnicode(false);
-
-                entity.HasOne(c => c.IdEmployerNavigation)
-                .WithMany(e => e.Notifications)
-                .HasForeignKey(c => c.IdEmployer)
-                .HasConstraintName("R_4");
-
-                entity.HasOne(c => c.IdUserSkillNavigation)
-                .WithMany(us => us.Notifications)
-                .HasForeignKey(c => c.IdUserSkill)
-                .HasConstraintName("R_5");
-
-                entity.HasOne(n => n.IdEmployeeNavigation)
-                .WithMany(e => e.Notifications)
-                .HasForeignKey(n => n.IdEmployee)
-                .HasConstraintName("R_6");
-
-                entity.HasData(
-                    new Notification {
-                        Id = 1,
-                        NotificationText = "Need to learn C#",
-                        SendingDate = new DateTime(2021, 1, 1),
-                        IsRead = false,
-                        IdEmployee = 1,
-                        IdEmployer = 1,
-                        IdUserSkill = 8
-                    },
-                    new Notification
-                    {
-                        Id = 2,
-                        NotificationText = "Need to learn C#",
-                        SendingDate = new DateTime(2021, 1, 1),
-                        IsRead = false,
-                        IdEmployee = 1,
-                        IdEmployer = 1,
-                        IdUserSkill = 9
-                    },
-                    new Notification
-                    {
-                        Id = 3,
-                        NotificationText = "Need to learn C#",
-                        SendingDate = new DateTime(2021, 1, 1),
-                        IsRead = false,
-                        IdEmployee = 1,
-                        IdEmployer = 1,
-                        IdUserSkill = 10
-                    },
-                    new Notification
-                    {
-                        Id = 4,
-                        NotificationText = "Need to learn C#",
-                        SendingDate = new DateTime(2021, 1, 1),
-                        IsRead = false,
-                        IdEmployee = 1,
-                        IdEmployer = 1,
-                        IdUserSkill = 11
-                    },
-                    new Notification
-                    {
-                        Id = 5,
-                        NotificationText = "Need to learn C#",
-                        SendingDate = new DateTime(2021, 1, 1),
-                        IsRead = false,
-                        IdEmployee = 1,
-                        IdEmployer = 1,
-                        IdUserSkill = 12
-                    });
-            });
-
-            modelBuilder.Entity<Category>(entity => {
-                entity.HasKey(e => e.Id)
-                .HasName("XPKCategory");
-
-                entity.Property(e => e.Id)
-                .HasColumnName("Id_Category");
-
-                entity.Property(e => e.Title)
-                .HasMaxLength(50)
-                .IsUnicode(false);
-
-                entity.Property(e => e.Description)
-                .HasMaxLength(500)
-                .IsUnicode(false);
-
-                entity.HasData(
-                    new Category
-                    {
-                        Id = 1,
-                        Title = "Programming",
-                        Description = "Includes programming on different languages as C#, Java, Python, Kotlin, C++"
-                    },
-                    new Category
-                    {
-                        Id = 2,
-                        Title = "Testing",
-                        Description = "Includes different types of software testing"
-                    },
-                    new Category
-                    {
-                        Id = 3,
-                        Title = "Designing",
-                        Description = "Includes db design, processes design, software architecture"
-                    },
-                    new Category
-                    {
-                        Id = 4,
-                        Title = "Frontend",
-                        Description = "Includes db design, processes design, software architecture"
-                    },
-                    new Category
-                    {
-                        Id = 5,
-                        Title = "Database",
-                        Description = "Includes db design, processes design, software architecture"
-                    },
-                    new Category
-                    {
-                        Id = 6,
-                        Title = "Mobile",
-                        Description = "Includes db design, processes design, software architecture"
-                    });
-            });
-
+            //Generation
             modelBuilder.Entity<SkillUnit>(entity =>
             {
                 entity.HasKey(e => e.Id)
@@ -768,7 +778,8 @@ namespace SkillRoadMapBack.DAL
                 .HasForeignKey(su => su.IdUserSkill)
                 .HasConstraintName("R_11");
 
-                entity.HasData(
+                entity.HasData(customDataGenerator.GenerateUnits());
+                /*entity.HasData(
                     new SkillUnit
                     {
                         Id = 1,
@@ -1505,210 +1516,10 @@ namespace SkillRoadMapBack.DAL
                         EndDate = new DateTime(2019, 12, 10),
                         UnitLevel = 4,
                         IdUserSkill = 33
-                    });
-            });
-            
-            modelBuilder.Entity<Certificate>(entity => {
-                entity.HasKey(e => e.Id)
-                .HasName("XPKCertificate");
-
-                entity.Property(e => e.Id)
-                .HasColumnName("Id_Certificate");
-
-                entity.Property(e => e.CertificateTitle)
-                .HasMaxLength(500)
-                .IsUnicode(false);
-
-                entity.HasOne(c => c.IdPublisherNavigation)
-                .WithMany(e => e.Certificates)
-                .HasForeignKey(c => c.IdPublisher)
-                .HasConstraintName("R_17");
-
-                entity.HasOne(c => c.IdRecipientNavigation)
-                .WithMany(e => e.Certificates)
-                .HasForeignKey(c => c.IdRecipient)
-                .HasConstraintName("R_18");
-
-                entity.HasOne(c => c.IdUserSkillNavigation)
-                .WithMany(e => e.Certificates)
-                .HasForeignKey(c => c.IdUserSkill)
-                .HasConstraintName("R_19");
-
-                entity.HasData(
-                    new Certificate 
-                    {
-                        Id = 1,
-                        IdUserSkill = 1,
-                        IdPublisher = 1,
-                        IdRecipient = 1,
-                        CertificateTitle = "Our company present you certificate",
-                        DateOfIssue = new DateTime(2021,10,10),
-                        ExpiryDate = new DateTime(2022,10,10),
-                        SkillLevel = 5
-                    },
-                    new Certificate
-                    {
-                        Id = 2,
-                        IdUserSkill = 2,
-                        IdPublisher = 1,
-                        IdRecipient = 1,
-                        CertificateTitle = "Our company present you certificate",
-                        DateOfIssue = new DateTime(2021, 10, 10),
-                        ExpiryDate = new DateTime(2022, 10, 10),
-                        SkillLevel = 4
-                    },
-                    new Certificate
-                    {
-                        Id = 3,
-                        IdUserSkill = 3,
-                        IdPublisher = 1,
-                        IdRecipient = 1,
-                        CertificateTitle = "Our company present you certificate",
-                        DateOfIssue = new DateTime(2021, 10, 10),
-                        ExpiryDate = new DateTime(2022, 10, 10),
-                        SkillLevel = 5
-                    },
-                    new Certificate
-                    {
-                        Id = 4,
-                        IdUserSkill = 4,
-                        IdPublisher = 1,
-                        IdRecipient = 1,
-                        CertificateTitle = "Our company present you certificate",
-                        DateOfIssue = new DateTime(2021, 10, 10),
-                        ExpiryDate = new DateTime(2022, 10, 10),
-                        SkillLevel = 4
-                    },
-                    new Certificate
-                    {
-                        Id = 5,
-                        IdUserSkill = 5,
-                        IdPublisher = 1,
-                        IdRecipient = 1,
-                        CertificateTitle = "Our company present you certificate",
-                        DateOfIssue = new DateTime(2021, 10, 10),
-                        ExpiryDate = new DateTime(2022, 10, 10),
-                        SkillLevel = 5
-                    },
-                    new Certificate
-                    {
-                        Id = 6,
-                        IdUserSkill = 1,
-                        IdPublisher = 1,
-                        IdRecipient = 2,
-                        CertificateTitle = "Our company present you certificate",
-                        DateOfIssue = new DateTime(2021, 10, 10),
-                        ExpiryDate = new DateTime(2022, 10, 10),
-                        SkillLevel = 4
-                    },
-                    new Certificate
-                    {
-                        Id = 7,
-                        IdUserSkill = 1,
-                        IdPublisher = 1,
-                        IdRecipient = 2,
-                        CertificateTitle = "Our company present you certificate",
-                        DateOfIssue = new DateTime(2021, 10, 10),
-                        ExpiryDate = new DateTime(2022, 10, 10),
-                        SkillLevel = 5
-                    },
-                    new Certificate
-                    {
-                        Id = 8,
-                        IdUserSkill = 1,
-                        IdPublisher = 1,
-                        IdRecipient = 2,
-                        CertificateTitle = "Our company present you certificate",
-                        DateOfIssue = new DateTime(2021, 10, 10),
-                        ExpiryDate = new DateTime(2022, 10, 10),
-                        SkillLevel = 4
-                    },
-                    new Certificate
-                    {
-                        Id = 9,
-                        IdUserSkill = 1,
-                        IdPublisher = 1,
-                        IdRecipient = 2,
-                        CertificateTitle = "Our company present you certificate",
-                        DateOfIssue = new DateTime(2021, 10, 10),
-                        ExpiryDate = new DateTime(2022, 10, 10),
-                        SkillLevel = 4
-                    },
-                    new Certificate
-                    {
-                        Id = 10,
-                        IdUserSkill = 1,
-                        IdPublisher = 1,
-                        IdRecipient = 1,
-                        CertificateTitle = "Our company present you certificate",
-                        DateOfIssue = new DateTime(2021, 10, 10),
-                        ExpiryDate = new DateTime(2022, 10, 10),
-                        SkillLevel = 5
-                    });
+                    });*/
             });
 
-            modelBuilder.Entity<Company>(entity => {
-                entity.HasKey(e => e.Id)
-                .HasName("XPKCompany");
-
-                entity.Property(e => e.Id)
-                .HasColumnName("Id_Company");
-
-                entity.Property(e => e.Name)
-                .HasMaxLength(50)
-                .IsUnicode(false);
-
-                entity.Property(e => e.Description)
-                .HasMaxLength(500)
-                .IsUnicode(false);
-
-                entity.Property(e => e.Specialization)
-                .HasMaxLength(100)
-                .IsUnicode(false);
-
-                entity.Property(e => e.Address)
-                .HasMaxLength(100)
-                .IsUnicode(false);
-
-                entity.Property(e => e.ContactPhone)
-                .HasMaxLength(20)
-                .IsUnicode(false);
-
-                entity.HasData(
-                    new Company 
-                    {
-                        Id = 1,
-                        Name = "InterLogic",
-                        EmployeesCount = 500,
-                        Description = "Some description about company",
-                        Specialization = "Software",
-                        Address = "Lviv, Grabovskogo 11",
-                        ContactPhone = "032-297-46-55"
-                    });
-            });
-
-            modelBuilder.Entity<Recommendation>(entity => {
-                entity.HasKey(e => e.Id)
-                .HasName("XPKRecommendation");
-
-                entity.Property(e => e.Id)
-                .HasColumnName("Id_Recommendation");
-
-                entity.Property(e => e.Invitation)
-                .HasMaxLength(500)
-                .IsUnicode(false);
-
-                entity.HasOne(r => r.IdEmployeeNavigation)
-                .WithMany(e => e.Recommendations)
-                .HasForeignKey(r => r.IdEmployee)
-                .HasConstraintName("R_22");
-
-                entity.HasOne(r => r.IdTrainingNavigation)
-                .WithMany(t => t.Recommendations)
-                .HasForeignKey(r => r.IdTraining)
-                .HasConstraintName("R_29");
-            });
-
+            //Generation
             modelBuilder.Entity<SkillMetric>(entity => {
                 entity.HasKey(e => e.Id)
                 .HasName("XPKSkillMetric");
@@ -1725,7 +1536,8 @@ namespace SkillRoadMapBack.DAL
                 .HasForeignKey(m => m.IdUserSkill)
                 .HasConstraintName("R_23");
 
-                entity.HasData(
+                entity.HasData(customDataGenerator.GenerateMetrics());
+                /*entity.HasData(
                     new SkillMetric 
                     {
                         Id = 1,
@@ -2517,9 +2329,293 @@ namespace SkillRoadMapBack.DAL
                         MetricName = "Use in practice",
                         MetricValue = 5,
                         MetricInfluence = 0.3
-                    });
+                    });*/
             });
 
+            //Generation
+            modelBuilder.Entity<Comment>(entity =>
+            {
+                entity.HasKey(e => e.Id)
+                .HasName("XPKComment");
+
+                entity.Property(e => e.Id)
+                .HasColumnName("Id_Comment");
+
+                entity.Property(e => e.CommentText)
+                .HasMaxLength(50)
+                .IsUnicode(false);
+
+                entity.HasOne(c => c.IdEmployerNavigation)
+                .WithMany(e => e.Comments)
+                .HasForeignKey(c => c.IdEmployer)
+                .HasConstraintName("R_2");
+
+                entity.HasOne(c => c.IdUserSkillNavigation)
+                .WithMany(us => us.Comments)
+                .HasForeignKey(c => c.IdUserSkill)
+                .HasConstraintName("R_3");
+
+                entity.HasData(customDataGenerator.GenerateComments(MentorsCount));
+                /*entity.HasData(
+                    new Comment {
+                        Id = 1,
+                        CommentText = "Need to learn C#",
+                        IdEmployer = 1,
+                        IdUserSkill = 1
+                    },
+                    new Comment
+                    {
+                        Id = 2,
+                        CommentText = "Need to learn C#",
+                        IdEmployer = 1,
+                        IdUserSkill = 2
+                    },
+                    new Comment
+                    {
+                        Id = 3,
+                        CommentText = "Need to learn C#",
+                        IdEmployer = 1,
+                        IdUserSkill = 3
+                    },
+                    new Comment
+                    {
+                        Id = 4,
+                        CommentText = "Need to learn C#",
+                        IdEmployer = 1,
+                        IdUserSkill = 4
+                    },
+                    new Comment
+                    {
+                        Id = 5,
+                        CommentText = "Need to learn C#",
+                        IdEmployer = 1,
+                        IdUserSkill = 5
+                    });*/
+            });
+
+            //Generation
+            modelBuilder.Entity<Notification>(entity =>
+            {
+                entity.HasKey(e => e.Id)
+                .HasName("XPKNotification");
+
+                entity.Property(e => e.Id)
+                .HasColumnName("Id_Notification");
+
+                entity.Property(e => e.NotificationText)
+                .HasMaxLength(200)
+                .IsUnicode(false);
+
+                entity.HasOne(c => c.IdEmployerNavigation)
+                .WithMany(e => e.Notifications)
+                .HasForeignKey(c => c.IdEmployer)
+                .HasConstraintName("R_4");
+
+                entity.HasOne(c => c.IdUserSkillNavigation)
+                .WithMany(us => us.Notifications)
+                .HasForeignKey(c => c.IdUserSkill)
+                .HasConstraintName("R_5");
+
+                entity.HasOne(n => n.IdEmployeeNavigation)
+                .WithMany(e => e.Notifications)
+                .HasForeignKey(n => n.IdEmployee)
+                .HasConstraintName("R_6");
+
+                entity.HasData(customDataGenerator.GenerateNotifications(MentorsCount + HrCount));
+                /*entity.HasData(
+                    new Notification {
+                        Id = 1,
+                        NotificationText = "Need to learn C#",
+                        SendingDate = new DateTime(2021, 1, 1),
+                        IsRead = false,
+                        IdEmployee = 1,
+                        IdEmployer = 1,
+                        IdUserSkill = 8
+                    },
+                    new Notification
+                    {
+                        Id = 2,
+                        NotificationText = "Need to learn C#",
+                        SendingDate = new DateTime(2021, 1, 1),
+                        IsRead = false,
+                        IdEmployee = 1,
+                        IdEmployer = 1,
+                        IdUserSkill = 9
+                    },
+                    new Notification
+                    {
+                        Id = 3,
+                        NotificationText = "Need to learn C#",
+                        SendingDate = new DateTime(2021, 1, 1),
+                        IsRead = false,
+                        IdEmployee = 1,
+                        IdEmployer = 1,
+                        IdUserSkill = 10
+                    },
+                    new Notification
+                    {
+                        Id = 4,
+                        NotificationText = "Need to learn C#",
+                        SendingDate = new DateTime(2021, 1, 1),
+                        IsRead = false,
+                        IdEmployee = 1,
+                        IdEmployer = 1,
+                        IdUserSkill = 11
+                    },
+                    new Notification
+                    {
+                        Id = 5,
+                        NotificationText = "Need to learn C#",
+                        SendingDate = new DateTime(2021, 1, 1),
+                        IsRead = false,
+                        IdEmployee = 1,
+                        IdEmployer = 1,
+                        IdUserSkill = 12
+                    });*/
+            });
+
+            //Generation
+            modelBuilder.Entity<Certificate>(entity => {
+                entity.HasKey(e => e.Id)
+                .HasName("XPKCertificate");
+
+                entity.Property(e => e.Id)
+                .HasColumnName("Id_Certificate");
+
+                entity.Property(e => e.CertificateTitle)
+                .HasMaxLength(500)
+                .IsUnicode(false);
+
+                entity.HasOne(c => c.IdPublisherNavigation)
+                .WithMany(e => e.Certificates)
+                .HasForeignKey(c => c.IdPublisher)
+                .HasConstraintName("R_17");
+
+                entity.HasOne(c => c.IdRecipientNavigation)
+                .WithMany(e => e.Certificates)
+                .HasForeignKey(c => c.IdRecipient)
+                .HasConstraintName("R_18");
+
+                entity.HasOne(c => c.IdUserSkillNavigation)
+                .WithMany(e => e.Certificates)
+                .HasForeignKey(c => c.IdUserSkill)
+                .HasConstraintName("R_19");
+
+                entity.HasData(customDataGenerator.GenerateCertificate(MentorsCount + HrCount));
+                /*entity.HasData(
+                    new Certificate 
+                    {
+                        Id = 1,
+                        IdUserSkill = 1,
+                        IdPublisher = 1,
+                        IdRecipient = 1,
+                        CertificateTitle = "Our company present you certificate",
+                        DateOfIssue = new DateTime(2021,10,10),
+                        ExpiryDate = new DateTime(2022,10,10),
+                        SkillLevel = 5
+                    },
+                    new Certificate
+                    {
+                        Id = 2,
+                        IdUserSkill = 2,
+                        IdPublisher = 1,
+                        IdRecipient = 1,
+                        CertificateTitle = "Our company present you certificate",
+                        DateOfIssue = new DateTime(2021, 10, 10),
+                        ExpiryDate = new DateTime(2022, 10, 10),
+                        SkillLevel = 4
+                    },
+                    new Certificate
+                    {
+                        Id = 3,
+                        IdUserSkill = 3,
+                        IdPublisher = 1,
+                        IdRecipient = 1,
+                        CertificateTitle = "Our company present you certificate",
+                        DateOfIssue = new DateTime(2021, 10, 10),
+                        ExpiryDate = new DateTime(2022, 10, 10),
+                        SkillLevel = 5
+                    },
+                    new Certificate
+                    {
+                        Id = 4,
+                        IdUserSkill = 4,
+                        IdPublisher = 1,
+                        IdRecipient = 1,
+                        CertificateTitle = "Our company present you certificate",
+                        DateOfIssue = new DateTime(2021, 10, 10),
+                        ExpiryDate = new DateTime(2022, 10, 10),
+                        SkillLevel = 4
+                    },
+                    new Certificate
+                    {
+                        Id = 5,
+                        IdUserSkill = 5,
+                        IdPublisher = 1,
+                        IdRecipient = 1,
+                        CertificateTitle = "Our company present you certificate",
+                        DateOfIssue = new DateTime(2021, 10, 10),
+                        ExpiryDate = new DateTime(2022, 10, 10),
+                        SkillLevel = 5
+                    },
+                    new Certificate
+                    {
+                        Id = 6,
+                        IdUserSkill = 1,
+                        IdPublisher = 1,
+                        IdRecipient = 2,
+                        CertificateTitle = "Our company present you certificate",
+                        DateOfIssue = new DateTime(2021, 10, 10),
+                        ExpiryDate = new DateTime(2022, 10, 10),
+                        SkillLevel = 4
+                    },
+                    new Certificate
+                    {
+                        Id = 7,
+                        IdUserSkill = 1,
+                        IdPublisher = 1,
+                        IdRecipient = 2,
+                        CertificateTitle = "Our company present you certificate",
+                        DateOfIssue = new DateTime(2021, 10, 10),
+                        ExpiryDate = new DateTime(2022, 10, 10),
+                        SkillLevel = 5
+                    },
+                    new Certificate
+                    {
+                        Id = 8,
+                        IdUserSkill = 1,
+                        IdPublisher = 1,
+                        IdRecipient = 2,
+                        CertificateTitle = "Our company present you certificate",
+                        DateOfIssue = new DateTime(2021, 10, 10),
+                        ExpiryDate = new DateTime(2022, 10, 10),
+                        SkillLevel = 4
+                    },
+                    new Certificate
+                    {
+                        Id = 9,
+                        IdUserSkill = 1,
+                        IdPublisher = 1,
+                        IdRecipient = 2,
+                        CertificateTitle = "Our company present you certificate",
+                        DateOfIssue = new DateTime(2021, 10, 10),
+                        ExpiryDate = new DateTime(2022, 10, 10),
+                        SkillLevel = 4
+                    },
+                    new Certificate
+                    {
+                        Id = 10,
+                        IdUserSkill = 1,
+                        IdPublisher = 1,
+                        IdRecipient = 1,
+                        CertificateTitle = "Our company present you certificate",
+                        DateOfIssue = new DateTime(2021, 10, 10),
+                        ExpiryDate = new DateTime(2022, 10, 10),
+                        SkillLevel = 5
+                    });*/
+            });
+
+            //Generation
             modelBuilder.Entity<Statistics>(entity => {
                 entity.HasKey(e => e.Id)
                 .HasName("XPKStatistics");
@@ -2531,8 +2627,11 @@ namespace SkillRoadMapBack.DAL
                 .WithMany(e => e.Statisticses)
                 .HasForeignKey(s => s.IdEmployee)
                 .HasConstraintName("R_24");
+
+                entity.HasData(customDataGenerator.GenerateStatistics(UserCountForSkill));
             });
 
+            //Generation
             modelBuilder.Entity<Training>(entity => {
                 entity.HasKey(e => e.Id)
                 .HasName("XPKTraining");
@@ -2558,7 +2657,8 @@ namespace SkillRoadMapBack.DAL
                 .HasForeignKey(t => t.IdCoach)
                 .HasConstraintName("R_26");
 
-                entity.HasData(
+                entity.HasData(customDataGenerator.GenerateTraining(MentorsCount));
+                /*entity.HasData(
                     new Training 
                     {
                         Id = 1,
@@ -2678,9 +2778,10 @@ namespace SkillRoadMapBack.DAL
                         Payment = 0,
                         IdCoach = 4,
                         IdCategory = 2
-                    });
+                    });*/
             });
 
+            //Generation
             modelBuilder.Entity<TrainingMember>(entity => {
                 entity.HasKey(e => e.Id)
                 .HasName("XPKTrainingMember");
@@ -2698,7 +2799,8 @@ namespace SkillRoadMapBack.DAL
                 .HasForeignKey(t => t.IdTraining)
                 .HasConstraintName("R_28");
 
-                entity.HasData(
+                entity.HasData(customDataGenerator.GenerateTrainingMember(EmployeeCount));
+                /*entity.HasData(
                     new TrainingMember
                     {
                         Id = 1,
@@ -2782,7 +2884,92 @@ namespace SkillRoadMapBack.DAL
                         IdMember = 2,
                         IdTraining = 8,
                         IsEnded = false
-                    }); ;
+                    });*/ 
+            });
+
+            //Generation
+            modelBuilder.Entity<Recommendation>(entity => {
+                entity.HasKey(e => e.Id)
+                .HasName("XPKRecommendation");
+
+                entity.Property(e => e.Id)
+                .HasColumnName("Id_Recommendation");
+
+                entity.Property(e => e.Invitation)
+                .HasMaxLength(500)
+                .IsUnicode(false);
+
+                entity.HasOne(r => r.IdEmployeeNavigation)
+                .WithMany(e => e.Recommendations)
+                .HasForeignKey(r => r.IdEmployee)
+                .HasConstraintName("R_22");
+
+                entity.HasOne(r => r.IdTrainingNavigation)
+                .WithMany(t => t.Recommendations)
+                .HasForeignKey(r => r.IdTraining)
+                .HasConstraintName("R_29");
+
+                entity.HasData(customDataGenerator.GenerateRecommendation(EmployeeCount));
+            });
+
+            //Generation
+            modelBuilder.Entity<SkillTemplate>(entity => {
+                entity.HasKey(e => e.Id)
+                .HasName("XPKSkillTemplate");
+
+                entity.Property(e => e.Id)
+                .HasColumnName("Id_SkillTemplate");
+
+                entity.Property(e => e.TemplateTitle)
+                .HasMaxLength(100)
+                .IsUnicode(false);
+
+                entity.Property(e => e.Description)
+                .HasMaxLength(1000)
+                .IsUnicode(false);
+
+                entity.HasData(customDataGenerator.GenerateSkillTemplate(TemplateCount));
+            });
+
+            //Generation
+            modelBuilder.Entity<Requirement>(entity => {
+                entity.HasKey(e => e.Id)
+                .HasName("XPKRequirement");
+
+                entity.Property(e => e.Id)
+                .HasColumnName("Id_Requirement");
+
+                entity.Property(e => e.ReqTitle)
+                .HasMaxLength(100)
+                .IsUnicode(false);
+
+                entity.HasOne(r => r.IdSkillTemplateNavigation)
+                .WithMany(st => st.Requirements)
+                .HasForeignKey(r => r.IdSkillTemplate)
+                .HasConstraintName("R_30");
+
+                entity.HasData(customDataGenerator.GenerateRequirement());
+            });
+
+            //Generation
+            modelBuilder.Entity<Comparation>(entity => {
+                entity.HasKey(e => e.Id)
+                .HasName("XPKComparation");
+
+                entity.Property(e => e.Id)
+                .HasColumnName("Id_Comparation");
+
+                entity.HasOne(r => r.IdRequirementNavigation)
+                .WithMany(st => st.Comparations)
+                .HasForeignKey(r => r.IdRequirement)
+                .HasConstraintName("R_31");
+
+                entity.HasOne(r => r.IdEmployeeNavigation)
+                .WithMany(st => st.Comparations)
+                .HasForeignKey(r => r.IdEmployee)
+                .HasConstraintName("R_32");
+
+                entity.HasData(customDataGenerator.GenerateComparation());
             });
         }
     }

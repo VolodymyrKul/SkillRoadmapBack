@@ -117,6 +117,18 @@ namespace SkillRoadmapBack.Core.Mapping
             CreateMap<Training, SetTrainingDTO>()
                 .ForMember(dest => dest.CoachEmail, opts => opts.MapFrom(item => item.IdCoachNavigation.Email))
                 .ForMember(dest => dest.CategoryName, opts => opts.MapFrom(item => item.IdCategoryNavigation.Title));
+
+            CreateMap<SkillTemplate, SkillTemplateDTO>().ReverseMap();
+
+            CreateMap<Requirement, RequirementDTO>()
+                .ForMember(dest => dest.TemplateTitle, opts => opts.MapFrom(item => item.IdSkillTemplateNavigation.TemplateTitle));
+            CreateMap<RequirementDTO, Requirement>();
+
+            CreateMap<Comparation, ComparationDTO>()
+                .ForMember(dest => dest.ReqTitle, opts => opts.MapFrom(item => item.IdRequirementNavigation.ReqTitle))
+                .ForMember(dest => dest.EmployeeEmail, opts => opts.MapFrom(item => item.IdEmployeeNavigation.Email))
+                .ForMember(dest => dest.EmployeeNSN, opts => opts.MapFrom(item => item.IdEmployeeNavigation.Firstname + " " + item.IdEmployeeNavigation.Lastname));
+            CreateMap<ComparationDTO, Comparation>();
         }
     }
 }

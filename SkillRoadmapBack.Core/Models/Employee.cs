@@ -35,5 +35,6 @@ namespace SkillRoadmapBack.Core.Models
         public virtual ICollection<TrainingMember> TrainingMembers { get; set; }
         public virtual ICollection<Recommendation> Recommendations { get; set; }
         public virtual ICollection<Statistics> Statisticses { get; set; } 
+        public virtual ICollection<Comparation> Comparations { get; set; }
     }
 }

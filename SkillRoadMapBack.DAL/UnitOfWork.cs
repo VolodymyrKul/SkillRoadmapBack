@@ -24,7 +24,10 @@ namespace SkillRoadMapBack.DAL
         private ISkillMetricRepo _skillMetricRepo;
         private IStatisticsRepo _statisticsRepo;
         private ITrainingMemberRepo _trainingMemberRepo;
-        private ITrainingRepo _trainingRepo; 
+        private ITrainingRepo _trainingRepo;
+        private ISkillTemplateRepo _skillTemplateRepo;
+        private IRequirementRepo _requirementRepo;
+        private IComparationRepo _comparationRepo;
 
         public ICommentRepo CommentRepo
         {
@@ -135,6 +138,30 @@ namespace SkillRoadMapBack.DAL
             get
             {
                 return _trainingRepo ??= new TrainingRepo(_context);
+            }
+        }
+
+        public ISkillTemplateRepo SkillTemplateRepo
+        {
+            get
+            {
+                return _skillTemplateRepo ??= new SkillTemplateRepo(_context);
+            }
+        }
+
+        public IRequirementRepo RequirementRepo
+        {
+            get
+            {
+                return _requirementRepo ??= new RequirementRepo(_context);
+            }
+        }
+
+        public IComparationRepo ComparationRepo
+        {
+            get
+            {
+                return _comparationRepo ??= new ComparationRepo(_context);
             }
         }
 

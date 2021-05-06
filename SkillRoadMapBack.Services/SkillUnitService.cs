@@ -61,5 +61,12 @@ namespace SkillRoadMapBack.Services
             await _unitOfWork.SaveChangesAsync();
             return entity;
         }
+
+        public virtual async Task<List<SkillUnitDTO>> GetUserSkillIdAsync(int id) 
+        {
+            var skillUnits = (await _unitOfWork.SkillUnitRepo.GetAllAsync()).Where(su => su.IdUserSkill == id);
+            List<SkillUnitDTO> skillUnitDTOs = skillUnits.Select(skillUnit => _mapper.Map(skillUnit, new SkillUnitDTO())).ToList();
+            return skillUnitDTOs;
+        }
     }
 }

@@ -20,5 +20,6 @@ namespace SkillRoadmapBack.Core.Abstractions.IServices
         Task DeclineCertificate(CertificateDTO orderCertificateDTO);
         Task<List<GetCertificateDTO>> GetByMentor(string email);
         Task<List<CertificateDTO>> GetByMentor(int mentorId);
+        Task PrintCertificate(CertificateDTO orderCertificateDTO);
     }
 }

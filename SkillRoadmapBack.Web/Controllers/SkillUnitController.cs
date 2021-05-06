@@ -56,5 +56,12 @@ namespace SkillRoadmapBack.Web.Controllers
             await _skillUnitService.DeleteAsync(id);
             return NoContent();
         }
+
+        [HttpGet("userskill/{id}")]
+        public async Task<ActionResult<SkillUnitDTO>> getByUserSkillId(int id)
+        {
+            var result = await _skillUnitService.GetUserSkillIdAsync(id);
+            return Ok(result);
+        }
     }
 }

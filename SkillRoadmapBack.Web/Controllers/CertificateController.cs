@@ -126,5 +126,11 @@ namespace SkillRoadmapBack.Web.Controllers
             await _certificateService.DeclineCertificate(order);
             return NoContent();
         }
+        [HttpPost("printcer")]
+        public async Task<ActionResult<bool>> PrintCer(CertificateDTO order)
+        {
+            await _certificateService.PrintCertificate(order);
+            return Ok(true);
+        }
     }
 }

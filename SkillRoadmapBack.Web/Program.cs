@@ -5,6 +5,7 @@ using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 
 namespace SkillRoadmapBack.Web
@@ -13,6 +14,8 @@ namespace SkillRoadmapBack.Web
     {
         public static void Main(string[] args)
         {
+            var prov = CodePagesEncodingProvider.Instance;
+            Encoding.RegisterProvider(prov);
             CreateHostBuilder(args).Build().Run();
         }
 

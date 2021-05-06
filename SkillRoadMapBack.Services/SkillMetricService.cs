@@ -29,6 +29,14 @@ namespace SkillRoadMapBack.Services
             await _unitOfWork.SaveChangesAsync();
         }
 
+        public virtual async Task CreateAsync(SkillMetricDTO entity)
+        {
+            var value = new SkillMetric();
+            _mapper.Map(entity, value);
+            await _unitOfWork.SkillMetricRepo.AddAsync(value);
+            await _unitOfWork.SaveChangesAsync();
+        }
+
         public virtual async Task DeleteAsync(int id)
         {
             var entity = await _unitOfWork.SkillMetricRepo.GetByIdAsync(id);
@@ -60,6 +68,13 @@ namespace SkillRoadMapBack.Services
             await _unitOfWork.SkillMetricRepo.UpdateAsync(value);
             await _unitOfWork.SaveChangesAsync();
             return entity;
+        }
+
+        public virtual async Task<List<SkillMetricDTO>> GetUserSkillIdAsync(int id) 
+        {
+            var skillMetrics = (await _unitOfWork.SkillMetricRepo.GetAllAsync()).Where(sm => sm.IdUserSkill == id);
+            List<SkillMetricDTO> skillMetricDTOs = skillMetrics.Select(skillMetric => _mapper.Map(skillMetric, new SkillMetricDTO())).ToList();
+            return skillMetricDTOs;
         }
     }
 }
