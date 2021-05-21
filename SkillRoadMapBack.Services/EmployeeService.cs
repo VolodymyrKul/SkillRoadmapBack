@@ -31,6 +31,18 @@ namespace SkillRoadMapBack.Services
         public virtual async Task DeleteAsync(int id)
         {
             var entity = await _unitOfWork.EmployeeRepo.GetByIdAsync(id);
+            var recommends = (await _unitOfWork.RecommendationRepo.GetAllAsync()).Where(rec => rec.IdEmployee == id);
+            await _unitOfWork.RecommendationRepo.DeleteRangeAsync(recommends);
+            var stats = (await _unitOfWork.StatisticsRepo.GetAllAsync()).Where(st => st.IdEmployee == id);
+            await _unitOfWork.StatisticsRepo.DeleteRangeAsync(stats);
+            var certifs = (await _unitOfWork.CertificateRepo.GetAllAsync()).Where(cer => cer.IdRecipient == id);
+            await _unitOfWork.CertificateRepo.DeleteRangeAsync(certifs);
+            var userSkills = (await _unitOfWork.UserSkillRepo.GetAllAsync()).Where(us => us.IdEmployee == id);
+            await _unitOfWork.UserSkillRepo.DeleteRangeAsync(userSkills);
+            var notifs = (await _unitOfWork.NotificationRepo.GetAllAsync()).Where(notif => notif.IdEmployee == id);
+            await _unitOfWork.NotificationRepo.DeleteRangeAsync(notifs);
+            var comparations = (await _unitOfWork.ComparationRepo.GetAllAsync()).Where(com => com.IdEmployee == id);
+            await _unitOfWork.ComparationRepo.DeleteRangeAsync(comparations);
             await _unitOfWork.EmployeeRepo.DeleteAsync(entity);
             await _unitOfWork.SaveChangesAsync();
         }

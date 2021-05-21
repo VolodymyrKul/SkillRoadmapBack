@@ -37,7 +37,7 @@ namespace SkillRoadmapBack.Web.Controllers
         }
 
         [HttpPost("pull")]
-        public async Task<ActionResult<SetUserSkillDTO>> Pull(SetUserSkillDTO order)
+        public async Task<ActionResult<SetUserSkillDTO>> Pull(UserSkillDTO order)
         {
             await _userSkillService.CreateAsync(order);
             return Ok(order);

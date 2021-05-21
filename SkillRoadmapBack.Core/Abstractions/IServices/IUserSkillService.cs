@@ -10,6 +10,7 @@ namespace SkillRoadmapBack.Core.Abstractions.IServices
 {
     public interface IUserSkillService : IBaseService<UserSkillDTO, SetUserSkillDTO>
     {
+        Task CreateAsync(UserSkillDTO entity);
         Task<List<GetUserSkillDTO>> GetByYear(string user, int year);
         Task<List<UserSkillDTO>> GetByYear(int userId, int year);
         Task<List<int>> GetYears(string user);

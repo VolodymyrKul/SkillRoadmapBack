@@ -30,6 +30,10 @@ namespace SkillRoadMapBack.Services
         public virtual async Task DeleteAsync(int id)
         {
             var entity = await _unitOfWork.CompanyRepo.GetByIdAsync(id);
+            var employers = (await _unitOfWork.EmployerRepo.GetAllAsync()).Where(emp => emp.IdCompany == id);
+            await _unitOfWork.EmployerRepo.DeleteRangeAsync(employers);
+            var employees = (await _unitOfWork.EmployeeRepo.GetAllAsync()).Where(emp => emp.IdCompany == id);
+            await _unitOfWork.EmployeeRepo.DeleteRangeAsync(employees);
             await _unitOfWork.CompanyRepo.DeleteAsync(entity);
             await _unitOfWork.SaveChangesAsync();
         }

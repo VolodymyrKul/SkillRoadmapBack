@@ -577,18 +577,19 @@ namespace SkillRoadMapBack.DAL
         public List<TrainingMember> GenerateTrainingMember(int employeeCount)
         {
             //Random rand = new Random();
-
+            DateTime currentDate = DateTime.Now;
             List<TrainingMember> trainingMembers = new List<TrainingMember>();
             for (int i = 0; i < genTrainings.Count; i++)
             {
                 for(int j = 0; j < 10; j++)
                 {
+                    var diff = genTrainings[i].EndDate - currentDate;
                     trainingMembers.Add(new TrainingMember
                     {
                         Id = i * 10 + j + 1,
                         IdTraining = genTrainings[i].Id,
                         IdMember = rand.Next(1, employeeCount),
-                        IsEnded = false
+                        IsEnded = diff.Days > 0 ? true : false
                     });
                 }
             }
@@ -842,7 +843,7 @@ namespace SkillRoadMapBack.DAL
                     int sumLevel = 0;
                     foreach (var skill in skills)
                     {
-                        allTimeDiff.Add(skill.EndDate.Subtract(skill.StartDate));
+                        allTimeDiff = allTimeDiff.Add(skill.EndDate.Subtract(skill.StartDate));
                         sumLevel += skill.SkillLevel;
                     }
                     myStats.StudyingTime = allTimeDiff.Days;
