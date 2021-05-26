@@ -23,7 +23,6 @@ namespace SkillRoadMapBack.DAL.Repositories
             return await _context.Set<Notification>()
                 .Include(notification => notification.IdEmployeeNavigation)
                 .Include(notification => notification.IdEmployerNavigation)
-                .Include(notification => notification.IdUserSkillNavigation)
                 .ToListAsync();
         }
 
@@ -33,7 +32,6 @@ namespace SkillRoadMapBack.DAL.Repositories
                 .Where(e => e.Id == id)
                 .Include(notification => notification.IdEmployeeNavigation)
                 .Include(notification => notification.IdEmployerNavigation)
-                .Include(notification => notification.IdUserSkillNavigation)
                 .FirstOrDefaultAsync().ConfigureAwait(false);
         }
     }

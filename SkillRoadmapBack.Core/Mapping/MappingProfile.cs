@@ -23,8 +23,7 @@ namespace SkillRoadmapBack.Core.Mapping
                 .ForMember(dest => dest.EmployeeEmail, opts => opts.MapFrom(item => item.IdEmployeeNavigation.Email))
                 .ForMember(dest => dest.EmployeeNSN, opts => opts.MapFrom(item => item.IdEmployeeNavigation.Firstname + " " + item.IdEmployeeNavigation.Lastname))
                 .ForMember(dest => dest.EmployerEmail, opts => opts.MapFrom(item => item.IdEmployerNavigation.Email))
-                .ForMember(dest => dest.EmployerNSN, opts => opts.MapFrom(item => item.IdEmployerNavigation.Firstname + " " + item.IdEmployerNavigation.Lastname))
-                .ForMember(dest => dest.SkillName, opts => opts.MapFrom(item => item.IdUserSkillNavigation.Skillname));
+                .ForMember(dest => dest.EmployerNSN, opts => opts.MapFrom(item => item.IdEmployerNavigation.Firstname + " " + item.IdEmployerNavigation.Lastname));
             CreateMap<NotificationDTO, Notification>();
 
             CreateMap<Employee, EmployeeDTO>()
@@ -110,7 +109,6 @@ namespace SkillRoadmapBack.Core.Mapping
                 .ForMember(dest => dest.RecipientNSN, opts => opts.MapFrom(item => item.IdRecipientNavigation.Firstname + " " + item.IdRecipientNavigation.Lastname));
 
             CreateMap<Notification, GetNotificationDTO>()
-                .ForMember(dest => dest.Skillname, opts => opts.MapFrom(item => item.IdUserSkillNavigation.Skillname))
                 .ForMember(dest => dest.EmployeeNSN, opts => opts.MapFrom(item => item.IdEmployeeNavigation.Firstname + " " + item.IdEmployeeNavigation.Lastname))
                 .ForMember(dest => dest.EmployerNSN, opts => opts.MapFrom(item => item.IdEmployerNavigation.Firstname + " " + item.IdEmployerNavigation.Lastname));
 

@@ -35,6 +35,7 @@ namespace SkillRoadMapBack.Services
             var value = new UserSkill();
             _mapper.Map(entity, value);
             await _unitOfWork.UserSkillRepo.AddAsync(value);
+            var notif = new Notification();
             await _unitOfWork.SaveChangesAsync();
         }
 

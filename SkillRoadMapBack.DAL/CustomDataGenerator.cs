@@ -359,13 +359,16 @@ namespace SkillRoadMapBack.DAL
             List<Comment> comments = new List<Comment>();
             for (int i = 0; i < genUserSkills.Count; i++) 
             {
-                comments.Add(new Comment
+                for(int j = 0; j < 10; j++)
                 {
-                    Id = i + 1,
-                    CommentText = "You need to read this unit: " + SkillUnitsTitle[rand.Next(1, SkillUnitsTitle.Count)],
-                    IdEmployer = rand.Next(1, mentorsCount),
-                    IdUserSkill = genUserSkills[i].Id
-                });
+                    comments.Add(new Comment
+                    {
+                        Id = i * 10 + j + 1,
+                        CommentText = "You need to read this unit: " + SkillUnitsTitle[rand.Next(1, SkillUnitsTitle.Count)],
+                        IdEmployer = rand.Next(1, mentorsCount),
+                        IdUserSkill = genUserSkills[i].Id
+                    });
+                }
             }
             return comments;
         }
@@ -384,8 +387,7 @@ namespace SkillRoadMapBack.DAL
                     SendingDate = new DateTime(2021, rand.Next(1, 11), rand.Next(1,28)),
                     IsRead = false,
                     IdEmployee = genUserSkills[i].IdEmployee,
-                    IdEmployer = rand.Next(1,employerCount),
-                    IdUserSkill = genUserSkills[i].Id
+                    IdEmployer = rand.Next(1,employerCount)
                 });
                 notifications.Add(new Notification
                 {
@@ -394,8 +396,7 @@ namespace SkillRoadMapBack.DAL
                     SendingDate = new DateTime(2021, rand.Next(1, 11), rand.Next(1, 28)),
                     IsRead = false,
                     IdEmployee = genUserSkills[i].IdEmployee,
-                    IdEmployer = rand.Next(1, employerCount),
-                    IdUserSkill = genUserSkills[i].Id
+                    IdEmployer = rand.Next(1, employerCount)
                 });
                 notifications.Add(new Notification
                 {
@@ -404,8 +405,7 @@ namespace SkillRoadMapBack.DAL
                     SendingDate = new DateTime(2021, rand.Next(1, 11), rand.Next(1, 28)),
                     IsRead = false,
                     IdEmployee = genUserSkills[i].IdEmployee,
-                    IdEmployer = rand.Next(1, employerCount),
-                    IdUserSkill = genUserSkills[i].Id
+                    IdEmployer = rand.Next(1, employerCount)
                 });
             }
             return notifications;
@@ -623,13 +623,35 @@ namespace SkillRoadMapBack.DAL
                 }
                 for (int j = 0; j < curList.Count; j++)
                 {
+                    var invNum = rand.Next(1, 6);
+                    string invitation = "";
+                    if(invNum == 1)
+                    {
+                        invitation = "Hi. How are you ? I have a great offer. I would like to invite you to join my training in technology such as " + genTrainings[i].TrainingTitle;
+                    }
+                    if (invNum == 2)
+                    {
+                        invitation = "Hi there. I opened a training on technology " + genTrainings[i].TrainingTitle + ". Interesting topics will be considered. Wouldn't like to join?";
+                    }
+                    if (invNum == 3)
+                    {
+                        invitation = "Only today is a unique offer. You can learn technology " + genTrainings[i].TrainingTitle + " with a great mentor in a training designed specifically for people as smart as you";
+                    }
+                    if (invNum == 4)
+                    {
+                        invitation = "You want to know and be able to work with technology " + genTrainings[i].TrainingTitle + " that will be in demand for many years to come. To you to us.";
+                    }
+                    if (invNum == 5)
+                    {
+                        invitation = "You dream of becoming a first-class specialist. You just need to gain knowledge in technology " + genTrainings[i].TrainingTitle + ". This training is for you.";
+                    }
                     recommendations.Add(new Recommendation
                     {
                         Id = i * curList.Count + j + 1,
                         IdTraining = genTrainings[i].Id,
                         IdEmployee = curList[j],
                         IsUsed = false,
-                        Invitation = "Hi. How are you ? I have a great offer. I would like to invite you to join my training in technology such as " + genTrainings[i].TrainingTitle
+                        Invitation = invitation
                     });
                 }
             }

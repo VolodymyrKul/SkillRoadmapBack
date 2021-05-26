@@ -110,7 +110,6 @@ namespace SkillRoadMapBack.Services
             await _unitOfWork.SaveChangesAsync();
 
             Notification notification = new Notification();
-            notification.IdUserSkill = skill.Id;
             notification.IdEmployer = emp.IdMentor;
             notification.IdEmployee = emp.Id;
             notification.IsRead = false;
@@ -137,7 +136,6 @@ namespace SkillRoadMapBack.Services
             await _unitOfWork.SaveChangesAsync();
 
             Notification notification = new Notification();
-            notification.IdUserSkill = skill.Id;
             notification.IdEmployer = emp.IdMentor;
             notification.IdEmployee = emp.Id;
             notification.IsRead = false;

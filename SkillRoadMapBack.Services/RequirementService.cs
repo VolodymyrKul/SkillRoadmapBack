@@ -24,6 +24,34 @@ namespace SkillRoadMapBack.Services
             var value = new Requirement();
             _mapper.Map(entity, value);
             await _unitOfWork.RequirementRepo.AddAsync(value);
+
+            var genUserSkills = (await _unitOfWork.UserSkillRepo.GetAllAsync()).ToList();
+            var genSkillUnits = (await _unitOfWork.SkillUnitRepo.GetAllAsync()).ToList();
+            List<(string, int, int)> fullUnits = new List<(string, int, int)>();
+            string curSkill = "";
+            foreach (var item in genSkillUnits)
+            {
+                curSkill = genUserSkills.FirstOrDefault(us => us.Id == item.IdUserSkill).Skillname + ". " + item.Unitname;
+                var curUnit = (curSkill, (int)genUserSkills.FirstOrDefault(us => us.Id == item.IdUserSkill).IdEmployee, genUserSkills.FirstOrDefault(us => us.Id == item.IdUserSkill).SkillLevel);
+                fullUnits.Add(curUnit);
+                curSkill = "";
+            }
+            List<Comparation> comparations = new List<Comparation>();
+            var curUnits = fullUnits.Where(unit => unit.Item1 == value.ReqTitle);
+            foreach (var item in curUnits)
+            {
+                comparations.Add(new Comparation
+                {
+                    Id = 0,
+                    IdEmployee = item.Item2,
+                    IdRequirement = value.Id,
+                    IsMeetCriteria = item.Item3 >= value.ReqLevel ? true : false
+                });
+            }
+            foreach(var com in comparations)
+            {
+                await _unitOfWork.ComparationRepo.AddAsync(com);
+            }
             await _unitOfWork.SaveChangesAsync();
         }
 

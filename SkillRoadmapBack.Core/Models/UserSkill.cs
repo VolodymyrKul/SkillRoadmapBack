@@ -10,7 +10,6 @@ namespace SkillRoadmapBack.Core.Models
         public UserSkill()
         {
             Comments = new HashSet<Comment>();
-            Notifications = new HashSet<Notification>();
             SkillUnits = new HashSet<SkillUnit>();
             Certificates = new HashSet<Certificate>();
             SkillMetrics = new HashSet<SkillMetric>();
@@ -25,7 +24,6 @@ namespace SkillRoadmapBack.Core.Models
         public Employee IdEmployeeNavigation { get; set; }
         public Category IdCategoryNavigation { get; set; }
         public virtual ICollection<Comment> Comments { get; set; }
-        public virtual ICollection<Notification> Notifications { get; set; }
         public virtual ICollection<SkillUnit> SkillUnits { get; set; }
         public virtual ICollection<Certificate> Certificates { get; set; }
         public virtual ICollection<SkillMetric> SkillMetrics { get; set; }

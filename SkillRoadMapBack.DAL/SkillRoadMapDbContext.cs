@@ -2411,11 +2411,6 @@ namespace SkillRoadMapBack.DAL
                 .HasForeignKey(c => c.IdEmployer)
                 .HasConstraintName("R_4");
 
-                entity.HasOne(c => c.IdUserSkillNavigation)
-                .WithMany(us => us.Notifications)
-                .HasForeignKey(c => c.IdUserSkill)
-                .HasConstraintName("R_5");
-
                 entity.HasOne(n => n.IdEmployeeNavigation)
                 .WithMany(e => e.Notifications)
                 .HasForeignKey(n => n.IdEmployee)
