@@ -11,5 +11,6 @@ namespace SkillRoadmapBack.Core.Abstractions.IServices
     public interface ISkillUnitService : IBaseService<SkillUnitDTO, SetSkillUnitDTO>
     {
         Task<List<SkillUnitDTO>> GetUserSkillIdAsync(int id);
+        Task CreateAsync(SkillUnitDTO entity);
     }
 }

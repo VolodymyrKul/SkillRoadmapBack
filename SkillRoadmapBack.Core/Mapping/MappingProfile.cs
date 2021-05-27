@@ -66,7 +66,7 @@ namespace SkillRoadmapBack.Core.Mapping
 
             CreateMap<SkillMetric, SkillMetricDTO>()
                 .ForMember(dest => dest.SkillName, opts => opts.MapFrom(item => item.IdUserSkillNavigation.Skillname));
-            CreateMap<SkillMetricDTO, SkillMetricDTO>();
+            CreateMap<SkillMetricDTO, SkillMetric>();
 
             CreateMap<Statistics, StatisticsDTO>()
                 .ForMember(dest => dest.EmployeeEmail, opts => opts.MapFrom(item => item.IdEmployeeNavigation.Email))

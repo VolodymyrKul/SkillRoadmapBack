@@ -11,5 +11,6 @@ namespace SkillRoadmapBack.Core.Abstractions.IServices
     public interface ISkillMetricService : IBaseService<SkillMetricDTO, SetSkillMetricDTO>
     {
         Task<List<SkillMetricDTO>> GetUserSkillIdAsync(int id);
+        Task CreateAsync(SkillMetricDTO entity);
     }
 }

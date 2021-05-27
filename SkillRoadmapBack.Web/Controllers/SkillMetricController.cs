@@ -37,7 +37,7 @@ namespace SkillRoadmapBack.Web.Controllers
         }
 
         [HttpPost("pull")]
-        public async Task<ActionResult<SkillMetricDTO>> Pull(SetSkillMetricDTO order)
+        public async Task<ActionResult<SkillMetricDTO>> Pull(SkillMetricDTO order)
         {
             await _skillMetricService.CreateAsync(order);
             return Ok(order);

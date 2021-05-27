@@ -2342,7 +2342,7 @@ namespace SkillRoadMapBack.DAL
                 .HasColumnName("Id_Comment");
 
                 entity.Property(e => e.CommentText)
-                .HasMaxLength(50)
+                .HasMaxLength(100)
                 .IsUnicode(false);
 
                 entity.HasOne(c => c.IdEmployerNavigation)

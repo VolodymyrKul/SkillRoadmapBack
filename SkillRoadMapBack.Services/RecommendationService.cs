@@ -21,9 +21,23 @@ namespace SkillRoadMapBack.Services
 
         public virtual async Task CreateAsync(RecommendationDTO entity)
         {
+            Random random = new Random();
             var value = new Recommendation();
             _mapper.Map(entity, value);
-            await _unitOfWork.RecommendationRepo.AddAsync(value);
+            var emps = await _unitOfWork.EmployeeRepo.GetAllAsync();
+            List<Recommendation> recommendations = new List<Recommendation>();
+            for(int i=0; i<10; i++)
+            {
+                recommendations.Add(new Recommendation
+                {
+                    Id = 0,
+                    IdEmployee = random.Next(1, emps.Count()),
+                    IdTraining = value.IdTraining,
+                    Invitation = value.Invitation,
+                    IsUsed = false
+                });
+            }
+            await _unitOfWork.RecommendationRepo.AddRangeAsync(recommendations);
             await _unitOfWork.SaveChangesAsync();
         }
 

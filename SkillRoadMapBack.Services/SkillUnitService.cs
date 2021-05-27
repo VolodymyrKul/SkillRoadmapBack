@@ -28,6 +28,14 @@ namespace SkillRoadMapBack.Services
             await _unitOfWork.SkillUnitRepo.AddAsync(value);
             await _unitOfWork.SaveChangesAsync();
         }
+        public virtual async Task CreateAsync(SkillUnitDTO entity)
+        {
+            var value = new SkillUnit();
+            _mapper.Map(entity, value);
+            //value.IdUserSkill = (await _unitOfWork.UserSkillRepo.GetAllAsync()).FirstOrDefault(us => us.Skillname == entity.UserSkillName)?.Id;
+            await _unitOfWork.SkillUnitRepo.AddAsync(value);
+            await _unitOfWork.SaveChangesAsync();
+        }
 
         public virtual async Task DeleteAsync(int id)
         {
