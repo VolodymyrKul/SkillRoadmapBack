@@ -583,7 +583,7 @@ namespace SkillRoadMapBack.DAL
             {
                 for(int j = 0; j < 10; j++)
                 {
-                    var diff = genTrainings[i].EndDate - currentDate;
+                    var diff = currentDate - genTrainings[i].EndDate;
                     trainingMembers.Add(new TrainingMember
                     {
                         Id = i * 10 + j + 1,
